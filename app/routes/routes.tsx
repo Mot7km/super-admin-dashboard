@@ -5,6 +5,7 @@ import GenericModulePage from '../../src/components/common/GenericModulePage';
 
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import BusinessesPage from './pages/BusinessesPage';
 import MenuPage from './pages/MenuPage';
 import BranchesPage from './pages/BranchesPage';
 import OrdersPage from './pages/OrdersPage';
@@ -39,7 +40,11 @@ export const router = createBrowserRouter([
           // Core Management
           {
             path: 'businesses',
-            element: <GenericModulePage titleKey="nav.businesses" category="SaaS Management" />,
+            element: <BusinessesPage />,
+          },
+          {
+            path: 'businesses/:id',
+            element: <BusinessesPage />,
           },
           {
             path: 'users',
