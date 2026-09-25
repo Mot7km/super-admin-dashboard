@@ -15,6 +15,7 @@ import SettingsPage from './pages/SettingsPage';
 import SubscriptionsPage from './pages/SubscriptionsPage';
 import UsersPage from './pages/UsersPage';
 import PaymentsPage from './pages/PaymentsPage';
+import AuditLogsPage from './pages/AuditLogsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -81,7 +82,7 @@ export const router = createBrowserRouter([
           // Audit
           {
             path: 'audit-logs',
-            element: <GenericModulePage titleKey="nav.auditLogs" category="Security & Compliance" />,
+            element: <AuditLogsPage />,
           },
 
           // System Submenu
