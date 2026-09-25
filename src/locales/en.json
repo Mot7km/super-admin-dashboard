@@ -1236,5 +1236,103 @@
       "roleCreated": "New governance role created",
       "permissionsSaved": "Role permissions matrix saved successfully"
     }
+  },
+  "featureFlags": {
+    "title": "System Feature Flags",
+    "subtitle": "Instant zero-downtime feature switches, progressive delivery, and granular tenant scope targeting.",
+    "kpi": {
+      "totalFlags": "Total System Flags",
+      "systemSwitches": "Configured",
+      "inStagingDev": "flags in Staging & Dev",
+      "activeFlags": "Active in Production",
+      "safelyDisabled": "safely dormant / disabled",
+      "targetedScoped": "Targeted & Scoped",
+      "byPlanOrBusiness": "Plan & Business Rules",
+      "exclusiveAccessRules": "Exclusive tiered capabilities",
+      "canaryRollout": "Canary & Rollout",
+      "percentageTesting": "Progressive Delivery",
+      "progressiveDelivery": "Dynamic percentage sampling"
+    },
+    "filters": {
+      "searchPlaceholder": "Search by flag name, key (e.g. pos_v2), or description...",
+      "allStatuses": "All Statuses",
+      "enabledOnly": "Enabled Only",
+      "disabledOnly": "Disabled Only",
+      "allScopes": "All Scopes",
+      "allEnvironments": "All Environments",
+      "reset": "Reset Filters"
+    },
+    "scopes": {
+      "everyone": "All Tenants",
+      "plans": "Specific Plans",
+      "businesses": "Specific Businesses",
+      "percentage": "Canary Rollout"
+    },
+    "table": {
+      "flag": "Feature Flag & Slug",
+      "environment": "Environment",
+      "targetScope": "Target Scope",
+      "status": "State",
+      "updated": "Last Activity",
+      "actions": "Actions",
+      "on": "ON",
+      "off": "OFF",
+      "by": "by",
+      "copyKey": "Copy key to clipboard",
+      "businessesTargeted": "Businesses targeted",
+      "noFlagsFound": "No Feature Flags Found",
+      "noFlagsDescription": "Try adjusting your search criteria or create a new feature flag."
+    },
+    "actions": {
+      "createFlag": "New Feature Flag",
+      "editFlag": "Edit Scope & Settings",
+      "viewDetails": "Code & Integration Details",
+      "deleteFlag": "Delete Flag",
+      "sync": "Sync Engine"
+    },
+    "modal": {
+      "createTitle": "Create New Feature Flag",
+      "editTitle": "Edit Feature Flag & Scope",
+      "subtitle": "Define feature slug, environment, rollout target, and safety kill-switch.",
+      "flagName": "Feature Name",
+      "flagKey": "Feature Key",
+      "description": "Description & Context",
+      "environment": "Target Environment",
+      "initialState": "Initial State",
+      "scopeTargeting": "Scope & Audience Targeting",
+      "selectEligiblePlans": "Select Eligible SaaS Subscription Plans",
+      "selectEligibleBusinesses": "Select Eligible Business Tenants (Beta Testing)",
+      "rolloutPercentage": "Traffic Sampling Percentage",
+      "percentageDescription": "Gradually allocates incoming client traffic randomly based on tenant hash algorithm.",
+      "tags": "Tags",
+      "commaSeparated": "comma separated",
+      "nameRequired": "Please enter a valid feature flag name.",
+      "keyRequired": "Please provide a unique feature flag key slug.",
+      "selectAtLeastOnePlan": "Please choose at least one subscription plan for this scope.",
+      "selectAtLeastOneBusiness": "Please choose at least one business tenant for this scope."
+    },
+    "drawer": {
+      "codeIntegration": "Code Integration",
+      "jsonPayload": "JSON Definition",
+      "auditHistory": "Audit & Lineage"
+    },
+    "killSwitch": {
+      "toggleOffTitle": "Emergency Kill Switch Trigger",
+      "toggleOffDescription": "You are turning OFF an active feature flag in Production. This change takes effect across all connected tenant applications immediately.",
+      "blastRadiusWarning": "Immediate Platform Impact Warning",
+      "confirmKillSwitch": "Deactivate Feature Now",
+      "deleteTitle": "Permanently Remove Feature Flag",
+      "deleteDescription": "Deleting this flag will remove its entry from the platform registry. Client applications falling back to default behavior will take effect.",
+      "confirmDelete": "Delete Feature Flag"
+    },
+    "toast": {
+      "enabled": "Activated across targeted tenants",
+      "disabled": "Safely deactivated",
+      "emergencyDisabled": "Emergency kill switch applied! Feature deactivated.",
+      "created": "New feature flag registered successfully",
+      "updated": "Feature flag scope & rules updated",
+      "deleted": "Feature flag removed from platform registry",
+      "syncRefreshed": "Feature flag engine rules synchronized"
+    }
   }
 }

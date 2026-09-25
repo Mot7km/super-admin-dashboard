@@ -19,6 +19,7 @@ import AuditLogsPage from './pages/AuditLogsPage';
 import SupportPage from './pages/SupportPage';
 import NotificationsPage from './pages/NotificationsPage';
 import AdminManagementPage from './pages/AdminManagementPage';
+import FeatureFlagsPage from './pages/FeatureFlagsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -98,7 +99,7 @@ export const router = createBrowserRouter([
               },
               {
                 path: 'feature-flags',
-                element: <GenericModulePage titleKey="nav.featureFlags" category="System Core" />,
+                element: <FeatureFlagsPage />,
               },
               {
                 path: 'settings',
