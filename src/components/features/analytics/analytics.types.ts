@@ -111,3 +111,91 @@ export interface GovernorateStat {
   percent: number;
 }
 
+// -------------------------------------------------------------
+// Phase 3: Subscriptions, Revenue & Payment Intelligence Types
+// -------------------------------------------------------------
+
+export interface MrrWaterfallStep {
+  key: 'starting' | 'new' | 'expansion' | 'contraction' | 'churn' | 'ending';
+  labelKey: string;
+  amount: number;
+  isPositive?: boolean;
+  isNegative?: boolean;
+  isTotal?: boolean;
+}
+
+export interface MrrMovementSummary {
+  startingMrr: number;
+  newMrr: number;
+  expansionMrr: number;
+  contractionMrr: number;
+  churnedMrr: number;
+  endingMrr: number;
+  netNewMrr: number;
+  quickRatio: number;
+  steps: MrrWaterfallStep[];
+}
+
+export interface SubscriptionPlanBreakdown {
+  id: string;
+  nameKey: string;
+  tier: 'basic' | 'pro' | 'enterprise';
+  subscribersCount: number;
+  percent: number;
+  mrrAmount: number;
+  mrrPercent: number;
+  priceMonthly: number;
+  color: string;
+}
+
+export interface BillingCycleStat {
+  cycle: 'monthly' | 'annual';
+  labelKey: string;
+  subscribersCount: number;
+  percent: number;
+  annualDiscountNote: string;
+}
+
+export interface SubscriptionCadenceStats {
+  monthlyUpgrades: number;
+  monthlyDowngrades: number;
+  autoRenewPercent: number;
+  upcomingRenewals7d: number;
+}
+
+export interface PaymentGatewayStat {
+  id: string;
+  name: string;
+  methodKey: string;
+  volumeEgp: number;
+  txCount: number;
+  successRate: number;
+  sharePercent: number;
+  color: string;
+}
+
+export interface PaymentFailureReasonItem {
+  id: string;
+  labelKey: string;
+  count: number;
+  percent: number;
+  category: 'balance' | 'expiry' | 'network' | 'fraud';
+}
+
+export interface InvoiceCollectionStats {
+  totalInvoicesCount: number;
+  totalInvoicesAmount: number;
+  paidCount: number;
+  paidAmount: number;
+  paidPercent: number;
+  pendingCount: number;
+  pendingAmount: number;
+  pendingPercent: number;
+  overdueCount: number;
+  overdueAmount: number;
+  overduePercent: number;
+  dsoDays: number;
+  totalRefundedAmount: number;
+  refundsRate: number;
+}
+

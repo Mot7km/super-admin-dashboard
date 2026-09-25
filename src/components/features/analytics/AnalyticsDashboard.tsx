@@ -18,6 +18,7 @@ import { AnalyticsTimeFilterBar } from './components/AnalyticsTimeFilterBar';
 import { AnalyticsNavTabs } from './components/AnalyticsNavTabs';
 import { AnalyticsOverviewSection } from './sections/AnalyticsOverviewSection';
 import { AnalyticsGrowthSection } from './sections/AnalyticsGrowthSection';
+import { AnalyticsSubscriptionsSection } from './sections/AnalyticsSubscriptionsSection';
 
 export const AnalyticsDashboard: FC = () => {
   const { t, isRtl } = useTranslation();
@@ -121,9 +122,10 @@ export const AnalyticsDashboard: FC = () => {
       )}
 
       {activeTab === 'growth' && <AnalyticsGrowthSection />}
+      {activeTab === 'subscriptions' && <AnalyticsSubscriptionsSection />}
 
       {/* Phase Roadmap Preview for other tabs */}
-      {activeTab !== 'overview' && activeTab !== 'growth' && (
+      {activeTab !== 'overview' && activeTab !== 'growth' && activeTab !== 'subscriptions' && (
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border/80 bg-card/40 p-12 text-center space-y-4">
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
             <TrendingUp className="h-7 w-7" />

@@ -8,6 +8,13 @@ import type {
   PlatformActivitySummary,
   MultiBranchStats,
   GovernorateStat,
+  MrrMovementSummary,
+  SubscriptionPlanBreakdown,
+  BillingCycleStat,
+  SubscriptionCadenceStats,
+  PaymentGatewayStat,
+  PaymentFailureReasonItem,
+  InvoiceCollectionStats,
 } from './analytics.types';
 
 export const INITIAL_OVERVIEW_KPIS: KpiMetricItem[] = [
@@ -460,3 +467,207 @@ export const EGYPT_GOVERNORATES_DATA: GovernorateStat[] = [
     percent: 5.6,
   },
 ];
+
+// -------------------------------------------------------------
+// Phase 3: Subscriptions, Revenue & Payment Intelligence Datasets
+// -------------------------------------------------------------
+
+export const MRR_MOVEMENT_SUMMARY: MrrMovementSummary = {
+  startingMrr: 164150,
+  newMrr: 18200,
+  expansionMrr: 9450,
+  contractionMrr: 2800,
+  churnedMrr: 4500,
+  endingMrr: 184500,
+  netNewMrr: 20350,
+  quickRatio: 3.8,
+  steps: [
+    {
+      key: 'starting',
+      labelKey: 'analytics.revenue.startingMrr',
+      amount: 164150,
+      isTotal: true,
+    },
+    {
+      key: 'new',
+      labelKey: 'analytics.revenue.newMrr',
+      amount: 18200,
+      isPositive: true,
+    },
+    {
+      key: 'expansion',
+      labelKey: 'analytics.revenue.expansionMrr',
+      amount: 9450,
+      isPositive: true,
+    },
+    {
+      key: 'contraction',
+      labelKey: 'analytics.revenue.contractionMrr',
+      amount: -2800,
+      isNegative: true,
+    },
+    {
+      key: 'churn',
+      labelKey: 'analytics.revenue.churnedMrr',
+      amount: -4500,
+      isNegative: true,
+    },
+    {
+      key: 'ending',
+      labelKey: 'analytics.revenue.endingMrr',
+      amount: 184500,
+      isTotal: true,
+    },
+  ],
+};
+
+export const SUBSCRIPTION_PLANS_DATA: SubscriptionPlanBreakdown[] = [
+  {
+    id: 'plan-basic',
+    nameKey: 'analytics.plans.basic',
+    tier: 'basic',
+    subscribersCount: 271,
+    percent: 29.0,
+    mrrAmount: 40650,
+    mrrPercent: 22.0,
+    priceMonthly: 150,
+    color: 'bg-emerald-500',
+  },
+  {
+    id: 'plan-pro',
+    nameKey: 'analytics.plans.pro',
+    tier: 'pro',
+    subscribersCount: 486,
+    percent: 52.0,
+    mrrAmount: 97200,
+    mrrPercent: 52.7,
+    priceMonthly: 200,
+    color: 'bg-primary',
+  },
+  {
+    id: 'plan-enterprise',
+    nameKey: 'analytics.plans.enterprise',
+    tier: 'enterprise',
+    subscribersCount: 177,
+    percent: 19.0,
+    mrrAmount: 46650,
+    mrrPercent: 25.3,
+    priceMonthly: 264,
+    color: 'bg-purple-500',
+  },
+];
+
+export const BILLING_CYCLES_DATA: BillingCycleStat[] = [
+  {
+    cycle: 'monthly',
+    labelKey: 'analytics.plans.monthlyCycle',
+    subscribersCount: 635,
+    percent: 68.0,
+    annualDiscountNote: 'Standard monthly recurring cadence',
+  },
+  {
+    cycle: 'annual',
+    labelKey: 'analytics.plans.annualCycle',
+    subscribersCount: 299,
+    percent: 32.0,
+    annualDiscountNote: 'Includes 2 months free (20% discount applied)',
+  },
+];
+
+export const SUBSCRIPTION_CADENCE_DATA: SubscriptionCadenceStats = {
+  monthlyUpgrades: 48,
+  monthlyDowngrades: 9,
+  autoRenewPercent: 84.5,
+  upcomingRenewals7d: 62,
+};
+
+export const PAYMENT_GATEWAYS_DATA: PaymentGatewayStat[] = [
+  {
+    id: 'gw-cards',
+    name: 'Credit & Debit Cards',
+    methodKey: 'analytics.payments.cards',
+    volumeEgp: 1539000,
+    txCount: 15200,
+    successRate: 95.8,
+    sharePercent: 54.0,
+    color: 'bg-indigo-500',
+  },
+  {
+    id: 'gw-meeza',
+    name: 'Meeza Cards',
+    methodKey: 'analytics.payments.meeza',
+    volumeEgp: 627000,
+    txCount: 7120,
+    successRate: 94.2,
+    sharePercent: 22.0,
+    color: 'bg-emerald-500',
+  },
+  {
+    id: 'gw-wallets',
+    name: 'Mobile Wallets & InstaPay',
+    methodKey: 'analytics.payments.wallets',
+    volumeEgp: 513000,
+    txCount: 6430,
+    successRate: 97.4,
+    sharePercent: 18.0,
+    color: 'bg-amber-500',
+  },
+  {
+    id: 'gw-bank',
+    name: 'Bank Transfer / Direct Wire',
+    methodKey: 'analytics.payments.bankWire',
+    volumeEgp: 171000,
+    txCount: 480,
+    successRate: 99.1,
+    sharePercent: 6.0,
+    color: 'bg-teal-500',
+  },
+];
+
+export const PAYMENT_FAILURE_REASONS: PaymentFailureReasonItem[] = [
+  {
+    id: 'fail-balance',
+    labelKey: 'analytics.payments.failBalance',
+    count: 523,
+    percent: 48.0,
+    category: 'balance',
+  },
+  {
+    id: 'fail-expiry',
+    labelKey: 'analytics.payments.failExpiry',
+    count: 261,
+    percent: 24.0,
+    category: 'expiry',
+  },
+  {
+    id: 'fail-timeout',
+    labelKey: 'analytics.payments.failTimeout',
+    count: 196,
+    percent: 18.0,
+    category: 'network',
+  },
+  {
+    id: 'fail-fraud',
+    labelKey: 'analytics.payments.failFraud',
+    count: 109,
+    percent: 10.0,
+    category: 'fraud',
+  },
+];
+
+export const INVOICE_COLLECTION_DATA: InvoiceCollectionStats = {
+  totalInvoicesCount: 1480,
+  totalInvoicesAmount: 2850000,
+  paidCount: 1392,
+  paidAmount: 2681850,
+  paidPercent: 94.1,
+  pendingCount: 64,
+  pendingAmount: 122550,
+  pendingPercent: 4.3,
+  overdueCount: 24,
+  overdueAmount: 45600,
+  overduePercent: 1.6,
+  dsoDays: 3.2,
+  totalRefundedAmount: 12400,
+  refundsRate: 0.43,
+};
