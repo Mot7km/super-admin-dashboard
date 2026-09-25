@@ -13,6 +13,7 @@ import EmployeesPage from './pages/EmployeesPage';
 import InventoryPage from './pages/InventoryPage';
 import SettingsPage from './pages/SettingsPage';
 import SubscriptionsPage from './pages/SubscriptionsPage';
+import UsersPage from './pages/UsersPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -49,7 +50,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'users',
-            element: <GenericModulePage titleKey="nav.users" category="Access & Identity" />,
+            element: <UsersPage />,
           },
           {
             path: 'subscriptions',
