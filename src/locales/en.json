@@ -13,6 +13,7 @@
     "featureFlags": "Feature Flags",
     "announcements": "Announcements",
     "settings": "Settings",
+    "storage": "Cloud Storage",
     "integrations": "Integrations",
     "systemHealth": "System Health",
     "adminManagement": "Admin Management",
@@ -1524,6 +1525,68 @@
       "updated": "Announcement rules and copy updated",
       "deleted": "Announcement permanently removed",
       "loadedInPreview": "Loaded banner into live simulator preview"
+    }
+  },
+  "storage": {
+    "title": "Cloud Storage & Tenant Quotas",
+    "subtitle": "Monitor platform total S3 capacity, categorized file footprint, and granular per-business quota allocations.",
+    "kpi": {
+      "totalCapacity": "Total Cloud Pool",
+      "thisMonth": "growth this month",
+      "usedStorage": "Allocated Footprint",
+      "availableSpace": "Free Available Space",
+      "headroomRemaining": "headroom available",
+      "criticalQuotas": "Near Limit Warnings",
+      "businessesNearLimit": "Tenants exceeding 80% quota threshold"
+    },
+    "categories": {
+      "sectionTitle": "Categorized Storage Footprint",
+      "volume": "Disk Footprint",
+      "images": "Menu & Product Media",
+      "imagesDesc": "High-res dish photos, gallery uploads, and customer QR media.",
+      "documents": "Invoices & Tax PDFs",
+      "documentsDesc": "ZATCA compliant XML/PDF tax receipts and accounting records.",
+      "backups": "Database Dumps & Snapshots",
+      "backupsDesc": "Automated nightly tenant state dumps and disaster recovery files.",
+      "logs": "Audit & POS Telemetry Logs",
+      "logsDesc": "Forensic admin traces, cashier shift logs, and webhook history."
+    },
+    "filters": {
+      "searchPlaceholder": "Search by business name or code (e.g. BUS-101)...",
+      "allStatuses": "All Quota States",
+      "reset": "Reset Filters"
+    },
+    "status": {
+      "normal": "Normal",
+      "warning": "Near Limit",
+      "critical": "Critical Quota"
+    },
+    "table": {
+      "sectionTitle": "Tenant Storage Allocations & Utilization",
+      "business": "Business Entity & Tier",
+      "quotaUsage": "Quota Utilization",
+      "breakdown": "Media Footprint",
+      "fileStats": "File Index Count",
+      "status": "Quota Status",
+      "actions": "Actions",
+      "files": "indexed files"
+    },
+    "actions": {
+      "adjustQuota": "Adjust Quota",
+      "refresh": "Sync Storage Pool"
+    },
+    "modal": {
+      "adjustTitle": "Adjust Tenant Storage Quota",
+      "currentUsage": "Current Disk Footprint",
+      "currentQuota": "Current Allocated Quota",
+      "quickPresets": "Quick Presets",
+      "newQuotaLabel": "New Storage Quota Capacity",
+      "projectedUsage": "Projected Utilization",
+      "overQuotaWarning": "Warning: The new quota is smaller than current disk usage. Tenant uploads will be immediately blocked."
+    },
+    "toast": {
+      "quotaUpdated": "Tenant storage quota updated successfully",
+      "synced": "Storage metrics synchronized from cloud pool"
     }
   }
 }

@@ -22,6 +22,7 @@ import {
   Flag,
   Megaphone,
   Settings,
+  HardDrive,
   Workflow,
   Activity,
   UserCog,
@@ -108,6 +109,7 @@ const AppLayout = () => {
     { to: '/system/feature-flags', labelKey: 'nav.featureFlags', icon: Flag },
     { to: '/system/announcements', labelKey: 'nav.announcements', icon: Megaphone },
     { to: '/system/settings', labelKey: 'nav.settings', icon: Settings },
+    { to: '/system/storage', labelKey: 'nav.storage', icon: HardDrive },
     { to: '/system/integrations', labelKey: 'nav.integrations', icon: Workflow },
     { to: '/system/health', labelKey: 'nav.systemHealth', icon: Activity, badge: '99.9%', badgeVariant: 'success' },
   ];

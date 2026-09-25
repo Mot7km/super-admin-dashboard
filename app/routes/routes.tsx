@@ -21,6 +21,7 @@ import NotificationsPage from './pages/NotificationsPage';
 import AdminManagementPage from './pages/AdminManagementPage';
 import FeatureFlagsPage from './pages/FeatureFlagsPage';
 import AnnouncementsPage from './pages/AnnouncementsPage';
+import StoragePage from './pages/StoragePage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -109,6 +110,10 @@ export const router = createBrowserRouter([
               {
                 path: 'settings',
                 element: <SettingsPage />,
+              },
+              {
+                path: 'storage',
+                element: <StoragePage />,
               },
               {
                 path: 'integrations',
