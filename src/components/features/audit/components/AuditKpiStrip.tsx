@@ -69,7 +69,7 @@ const AuditKpiStrip: FC<AuditKpiStripProps> = ({
 
         <div className="mt-3.5">
           <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider block">
-            {t('audit.kpiTotalEvents') || 'Total Security Events Logged'}
+            {t('audit.kpi.totalEvents')}
           </span>
           <div className="flex items-baseline justify-between mt-1">
             <span className="text-2xl sm:text-3xl font-black text-foreground font-mono tabular-nums tracking-tight">
@@ -87,7 +87,7 @@ const AuditKpiStrip: FC<AuditKpiStripProps> = ({
 
         <div className="mt-3 flex items-center justify-between text-xs border-t border-border/50 pt-2.5">
           <span className="text-muted-foreground font-medium">
-            {t('audit.flightRecorder') || 'Flight Recorder Status'}
+            {t('audit.kpi.totalEventsDesc')}
           </span>
           <span className="font-mono font-black text-foreground tabular-nums flex items-center gap-1">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -124,7 +124,7 @@ const AuditKpiStrip: FC<AuditKpiStripProps> = ({
 
         <div className="mt-3.5">
           <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider block">
-            {t('audit.kpiCriticalMutations') || 'Critical State Mutations'}
+            {t('audit.kpi.criticalMutations')}
           </span>
           <div className="flex items-baseline justify-between mt-1">
             <span className="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-mono tabular-nums tracking-tight">
@@ -147,7 +147,7 @@ const AuditKpiStrip: FC<AuditKpiStripProps> = ({
 
         <div className="mt-3 flex items-center justify-between text-xs border-t border-border/50 pt-2.5">
           <span className="text-muted-foreground font-medium">
-            {t('audit.stateDiffTracking') || 'State Diff Tracking'}
+            {t('audit.kpi.criticalMutationsDesc')}
           </span>
           <span className="font-mono font-black text-foreground tabular-nums">
             Audited & Snapshotted
@@ -186,7 +186,7 @@ const AuditKpiStrip: FC<AuditKpiStripProps> = ({
 
         <div className="mt-3.5">
           <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider block">
-            {t('audit.kpiBlockedAttempts') || 'Blocked / Denied Invocations'}
+            {t('audit.kpi.blockedAttempts')}
           </span>
           <div className="flex items-baseline justify-between mt-1">
             <span className="text-2xl sm:text-3xl font-black text-destructive-text font-mono tabular-nums tracking-tight">
@@ -209,7 +209,7 @@ const AuditKpiStrip: FC<AuditKpiStripProps> = ({
 
         <div className="mt-3 flex items-center justify-between text-xs border-t border-border/50 pt-2.5">
           <span className="text-muted-foreground font-medium">
-            {t('audit.threatIsolation') || 'Threat Isolation'}
+            {t('audit.kpi.blockedAttemptsDesc')}
           </span>
           <span className="font-mono font-black text-destructive-text tabular-nums">
             IP Intercept Active
@@ -233,7 +233,7 @@ const AuditKpiStrip: FC<AuditKpiStripProps> = ({
 
         <div className="mt-3.5">
           <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider block">
-            {t('audit.kpiCryptographicIntegrity') || 'Cryptographic Integrity'}
+            {t('audit.kpi.integrityLedger')}
           </span>
           <div className="flex items-baseline justify-between mt-1">
             <span className="text-2xl sm:text-3xl font-black text-success-text font-mono tabular-nums tracking-tight">
@@ -254,7 +254,7 @@ const AuditKpiStrip: FC<AuditKpiStripProps> = ({
 
         <div className="mt-3 flex items-center justify-between text-xs border-t border-border/50 pt-2.5">
           <span className="text-muted-foreground font-medium">
-            {t('audit.complianceGrade') || 'Compliance Audit Standard'}
+            {t('audit.kpi.integrityLedgerDesc')}
           </span>
           <span className="font-mono font-black text-foreground tabular-nums">
             SOC 2 / ISO 27001

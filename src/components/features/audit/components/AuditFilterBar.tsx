@@ -34,12 +34,12 @@ type AuditFilterBarProps = {
 };
 
 const CATEGORIES: { id: 'all' | AuditCategory; labelKey: string; defaultLabel: string }[] = [
-  { id: 'all', labelKey: 'audit.catAll', defaultLabel: 'All Events' },
-  { id: 'security', labelKey: 'audit.catSecurity', defaultLabel: 'Security & Access' },
-  { id: 'business', labelKey: 'audit.catBusiness', defaultLabel: 'Business Mutations' },
-  { id: 'billing', labelKey: 'audit.catBilling', defaultLabel: 'Billing & Plans' },
-  { id: 'identity', labelKey: 'audit.catIdentity', defaultLabel: 'Identity & Tokens' },
-  { id: 'system', labelKey: 'audit.catSystem', defaultLabel: 'System Core' },
+  { id: 'all', labelKey: 'audit.categories.all', defaultLabel: 'All Events' },
+  { id: 'security', labelKey: 'audit.categories.security', defaultLabel: 'Security & Access' },
+  { id: 'business', labelKey: 'audit.categories.business', defaultLabel: 'Business Mutations' },
+  { id: 'billing', labelKey: 'audit.categories.billing', defaultLabel: 'Billing & Plans' },
+  { id: 'identity', labelKey: 'audit.categories.identity', defaultLabel: 'Identity & Tokens' },
+  { id: 'system', labelKey: 'audit.categories.system', defaultLabel: 'System Core' },
 ];
 
 const AuditFilterBar: FC<AuditFilterBarProps> = ({
@@ -182,8 +182,7 @@ const AuditFilterBar: FC<AuditFilterBarProps> = ({
             value={filters.search}
             onChange={(e) => onFilterChange('search', e.target.value)}
             placeholder={
-              t('audit.searchPlaceholder') ||
-              'Search by actor, IP, business #124, plan, request ID... (Press /)'
+              t('audit.filter.searchPlaceholder')
             }
             className="w-full h-9 pl-9 pr-14 rtl:pl-9 rtl:pr-14 rounded-xl bg-surface-subtle border border-border/70 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium"
           />
@@ -213,11 +212,11 @@ const AuditFilterBar: FC<AuditFilterBarProps> = ({
             </div>
             <select
               value={filters.actor}
-              aria-label={t('audit.filterByActor') || 'Filter by Actor'}
+              aria-label={t('audit.filter.actor')}
               onChange={(e) => onFilterChange('actor', e.target.value)}
               className="w-full h-9 pl-8 pr-7 rtl:pl-8 rtl:pr-8 rounded-xl bg-surface-subtle border border-border/70 text-xs font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer transition-all appearance-none"
             >
-              <option value="all">{t('audit.allActors') || 'All Actors'}</option>
+              <option value="all">{t('audit.filter.allActors')}</option>
               {uniqueActors.map((a) => (
                 <option key={a.id} value={a.id}>
                   {a.name}
@@ -234,11 +233,11 @@ const AuditFilterBar: FC<AuditFilterBarProps> = ({
             </div>
             <select
               value={filters.business}
-              aria-label={t('audit.filterByBusiness') || 'Filter by Business'}
+              aria-label={t('audit.filter.business')}
               onChange={(e) => onFilterChange('business', e.target.value)}
               className="w-full h-9 pl-8 pr-7 rtl:pl-8 rtl:pr-8 rounded-xl bg-surface-subtle border border-border/70 text-xs font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer transition-all appearance-none"
             >
-              <option value="all">{t('audit.allBusinesses') || 'All Tenancies'}</option>
+              <option value="all">{t('audit.filter.allBusinesses')}</option>
               {uniqueBusinesses.map((b) => (
                 <option key={b.id} value={b.id}>
                   {b.name}
@@ -255,11 +254,11 @@ const AuditFilterBar: FC<AuditFilterBarProps> = ({
             </div>
             <select
               value={filters.resourceType}
-              aria-label={t('audit.filterByResource') || 'Filter by Resource'}
+              aria-label={t('audit.filter.resourceType')}
               onChange={(e) => onFilterChange('resourceType', e.target.value)}
               className="w-full h-9 pl-8 pr-7 rtl:pl-8 rtl:pr-8 rounded-xl bg-surface-subtle border border-border/70 text-xs font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer transition-all appearance-none"
             >
-              <option value="all">{t('audit.allResources') || 'All Resources'}</option>
+              <option value="all">{t('audit.filter.allResources')}</option>
               <option value="business">Business Entity</option>
               <option value="subscription">Subscription Plan</option>
               <option value="user">User Identity</option>
@@ -277,16 +276,15 @@ const AuditFilterBar: FC<AuditFilterBarProps> = ({
             </div>
             <select
               value={filters.dateRange}
-              aria-label={t('audit.filterByDate') || 'Filter by Date'}
+              aria-label={t('audit.filter.datePreset')}
               onChange={(e) => onFilterChange('dateRange', e.target.value as AuditDatePreset)}
               className="w-full h-9 pl-8 pr-7 rtl:pl-8 rtl:pr-8 rounded-xl bg-surface-subtle border border-border/70 text-xs font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer transition-all appearance-none"
             >
-              <option value="all">{t('audit.dateAll') || 'All Time'}</option>
-              <option value="today">{t('audit.dateToday') || 'Today'}</option>
-              <option value="24h">{t('audit.date24h') || 'Last 24 Hours'}</option>
-              <option value="7d">{t('audit.date7d') || 'Last 7 Days'}</option>
-              <option value="30d">{t('audit.date30d') || 'Last 30 Days'}</option>
-              <option value="custom">{t('audit.dateCustom') || 'Custom Range'}</option>
+              <option value="all">{t('audit.filter.dateAll')}</option>
+              <option value="today">{t('audit.filter.dateToday')}</option>
+              <option value="24h">{t('audit.filter.date24h')}</option>
+              <option value="7d">{t('audit.filter.date7d')}</option>
+              <option value="30d">{t('audit.filter.date30d')}</option>
             </select>
             <ChevronDown className="absolute right-2.5 rtl:right-auto rtl:left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
           </div>
@@ -298,14 +296,14 @@ const AuditFilterBar: FC<AuditFilterBarProps> = ({
             </div>
             <select
               value={filters.status}
-              aria-label={t('audit.filterByStatus') || 'Filter by Status'}
+              aria-label={t('audit.filter.status')}
               onChange={(e) => onFilterChange('status', e.target.value as any)}
               className="w-full h-9 pl-8 pr-7 rtl:pl-8 rtl:pr-8 rounded-xl bg-surface-subtle border border-border/70 text-xs font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer transition-all appearance-none"
             >
-              <option value="all">{t('audit.statusAll') || 'All Statuses'}</option>
-              <option value="success">{t('audit.statusSuccess') || 'Success (200 OK)'}</option>
-              <option value="failure">{t('audit.statusFailure') || 'Blocked / Denied (403)'}</option>
-              <option value="warning">{t('audit.statusWarning') || 'Security Warning'}</option>
+              <option value="all">{t('audit.filter.allStatuses')}</option>
+              <option value="success">{t('audit.status.success')}</option>
+              <option value="failure">{t('audit.status.failure')}</option>
+              <option value="warning">{t('audit.status.warning')}</option>
             </select>
             <ChevronDown className="absolute right-2.5 rtl:right-auto rtl:left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
           </div>
@@ -342,7 +340,7 @@ const AuditFilterBar: FC<AuditFilterBarProps> = ({
         <div className="flex items-center flex-wrap gap-2 pt-1 text-xs">
           <span className="text-muted-foreground font-semibold flex items-center gap-1.5">
             <Filter className="h-3.5 w-3.5" />
-            {t('common.activeFilters') || 'Active Filters'}:
+            {t('audit.filter.activeFilters')}
           </span>
 
           {filters.search && (
@@ -416,7 +414,7 @@ const AuditFilterBar: FC<AuditFilterBarProps> = ({
             className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors font-medium ml-auto rtl:ml-0 rtl:mr-auto"
           >
             <RotateCcw className="h-3 w-3" />
-            <span>{t('common.reset') || 'Reset All'}</span>
+            <span>{t('audit.filter.clearAll')}</span>
           </button>
         </div>
       )}
