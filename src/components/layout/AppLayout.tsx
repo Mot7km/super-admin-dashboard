@@ -26,6 +26,10 @@ import {
   Workflow,
   Activity,
   UserCog,
+  TrendingUp,
+  Target,
+  Layers,
+  Server,
   Sun,
   Moon,
   Globe,
@@ -60,8 +64,8 @@ const AppLayout = () => {
 
   const closeMobileSidebar = () => setMobileSidebarOpen(false);
 
-  // Grouped Navigation structure matching the MOT7KM Super Admin architecture
-  const navGroups: NavGroupConfig[] = [
+  // Core Management Groups
+  const coreNavGroups: NavGroupConfig[] = [
     {
       id: 'overview-group',
       items: [
@@ -77,12 +81,20 @@ const AppLayout = () => {
         { to: '/payments', labelKey: 'nav.payments', icon: Receipt },
       ],
     },
-    {
-      id: 'insights',
-      items: [
-        { to: '/analytics', labelKey: 'nav.analytics', icon: BarChart3 },
-      ],
-    },
+  ];
+
+  // Analytics Hub Sub-items
+  const analyticsSubItems: NavItemConfig[] = [
+    { to: '/analytics/overview', labelKey: 'analytics.tabs.overview', icon: LayoutDashboard },
+    { to: '/analytics/growth', labelKey: 'analytics.tabs.growth', icon: TrendingUp },
+    { to: '/analytics/subscriptions', labelKey: 'analytics.tabs.subscriptions', icon: CreditCard },
+    { to: '/analytics/trials', labelKey: 'analytics.tabs.trials', icon: Target },
+    { to: '/analytics/product', labelKey: 'analytics.tabs.product', icon: Layers },
+    { to: '/analytics/operations', labelKey: 'analytics.tabs.operations', icon: Server, badge: '99.2%', badgeVariant: 'success' },
+  ];
+
+  // Secondary Operations Groups
+  const opsNavGroups: NavGroupConfig[] = [
     {
       id: 'support-ops',
       items: [
@@ -258,7 +270,8 @@ const AppLayout = () => {
 
         {/* Navigation Items */}
         <nav className="mt-3 flex flex-1 flex-col gap-3 overflow-y-auto hide-scrollbar" aria-label="Main Super Admin Navigation">
-          {navGroups.map((group, groupIdx) => (
+          {/* Core Management Groups */}
+          {coreNavGroups.map((group, groupIdx) => (
             <div key={group.id} className="flex flex-col gap-1">
               {group.items.map((item) => {
                 const label = t(item.labelKey);
@@ -310,7 +323,83 @@ const AppLayout = () => {
               })}
 
               {/* Group Separator */}
-              {groupIdx < navGroups.length - 1 && (
+              {groupIdx < coreNavGroups.length - 1 && (
+                <div className="my-1 border-t border-border/40" />
+              )}
+            </div>
+          ))}
+
+          {/* Group Separator before Analytics */}
+          <div className="my-1 border-t border-border/40" />
+
+          {/* Analytics Submenu (Modern Inset Card & Glowing Rail Collapsible) */}
+          <SidebarNavCollapsible
+            id="analytics"
+            labelKey="nav.analytics"
+            icon={BarChart3}
+            items={analyticsSubItems}
+            isCollapsed={isCollapsed}
+            defaultOpen={false}
+            onItemClick={closeMobileSidebar}
+          />
+
+          {/* Group Separator before Ops */}
+          <div className="my-1 border-t border-border/40" />
+
+          {/* Secondary Operations Groups */}
+          {opsNavGroups.map((group, groupIdx) => (
+            <div key={group.id} className="flex flex-col gap-1">
+              {group.items.map((item) => {
+                const label = t(item.labelKey);
+                return (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    end={item.to === '/'}
+                    onClick={closeMobileSidebar}
+                    title={isCollapsed ? label : undefined}
+                    className={({ isActive }) =>
+                      `group relative flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                        isCollapsed ? 'justify-center px-0' : ''
+                      } ${
+                        isActive
+                          ? 'bg-primary/10 text-primary shadow-sm ring-1 ring-primary/25 font-bold'
+                          : 'text-muted-foreground hover:bg-surface-subtle hover:text-foreground'
+                      }`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <div className="flex items-center gap-3 min-w-0">
+                          <item.icon
+                            className={`h-4 w-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
+                              isActive ? 'text-primary' : 'text-muted-foreground group-hover:text-foreground'
+                            }`}
+                          />
+                          {!isCollapsed && <span className="truncate">{label}</span>}
+                        </div>
+
+                        {!isCollapsed && renderBadge(item.badge, item.badgeVariant)}
+
+                        {/* Collapsed Mode Hover Tooltip */}
+                        {isCollapsed && (
+                          <div
+                            className={`pointer-events-none absolute hidden rounded-lg bg-card px-3 py-1.5 text-xs font-bold text-card-foreground shadow-dialog border border-border group-hover:flex items-center gap-2 z-50 whitespace-nowrap ${
+                              locale === 'ar' ? 'right-full mr-3' : 'left-full ml-3'
+                            }`}
+                          >
+                            <span>{label}</span>
+                            {renderBadge(item.badge, item.badgeVariant)}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                );
+              })}
+
+              {/* Group Separator */}
+              {groupIdx < opsNavGroups.length - 1 && (
                 <div className="my-1 border-t border-border/40" />
               )}
             </div>

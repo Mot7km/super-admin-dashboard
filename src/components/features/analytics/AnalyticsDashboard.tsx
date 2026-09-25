@@ -1,4 +1,5 @@
-import { useState, useCallback, type FC } from 'react';
+import { useState, useCallback, useMemo, type FC } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   BarChart3,
   Sparkles,
@@ -15,7 +16,6 @@ import type {
 import { INITIAL_OVERVIEW_KPIS } from './analytics.mock';
 
 import { AnalyticsTimeFilterBar } from './components/AnalyticsTimeFilterBar';
-import { AnalyticsNavTabs } from './components/AnalyticsNavTabs';
 import { AnalyticsOverviewSection } from './sections/AnalyticsOverviewSection';
 import { AnalyticsGrowthSection } from './sections/AnalyticsGrowthSection';
 import { AnalyticsSubscriptionsSection } from './sections/AnalyticsSubscriptionsSection';
@@ -26,8 +26,24 @@ import { AnalyticsOperationsSection } from './sections/AnalyticsOperationsSectio
 export const AnalyticsDashboard: FC = () => {
   const { t, isRtl } = useTranslation();
   const { showToast } = useToast();
+  const { tab } = useParams<{ tab?: string }>();
+  const navigate = useNavigate();
 
-  const [activeTab, setActiveTab] = useState<AnalyticsTab>('overview');
+  const validTabs: AnalyticsTab[] = useMemo(
+    () => ['overview', 'growth', 'subscriptions', 'trials', 'product', 'operations'],
+    []
+  );
+
+  const activeTab: AnalyticsTab = validTabs.includes(tab as AnalyticsTab)
+    ? (tab as AnalyticsTab)
+    : 'overview';
+
+  const handleSelectTab = useCallback(
+    (newTab: AnalyticsTab) => {
+      navigate(`/analytics/${newTab}`);
+    },
+    [navigate]
+  );
   const [timeRange, setTimeRange] = useState<TimeRange>('30d');
   const [compareWithPrevious, setCompareWithPrevious] = useState(true);
   const [kpis, setKpis] = useState<KpiMetricItem[]>(INITIAL_OVERVIEW_KPIS);
@@ -84,9 +100,15 @@ export const AnalyticsDashboard: FC = () => {
               <BarChart3 className="h-5 w-5" />
             </div>
             <div>
-              <h1 className="text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
-                {t('analytics.title')}
-              </h1>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h1 className="text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
+                  {t('analytics.title')}
+                </h1>
+                <span className="hidden sm:inline-block text-muted-foreground/40 font-mono">/</span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary">
+                  {t(`analytics.tabs.${activeTab}`)}
+                </span>
+              </div>
               <p className="text-xs text-muted-foreground mt-0.5">
                 {t('analytics.subtitle')}
               </p>
@@ -108,12 +130,6 @@ export const AnalyticsDashboard: FC = () => {
         onToggleCompare={() => setCompareWithPrevious((prev) => !prev)}
         onRefresh={handleRefresh}
         isRefreshing={isRefreshing}
-      />
-
-      {/* Main Tab Navigation */}
-      <AnalyticsNavTabs
-        activeTab={activeTab}
-        onSelectTab={setActiveTab}
       />
 
       {/* Tab Content Display */}
@@ -151,7 +167,7 @@ export const AnalyticsDashboard: FC = () => {
           </div>
           <button
             type="button"
-            onClick={() => setActiveTab('overview')}
+            onClick={() => handleSelectTab('overview')}
             className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
           >
             <span>{t('analytics.roadmap.backToOverview')}</span>

@@ -74,7 +74,16 @@ export const router = createBrowserRouter([
           // Insights
           {
             path: 'analytics',
-            element: <AnalyticsPage />,
+            children: [
+              {
+                index: true,
+                element: <AnalyticsPage />,
+              },
+              {
+                path: ':tab',
+                element: <AnalyticsPage />,
+              },
+            ],
           },
 
           // Support & Ops

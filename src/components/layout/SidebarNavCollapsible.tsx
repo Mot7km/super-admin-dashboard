@@ -37,10 +37,24 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
   const { t, isRtl } = useTranslation();
   const location = useLocation();
 
-  // Determine if any child route is currently active
-  const isAnyChildActive = items.some((item) =>
-    location.pathname === item.to || location.pathname.startsWith(`${item.to}/`)
-  );
+  // Determine if any child route or base group route is currently active
+  const isAnyChildActive =
+    items.some(
+      (item) =>
+        location.pathname === item.to || location.pathname.startsWith(`${item.to}/`)
+    ) ||
+    location.pathname === `/${id}` ||
+    location.pathname.startsWith(`/${id}/`);
+
+  const isChildActive = (itemTo: string) => {
+    if (location.pathname === itemTo || location.pathname.startsWith(`${itemTo}/`)) {
+      return true;
+    }
+    if (location.pathname === `/${id}` && itemTo === `/${id}/overview`) {
+      return true;
+    }
+    return false;
+  };
 
   // Auto-expand if active or defaults to open
   const [isOpen, setIsOpen] = useState<boolean>(() => {
@@ -148,7 +162,7 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
             <div className="flex flex-col gap-0.5 max-h-[70vh] overflow-y-auto hide-scrollbar">
               {items.map((subItem) => {
                 const subLabel = t(subItem.labelKey);
-                const isCurrent = location.pathname === subItem.to;
+                const isCurrent = isChildActive(subItem.to);
                 return (
                   <NavLink
                     key={subItem.to}
@@ -188,35 +202,36 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
 
           {items.map((subItem) => {
             const subLabel = t(subItem.labelKey);
+            const active = isChildActive(subItem.to);
             return (
               <NavLink
                 key={subItem.to}
                 to={subItem.to}
                 onClick={onItemClick}
-                className={({ isActive }) =>
+                className={
                   `group relative flex items-center justify-between rounded-xl py-1.5 px-3 text-[11px] font-medium transition-all duration-150 cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-primary ${
                     isRtl ? 'pr-4' : 'pl-4'
                   } ${
-                    isActive
+                    active
                       ? 'bg-primary/10 text-primary font-bold shadow-xs ring-1 ring-primary/20'
                       : 'text-muted-foreground hover:bg-surface hover:text-foreground'
                   }`
                 }
               >
-                {({ isActive }) => (
+                {() => (
                   <>
                     {/* Node on the rail */}
                     <div className="flex items-center gap-2.5 min-w-0">
                       <span
                         className={`h-1.5 w-1.5 rounded-full shrink-0 transition-all duration-200 ${
-                          isActive
+                          active
                             ? 'bg-primary scale-125 shadow-[0_0_6px_rgba(var(--primary),0.8)]'
                             : 'bg-muted-foreground/30 group-hover:bg-muted-foreground/70'
                         }`}
                       />
                       <subItem.icon
                         className={`h-3.5 w-3.5 shrink-0 transition-transform duration-150 ${
-                          isActive
+                          active
                             ? 'text-primary scale-105'
                             : 'opacity-70 group-hover:opacity-100 group-hover:scale-105'
                         }`}
