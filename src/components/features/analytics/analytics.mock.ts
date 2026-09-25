@@ -26,6 +26,12 @@ import type {
   ProductFeatureUsageItem,
   FeatureAdoptionFunnelStep,
   GmvIntelligenceSummary,
+  ApiPerformanceSummary,
+  ApiEndpointMetric,
+  SystemErrorCategory,
+  SupportOperationsStats,
+  NotificationChannelTelemetry,
+  AdminAuditActivitySummary,
 } from './analytics.types';
 
 export const INITIAL_OVERVIEW_KPIS: KpiMetricItem[] = [
@@ -1073,4 +1079,166 @@ export const GMV_INTELLIGENCE_DATA: GmvIntelligenceSummary = {
     },
   ],
 };
+
+// -------------------------------------------------------------
+// Phase 6: Operations, System, Support & Audit Telemetry Datasets
+// -------------------------------------------------------------
+
+export const API_PERFORMANCE_SUMMARY: ApiPerformanceSummary = {
+  totalRequestsMonth: 1840000,
+  successRatePercent: 99.2,
+  meanLatencyMs: 182,
+  p50LatencyMs: 120,
+  p95LatencyMs: 340,
+  p99LatencyMs: 820,
+  errorCountMonth: 14720,
+};
+
+export const API_TOP_ENDPOINTS: ApiEndpointMetric[] = [
+  {
+    id: 'ep-orders',
+    endpoint: '/api/v1/orders',
+    method: 'POST',
+    callsCount: 642000,
+    avgLatencyMs: 142,
+    errorRatePercent: 0.4,
+    status: 'optimal',
+  },
+  {
+    id: 'ep-products',
+    endpoint: '/api/v1/products',
+    method: 'GET',
+    callsCount: 480000,
+    avgLatencyMs: 98,
+    errorRatePercent: 0.2,
+    status: 'optimal',
+  },
+  {
+    id: 'ep-auth',
+    endpoint: '/api/v1/auth/login',
+    method: 'POST',
+    callsCount: 310000,
+    avgLatencyMs: 186,
+    errorRatePercent: 1.2,
+    status: 'optimal',
+  },
+  {
+    id: 'ep-branches',
+    endpoint: '/api/v1/branches/sync',
+    method: 'POST',
+    callsCount: 198000,
+    avgLatencyMs: 310,
+    errorRatePercent: 2.8,
+    status: 'warning',
+  },
+  {
+    id: 'ep-reports',
+    endpoint: '/api/v1/reports/export',
+    method: 'GET',
+    callsCount: 84000,
+    avgLatencyMs: 640,
+    errorRatePercent: 3.4,
+    status: 'warning',
+  },
+];
+
+export const SYSTEM_ERROR_CATEGORIES: SystemErrorCategory[] = [
+  {
+    id: 'err-auth',
+    categoryKey: 'analytics.errors.catAuth',
+    count: 342,
+    percent: 26.6,
+    httpCode: '401 / 403',
+    color: 'bg-rose-500',
+  },
+  {
+    id: 'err-validation',
+    categoryKey: 'analytics.errors.catValidation',
+    count: 281,
+    percent: 21.9,
+    httpCode: '400 / 422',
+    color: 'bg-amber-500',
+  },
+  {
+    id: 'err-payment',
+    categoryKey: 'analytics.errors.catPayment',
+    count: 194,
+    percent: 15.1,
+    httpCode: '504 Timeout',
+    color: 'bg-orange-500',
+  },
+  {
+    id: 'err-throttle',
+    categoryKey: 'analytics.errors.catThrottle',
+    count: 83,
+    percent: 6.5,
+    httpCode: '429 Throttle',
+    color: 'bg-indigo-500',
+  },
+  {
+    id: 'err-database',
+    categoryKey: 'analytics.errors.catDatabase',
+    count: 48,
+    percent: 3.7,
+    httpCode: '500 Internal',
+    color: 'bg-purple-500',
+  },
+  {
+    id: 'err-other',
+    categoryKey: 'analytics.errors.catOther',
+    count: 336,
+    percent: 26.2,
+    httpCode: 'Client 4xx',
+    color: 'bg-blue-500',
+  },
+];
+
+export const SUPPORT_OPERATIONS_DATA: SupportOperationsStats = {
+  openTickets: 42,
+  resolvedToday: 83,
+  avgFirstResponseMinutes: 18,
+  avgResolutionHours: 4.2,
+  csatScore: 4.8,
+  csatPercentage: 96.4,
+  totalTicketsMonth: 1480,
+};
+
+export const NOTIFICATION_CHANNELS_DATA: NotificationChannelTelemetry[] = [
+  {
+    id: 'ch-push',
+    channelKey: 'push',
+    channelNameKey: 'analytics.ops.pushChannel',
+    sentCount: 48200,
+    deliveryRatePercent: 98.6,
+    color: 'bg-primary',
+  },
+  {
+    id: 'ch-sms',
+    channelKey: 'sms',
+    channelNameKey: 'analytics.ops.smsChannel',
+    sentCount: 24100,
+    deliveryRatePercent: 94.2,
+    color: 'bg-emerald-500',
+  },
+  {
+    id: 'ch-email',
+    channelKey: 'email',
+    channelNameKey: 'analytics.ops.emailChannel',
+    sentCount: 10100,
+    deliveryRatePercent: 98.4,
+    openRatePercent: 61.2,
+    clickRatePercent: 18.5,
+    color: 'bg-amber-500',
+  },
+];
+
+export const ADMIN_AUDIT_SUMMARY: AdminAuditActivitySummary = {
+  totalAdminActionsToday: 438,
+  businessConfigEdits: 184,
+  subscriptionPlanEdits: 92,
+  operatorGovernanceEdits: 64,
+  securitySessionRevocations: 98,
+  securityAnomaliesCount: 0,
+};
+
 

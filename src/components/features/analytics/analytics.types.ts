@@ -316,3 +316,66 @@ export interface GmvIntelligenceSummary {
   businessTypeShares: GmvBusinessTypeShare[];
 }
 
+// -------------------------------------------------------------
+// Phase 6: Operations, System, Support & Audit Telemetry Types
+// -------------------------------------------------------------
+
+export interface ApiPerformanceSummary {
+  totalRequestsMonth: number;
+  successRatePercent: number;
+  meanLatencyMs: number;
+  p50LatencyMs: number;
+  p95LatencyMs: number;
+  p99LatencyMs: number;
+  errorCountMonth: number;
+}
+
+export interface ApiEndpointMetric {
+  id: string;
+  endpoint: string;
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  callsCount: number;
+  avgLatencyMs: number;
+  errorRatePercent: number;
+  status: 'optimal' | 'warning' | 'critical';
+}
+
+export interface SystemErrorCategory {
+  id: string;
+  categoryKey: string;
+  count: number;
+  percent: number;
+  httpCode: string;
+  color: string;
+}
+
+export interface SupportOperationsStats {
+  openTickets: number;
+  resolvedToday: number;
+  avgFirstResponseMinutes: number;
+  avgResolutionHours: number;
+  csatScore: number;
+  csatPercentage: number;
+  totalTicketsMonth: number;
+}
+
+export interface NotificationChannelTelemetry {
+  id: string;
+  channelKey: string;
+  channelNameKey: string;
+  sentCount: number;
+  deliveryRatePercent: number;
+  openRatePercent?: number;
+  clickRatePercent?: number;
+  color: string;
+}
+
+export interface AdminAuditActivitySummary {
+  totalAdminActionsToday: number;
+  businessConfigEdits: number;
+  subscriptionPlanEdits: number;
+  operatorGovernanceEdits: number;
+  securitySessionRevocations: number;
+  securityAnomaliesCount: number;
+}
+
