@@ -1588,5 +1588,93 @@
       "quotaUpdated": "Tenant storage quota updated successfully",
       "synced": "Storage metrics synchronized from cloud pool"
     }
+  },
+  "integrations": {
+    "title": "Cloud Integrations & Gateway Hub",
+    "subtitle": "Oversee connected payment gateways, notification dispatchers, cloud infrastructure, and regulatory webhooks.",
+    "kpi": {
+      "activeConnections": "Active Services",
+      "allSystemsGo": "All Systems Operational",
+      "inSandboxMode": "Sandbox Test Mode",
+      "healthIndex": "Platform Gateway SLA",
+      "healthSubtitle": "Aggregated 30-day external API reliability",
+      "gatewayVolume": "Monthly Payment Volume",
+      "volumeSubtitle": "Processed through connected rails",
+      "messagesDispatched": "Monthly Notifications",
+      "messagesSubtitle": "Push, transactional SMS & email events"
+    },
+    "tabs": {
+      "all": "All Integrations",
+      "payment": "Payments & Gateways",
+      "messaging": "Messaging & Alerts",
+      "cloud": "Cloud & Maps",
+      "webhooks": "Compliance & Webhooks"
+    },
+    "actions": {
+      "viewWebhookLogs": "Webhook Activity Stream",
+      "syncAll": "Sync All Gateways",
+      "testPing": "Test Ping",
+      "configure": "Configure"
+    },
+    "filters": {
+      "searchPlaceholder": "Search integrations by provider, name or capabilities...",
+      "allEnvironments": "All Environments",
+      "reset": "Reset Filters"
+    },
+    "env": {
+      "production": "Production",
+      "sandbox": "Sandbox"
+    },
+    "status": {
+      "connected": "Connected",
+      "sandbox": "Sandbox Mode",
+      "degraded": "Degraded SLA",
+      "disconnected": "Disconnected"
+    },
+    "categoryNames": {
+      "payment": "Payment Gateway",
+      "messaging": "Messaging & Alerts",
+      "cloud": "Cloud Infrastructure",
+      "webhooks": "Webhook & Compliance"
+    },
+    "card": {
+      "uptimeScore": "Health SLA",
+      "latency": "Response Latency",
+      "monthlyThroughput": "Monthly Throughput",
+      "ofQuota": "of quota"
+    },
+    "modal": {
+      "configureTitle": "Configure Integration",
+      "configureSubtitle": "Manage environment routing, webhook targets, and security policies.",
+      "securityBadge": "KMS Protected",
+      "securityDesc": "Private API keys and certificates are encrypted at rest in AWS KMS and never exposed to the client interface.",
+      "environmentLabel": "Operational Environment",
+      "liveTraffic": "Processes live transactions",
+      "testSimulations": "Safe sandbox simulations",
+      "statusLabel": "Connection State",
+      "apiKeyLabel": "Public / Live Key Identifier",
+      "webhookEndpointLabel": "Platform Inbound Webhook Endpoint",
+      "quotaLimitLabel": "Monthly Rate Cap",
+      "unlimitedQuota": "Unlimited (No Cap)",
+      "quotaHelpText": "Leave empty for unconstrained provider rate limits."
+    },
+    "testModal": {
+      "title": "Gateway Diagnostics & Ping",
+      "runningPing": "Executing TLS Handshake & Echo Test",
+      "successMessage": "Service is reachable and responding with optimal low latency.",
+      "retest": "Retest Ping"
+    },
+    "drawer": {
+      "webhooksTitle": "Webhook Event Stream",
+      "webhooksSubtitle": "Audit real-time incoming and dispatched webhook payloads across all active connectors.",
+      "retry": "Resend"
+    },
+    "toast": {
+      "configSaved": "Integration parameters and environment updated successfully",
+      "webhookRetried": "Webhook event re-queued and dispatched successfully",
+      "allSynced": "All external gateway connections synchronized and verified"
+    },
+    "noResultsTitle": "No Integrations Match Criteria",
+    "noResultsDesc": "Adjust your search terms or filter settings to view configured platform gateways."
   }
 }

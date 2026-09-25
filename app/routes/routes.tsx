@@ -22,6 +22,7 @@ import AdminManagementPage from './pages/AdminManagementPage';
 import FeatureFlagsPage from './pages/FeatureFlagsPage';
 import AnnouncementsPage from './pages/AnnouncementsPage';
 import StoragePage from './pages/StoragePage';
+import IntegrationsPage from './pages/IntegrationsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -117,7 +118,7 @@ export const router = createBrowserRouter([
               },
               {
                 path: 'integrations',
-                element: <GenericModulePage titleKey="nav.integrations" category="System Core" />,
+                element: <IntegrationsPage />,
               },
               {
                 path: 'health',
