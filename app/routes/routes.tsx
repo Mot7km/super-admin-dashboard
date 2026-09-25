@@ -60,7 +60,16 @@ export const router = createBrowserRouter([
           },
           {
             path: 'users',
-            element: <UsersPage />,
+            children: [
+              {
+                index: true,
+                element: <UsersPage />,
+              },
+              {
+                path: ':role',
+                element: <UsersPage />,
+              },
+            ],
           },
           {
             path: 'subscriptions',

@@ -30,6 +30,10 @@ import {
   Target,
   Layers,
   Server,
+  Briefcase,
+  GitBranch,
+  Calculator,
+  ShieldAlert,
   Sun,
   Moon,
   Globe,
@@ -73,10 +77,28 @@ const AppLayout = () => {
       ],
     },
     {
-      id: 'core-management',
+      id: 'business-group',
       items: [
         { to: '/businesses', labelKey: 'nav.businesses', icon: Building2 },
-        { to: '/users', labelKey: 'nav.users', icon: Users },
+      ],
+    },
+  ];
+
+  // Global Users Directory Sub-items
+  const usersSubItems: NavItemConfig[] = [
+    { to: '/users/all', labelKey: 'users.roles.all', icon: Users },
+    { to: '/users/super_admin', labelKey: 'users.roles.superAdmin', icon: ShieldAlert },
+    { to: '/users/support_staff', labelKey: 'users.roles.supportStaff', icon: Headphones },
+    { to: '/users/business_owner', labelKey: 'users.roles.businessOwner', icon: Briefcase },
+    { to: '/users/branch_manager', labelKey: 'users.roles.branchManager', icon: GitBranch },
+    { to: '/users/cashier', labelKey: 'users.roles.cashier', icon: Calculator },
+  ];
+
+  // Finance & Subscription Groups
+  const financeNavGroups: NavGroupConfig[] = [
+    {
+      id: 'finance-group',
+      items: [
         { to: '/subscriptions', labelKey: 'nav.subscriptions', icon: CreditCard },
         { to: '/payments', labelKey: 'nav.payments', icon: Receipt },
       ],
@@ -324,6 +346,82 @@ const AppLayout = () => {
 
               {/* Group Separator */}
               {groupIdx < coreNavGroups.length - 1 && (
+                <div className="my-1 border-t border-border/40" />
+              )}
+            </div>
+          ))}
+
+          {/* Group Separator before Users */}
+          <div className="my-1 border-t border-border/40" />
+
+          {/* Users Directory Submenu (Modern Inset Card & Glowing Rail Collapsible) */}
+          <SidebarNavCollapsible
+            id="users"
+            labelKey="nav.users"
+            icon={Users}
+            items={usersSubItems}
+            isCollapsed={isCollapsed}
+            defaultOpen={false}
+            onItemClick={closeMobileSidebar}
+          />
+
+          {/* Group Separator before Finance */}
+          <div className="my-1 border-t border-border/40" />
+
+          {/* Finance & Subscription Groups */}
+          {financeNavGroups.map((group, groupIdx) => (
+            <div key={group.id} className="flex flex-col gap-1">
+              {group.items.map((item) => {
+                const label = t(item.labelKey);
+                return (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    end={item.to === '/'}
+                    onClick={closeMobileSidebar}
+                    title={isCollapsed ? label : undefined}
+                    className={({ isActive }) =>
+                      `group relative flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                        isCollapsed ? 'justify-center px-0' : ''
+                      } ${
+                        isActive
+                          ? 'bg-primary/10 text-primary shadow-sm ring-1 ring-primary/25 font-bold'
+                          : 'text-muted-foreground hover:bg-surface-subtle hover:text-foreground'
+                      }`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <div className="flex items-center gap-3 min-w-0">
+                          <item.icon
+                            className={`h-4 w-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
+                              isActive ? 'text-primary' : 'text-muted-foreground group-hover:text-foreground'
+                            }`}
+                          />
+                          {!isCollapsed && <span className="truncate">{label}</span>}
+                        </div>
+
+                        {!isCollapsed && renderBadge(item.badge, item.badgeVariant)}
+
+                        {/* Collapsed Mode Hover Tooltip */}
+                        {isCollapsed && (
+                          <div
+                            className={`pointer-events-none absolute hidden rounded-lg bg-card px-3 py-1.5 text-xs font-bold text-card-foreground shadow-dialog border border-border group-hover:flex items-center gap-2 z-50 whitespace-nowrap ${
+                              locale === 'ar' ? 'right-full mr-3' : 'left-full ml-3'
+                            }`}
+                          >
+                            <span>{label}</span>
+                            {renderBadge(item.badge, item.badgeVariant)}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                );
+              })}
+
+              {/* Group Separator */}
+              {groupIdx < financeNavGroups.length - 1 && (
                 <div className="my-1 border-t border-border/40" />
               )}
             </div>

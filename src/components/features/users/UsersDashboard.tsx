@@ -1,4 +1,5 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Users,
   CheckCircle2,
@@ -26,6 +27,7 @@ import UserActionModals from './components/UserActionModals';
 
 const UsersDashboard = () => {
   const { t, locale } = useTranslation();
+  const { role } = useParams<{ role?: string }>();
 
   // State: Global Users list
   const [users, setUsers] = useState<GlobalUser[]>(INITIAL_GLOBAL_USERS);
@@ -58,6 +60,40 @@ const UsersDashboard = () => {
     pageSize: 8,
     viewMode: 'table',
   });
+
+  // Sync role from URL param if present
+  useEffect(() => {
+    const validRoles: ('all' | UserRole)[] = [
+      'all',
+      'super_admin',
+      'support_staff',
+      'business_owner',
+      'branch_manager',
+      'cashier',
+    ];
+    if (role && validRoles.includes(role as 'all' | UserRole)) {
+      setFilters((prev) => ({ ...prev, role: role as 'all' | UserRole, page: 1 }));
+    } else {
+      setFilters((prev) => ({ ...prev, role: 'all', page: 1 }));
+    }
+  }, [role]);
+
+  const getRoleLabel = (r: 'all' | UserRole) => {
+    switch (r) {
+      case 'super_admin':
+        return t('users.roles.superAdmin');
+      case 'support_staff':
+        return t('users.roles.supportStaff');
+      case 'business_owner':
+        return t('users.roles.businessOwner');
+      case 'branch_manager':
+        return t('users.roles.branchManager');
+      case 'cashier':
+        return t('users.roles.cashier');
+      default:
+        return t('users.roles.all');
+    }
+  };
 
   const handleFilterChange = useCallback(
     <K extends keyof UserFilterState>(key: K, value: UserFilterState[K]) => {
@@ -355,9 +391,15 @@ const UsersDashboard = () => {
               <Users className="h-5 w-5" />
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
-                {t('users.title') || 'Users & Global Roles'}
-              </h1>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h1 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
+                  {t('users.title') || 'Users & Global Roles'}
+                </h1>
+                <span className="hidden sm:inline-block text-muted-foreground/40 font-mono">/</span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary">
+                  {getRoleLabel(filters.role)}
+                </span>
+              </div>
               <p className="text-xs text-muted-foreground mt-0.5">
                 {t('users.subtitle') ||
                   'System-wide directory across all enterprises, branch managers, and POS operators'}
@@ -394,13 +436,12 @@ const UsersDashboard = () => {
         onStatusSelect={(status) => handleFilterChange('status', status)}
       />
 
-      {/* 2. Unified Filter, Role Segmented Tabs & Search Bar */}
+      {/* 2. Unified Search, Filter & View Controls */}
       <UserFilterBar
         users={users}
         filters={filters}
         onFilterChange={handleFilterChange}
         onResetFilters={handleResetFilters}
-        onOpenCreateUser={() => setModalState({ type: 'create_user' })}
       />
 
       {/* 3. Main Data View (Table or Grid) */}

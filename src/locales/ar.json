@@ -57,7 +57,15 @@
     "no": "لا",
     "saveChanges": "حفظ التغييرات",
     "success": "تمت العملية بنجاح",
-    "error": "حدث خطأ"
+    "error": "حدث خطأ",
+    "export": "تصدير CSV",
+    "activeFilters": "الفلاتر النشطة",
+    "reset": "إعادة تعيين",
+    "showing": "عرض",
+    "of": "من أصل",
+    "previous": "السابق",
+    "next": "التالي",
+    "page": "صفحة"
   },
   "login": {
     "superAdminBadge": "بوابة الإدارة المركزية — Super Admin",
@@ -2178,6 +2186,51 @@
       "anomalyGuardStatus": "حارس التدقيق الأمني ومكافحة الشذوذ",
       "anomalyGuardSubtitle": "تم فحص كافة الإجراءات مع صفر محاولات اختراق أو نشاط مشبوه",
       "anomalies": "شذوذ أمني"
+    }
+  },
+  "users": {
+    "title": "دليل مستخدمي النظام",
+    "subtitle": "إدارة وصلاحيات الطواقم في كافة الأنشطة ومديري الفروع وموظفي الكاشير",
+    "createUserBtn": "إضافة / دعوة مستخدم",
+    "searchPlaceholder": "البحث بالاسم، البريد، الهاتف، النشاط، أو الـ IP... (اضغط / للتركيز)",
+    "filterByStatus": "تصفية حسب الحالة",
+    "filterByBusiness": "تصفية حسب المنشأة",
+    "allBusinesses": "كافة الأنشطة والمنشآت",
+    "sortBy": "ترتيب حسب",
+    "sortLastLogin": "آخر نشاط (الأحدث)",
+    "sortCreatedDesc": "تاريخ الإنشاء (الأحدث)",
+    "sortNameAsc": "الاسم (أ - ي)",
+    "sortSessionsDesc": "الأجهزة المتصلة (الأكثر)",
+    "role": "الدور",
+    "status": "الحالة",
+    "statusAll": "كافة الحالات",
+    "statusActive": "نشط",
+    "statusLocked": "مغلق / معلق",
+    "statusDisabled": "معطل",
+    "statusPending": "قيد التفعيل",
+    "kpiTotalUsers": "إجمالي هويات النظام",
+    "activeStatusRate": "معدل الحسابات النشطة",
+    "kpiActiveSessions": "الجلسات والأجهزة الحية",
+    "deviceBreakdown": "توزيع الأجهزة",
+    "kpiMfaScore": "درع التحقق الثنائي 2FA",
+    "identityHealth": "سلامة الهويات",
+    "kpiLockedUsers": "الحسابات المعلقة والمقيدة",
+    "securityFlag": "إجراء أمني مطلوب",
+    "colIdentity": "هوية المستخدم",
+    "colRole": "دور النظام",
+    "colBusiness": "المنشأة / الفرع",
+    "colStatus": "الحالة و2FA",
+    "colSessions": "الجلسات النشطة",
+    "colLastLogin": "آخر نشاط / الانضمام",
+    "noUsersFound": "لم يتم العثور على مستخدمين يطابقون الفلاتر الحالية",
+    "noUsersDescription": "حاول تعديل مصطلح البحث، أو تغيير فلاتر الأدوار والحالة.",
+    "roles": {
+      "all": "كافة المستخدمين",
+      "superAdmin": "سوبر أدمن المنصة",
+      "supportStaff": "طاقم الدعم الفني",
+      "businessOwner": "أصحاب الأنشطة",
+      "branchManager": "مديرو الفروع",
+      "cashier": "موظفو الكاشير وPOS"
     }
   }
 }

@@ -3,87 +3,25 @@ import {
   Search,
   X,
   Filter,
-  Users,
-  ShieldAlert,
-  Headphones,
-  Briefcase,
-  GitBranch,
-  Calculator,
   LayoutGrid,
   List,
-  UserPlus,
   RotateCcw,
 } from 'lucide-react';
 import { useTranslation } from '../../../../../app/context/LanguageContext';
-import type { GlobalUser, UserFilterState, UserRole } from '../users.types';
+import type { GlobalUser, UserFilterState } from '../users.types';
 
 type UserFilterBarProps = {
   users: GlobalUser[];
   filters: UserFilterState;
   onFilterChange: <K extends keyof UserFilterState>(key: K, value: UserFilterState[K]) => void;
   onResetFilters: () => void;
-  onOpenCreateUser: () => void;
 };
-
-type RoleTabConfig = {
-  id: 'all' | UserRole;
-  labelKey: string;
-  defaultLabel: string;
-  icon: FC<{ className?: string }>;
-  colorClass: string;
-};
-
-const ROLE_TABS: RoleTabConfig[] = [
-  {
-    id: 'all',
-    labelKey: 'users.roles.all',
-    defaultLabel: 'All Users',
-    icon: Users,
-    colorClass: 'text-foreground',
-  },
-  {
-    id: 'super_admin',
-    labelKey: 'users.roles.superAdmin',
-    defaultLabel: 'Super Admins',
-    icon: ShieldAlert,
-    colorClass: 'text-amber-500 dark:text-amber-400',
-  },
-  {
-    id: 'support_staff',
-    labelKey: 'users.roles.supportStaff',
-    defaultLabel: 'Support Staff',
-    icon: Headphones,
-    colorClass: 'text-sky-500 dark:text-sky-400',
-  },
-  {
-    id: 'business_owner',
-    labelKey: 'users.roles.businessOwner',
-    defaultLabel: 'Business Owners',
-    icon: Briefcase,
-    colorClass: 'text-primary',
-  },
-  {
-    id: 'branch_manager',
-    labelKey: 'users.roles.branchManager',
-    defaultLabel: 'Branch Managers',
-    icon: GitBranch,
-    colorClass: 'text-emerald-500 dark:text-emerald-400',
-  },
-  {
-    id: 'cashier',
-    labelKey: 'users.roles.cashier',
-    defaultLabel: 'Cashiers & POS',
-    icon: Calculator,
-    colorClass: 'text-teal-600 dark:text-teal-400',
-  },
-];
 
 const UserFilterBar: FC<UserFilterBarProps> = ({
   users,
   filters,
   onFilterChange,
   onResetFilters,
-  onOpenCreateUser,
 }) => {
   const { t } = useTranslation();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -104,15 +42,6 @@ const UserFilterBar: FC<UserFilterBarProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Compute live counts per role
-  const roleCounts = useMemo(() => {
-    const counts: Record<string, number> = { all: users.length };
-    for (const u of users) {
-      counts[u.role] = (counts[u.role] || 0) + 1;
-    }
-    return counts;
-  }, [users]);
-
   // Unique business list
   const uniqueBusinesses = useMemo(() => {
     const map = new Map<string, string>();
@@ -132,62 +61,7 @@ const UserFilterBar: FC<UserFilterBarProps> = ({
 
   return (
     <div className="space-y-3.5">
-      {/* 1. Top Role Scope Segmented Tabs */}
-      <div className="flex items-center justify-between gap-3 overflow-x-auto pb-1 no-scrollbar border-b border-border/60">
-        <div className="flex items-center gap-1.5 min-w-max">
-          {ROLE_TABS.map((tab) => {
-            const Icon = tab.icon;
-            const isSelected = filters.role === tab.id;
-            const count = roleCounts[tab.id] || 0;
-
-            return (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => onFilterChange('role', tab.id)}
-                className={`relative flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all select-none ${
-                  isSelected
-                    ? 'bg-card text-foreground shadow-sm border border-border/80 font-black'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
-                }`}
-              >
-                <Icon
-                  className={`h-4 w-4 ${
-                    isSelected ? tab.colorClass : 'text-muted-foreground'
-                  }`}
-                />
-                <span>{t(tab.labelKey) || tab.defaultLabel}</span>
-                <span
-                  className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono font-black ${
-                    isSelected
-                      ? 'bg-primary/10 text-primary border border-primary/20'
-                      : 'bg-surface-subtle text-muted-foreground'
-                  }`}
-                >
-                  {count}
-                </span>
-                {isSelected && (
-                  <span className="absolute bottom-0 inset-x-2 h-0.5 bg-primary rounded-full" />
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Primary Action Button */}
-        <div className="shrink-0 flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onOpenCreateUser}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground font-bold text-xs shadow-sm hover:brightness-105 active:scale-95 transition-all"
-          >
-            <UserPlus className="h-4 w-4" />
-            <span>{t('users.createUserBtn') || 'Add / Invite User'}</span>
-          </button>
-        </div>
-      </div>
-
-      {/* 2. Search, Status, Business, Sort & View Controls */}
+      {/* Search, Status, Business, Sort & View Controls */}
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-card/80 backdrop-blur-sm border border-border/70 rounded-2xl p-3 shadow-xs">
         {/* Search Input */}
         <div className="relative flex-1 min-w-[260px]">

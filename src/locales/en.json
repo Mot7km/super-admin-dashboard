@@ -57,7 +57,15 @@
     "no": "No",
     "saveChanges": "Save Changes",
     "success": "Success",
-    "error": "Error"
+    "error": "Error",
+    "export": "Export CSV",
+    "activeFilters": "Active Filters",
+    "reset": "Reset All",
+    "showing": "Showing",
+    "of": "of",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page"
   },
   "login": {
     "superAdminBadge": "Super Admin Master Portal",
@@ -2178,6 +2186,51 @@
       "anomalyGuardStatus": "Automated Security Audit & Anomaly Guard",
       "anomalyGuardSubtitle": "0 suspicious brute-force or privilege escalation events detected",
       "anomalies": "Anomalies"
+    }
+  },
+  "users": {
+    "title": "System Users Directory",
+    "subtitle": "System-wide directory across all enterprises, branch managers, and POS operators",
+    "createUserBtn": "Add / Invite User",
+    "searchPlaceholder": "Search users by name, email, phone, business, device IP... (Press / to focus)",
+    "filterByStatus": "Filter by Status",
+    "filterByBusiness": "Filter by Organization",
+    "allBusinesses": "All Tenancies / Orgs",
+    "sortBy": "Sort By",
+    "sortLastLogin": "Last Active (Newest)",
+    "sortCreatedDesc": "Created Date (Newest)",
+    "sortNameAsc": "Name (A-Z)",
+    "sortSessionsDesc": "Connected Devices (Most)",
+    "role": "Role",
+    "status": "Status",
+    "statusAll": "All Statuses",
+    "statusActive": "Active",
+    "statusLocked": "Locked",
+    "statusDisabled": "Disabled",
+    "statusPending": "Pending",
+    "kpiTotalUsers": "Total System Identities",
+    "activeStatusRate": "Active Status Rate",
+    "kpiActiveSessions": "Active Sessions & Devices",
+    "deviceBreakdown": "Device Distribution",
+    "kpiMfaScore": "2FA Security Shield",
+    "identityHealth": "Identity Health",
+    "kpiLockedUsers": "Locked & Suspended",
+    "securityFlag": "Security Action",
+    "colIdentity": "User Identity",
+    "colRole": "System Role",
+    "colBusiness": "Organization / Branch",
+    "colStatus": "Status & 2FA",
+    "colSessions": "Active Sessions",
+    "colLastLogin": "Last Active / Joined",
+    "noUsersFound": "No users found matching current filters",
+    "noUsersDescription": "Try adjusting your search query, role filters, or status selection.",
+    "roles": {
+      "all": "All Users",
+      "superAdmin": "Super Admins",
+      "supportStaff": "Support Staff",
+      "businessOwner": "Business Owners",
+      "branchManager": "Branch Managers",
+      "cashier": "Cashiers & POS"
     }
   }
 }
