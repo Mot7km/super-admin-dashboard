@@ -15,6 +15,11 @@ import type {
   PaymentGatewayStat,
   PaymentFailureReasonItem,
   InvoiceCollectionStats,
+  TrialConversionStep,
+  TrialStatusOverview,
+  CohortMonthItem,
+  RetentionCurvePoint,
+  TrialDropoffReason,
 } from './analytics.types';
 
 export const INITIAL_OVERVIEW_KPIS: KpiMetricItem[] = [
@@ -671,3 +676,200 @@ export const INVOICE_COLLECTION_DATA: InvoiceCollectionStats = {
   totalRefundedAmount: 12400,
   refundsRate: 0.43,
 };
+
+// -------------------------------------------------------------
+// Phase 4: Trials & Cohort Retention Intelligence Datasets
+// -------------------------------------------------------------
+
+export const TRIAL_STATUS_OVERVIEW: TrialStatusOverview = {
+  activeTrials: 182,
+  convertedPaid: 246,
+  expiredUnconverted: 410,
+  extendedTrials: 62,
+  avgDaysToConvert: 8.4,
+  totalTrials: 1000,
+  conversionRate: 24.6,
+};
+
+export const TRIAL_CONVERSION_STEPS: TrialConversionStep[] = [
+  {
+    id: 't-visitors',
+    stepNumber: 1,
+    labelKey: 'analytics.trials.stepVisitors',
+    count: 24500,
+    conversionPercent: 100.0,
+  },
+  {
+    id: 't-signups',
+    stepNumber: 2,
+    labelKey: 'analytics.trials.stepSignups',
+    count: 1248,
+    conversionPercent: 5.1,
+    dropoffPercent: 94.9,
+    stageAvgTimeDays: 0.2,
+  },
+  {
+    id: 't-started',
+    stepNumber: 3,
+    labelKey: 'analytics.trials.stepTrialStarted',
+    count: 1000,
+    conversionPercent: 80.1,
+    dropoffPercent: 19.9,
+    stageAvgTimeDays: 0.5,
+  },
+  {
+    id: 't-configured',
+    stepNumber: 4,
+    labelKey: 'analytics.trials.stepConfigured',
+    count: 680,
+    conversionPercent: 68.0,
+    dropoffPercent: 32.0,
+    stageAvgTimeDays: 2.1,
+  },
+  {
+    id: 't-active',
+    stepNumber: 5,
+    labelKey: 'analytics.trials.stepActiveDay7',
+    count: 420,
+    conversionPercent: 42.0,
+    dropoffPercent: 38.2,
+    stageAvgTimeDays: 5.4,
+  },
+  {
+    id: 't-paid',
+    stepNumber: 6,
+    labelKey: 'analytics.trials.stepPaid',
+    count: 246,
+    conversionPercent: 24.6,
+    dropoffPercent: 41.4,
+    stageAvgTimeDays: 8.4,
+  },
+];
+
+export const COHORT_MONTHS_DATA: CohortMonthItem[] = [
+  {
+    monthKey: 'jan',
+    labelEn: 'Jan 2025',
+    labelAr: 'يناير 2025',
+    cohortSize: 140,
+    retentionPercentages: [100.0, 82.1, 71.4, 65.0, 59.3, 54.3],
+  },
+  {
+    monthKey: 'feb',
+    labelEn: 'Feb 2025',
+    labelAr: 'فبراير 2025',
+    cohortSize: 155,
+    retentionPercentages: [100.0, 84.5, 74.2, 68.4, 61.9, null],
+  },
+  {
+    monthKey: 'mar',
+    labelEn: 'Mar 2025',
+    labelAr: 'مارس 2025',
+    cohortSize: 172,
+    retentionPercentages: [100.0, 87.8, 77.3, 71.0, null, null],
+  },
+  {
+    monthKey: 'apr',
+    labelEn: 'Apr 2025',
+    labelAr: 'أبريل 2025',
+    cohortSize: 188,
+    retentionPercentages: [100.0, 88.8, 79.2, null, null, null],
+  },
+  {
+    monthKey: 'may',
+    labelEn: 'May 2025',
+    labelAr: 'مايو 2025',
+    cohortSize: 204,
+    retentionPercentages: [100.0, 91.2, null, null, null, null],
+  },
+  {
+    monthKey: 'jun',
+    labelEn: 'Jun 2025',
+    labelAr: 'يونيو 2025',
+    cohortSize: 218,
+    retentionPercentages: [100.0, null, null, null, null, null],
+  },
+];
+
+export const RETENTION_CURVES_DATA: RetentionCurvePoint[] = [
+  {
+    monthIndex: 0,
+    label: 'Month 0',
+    tenantRetention: 100,
+    userRetention: 100,
+    benchmarkRetention: 100,
+  },
+  {
+    monthIndex: 1,
+    label: 'Month 1',
+    tenantRetention: 82.4,
+    userRetention: 76.2,
+    benchmarkRetention: 65.0,
+  },
+  {
+    monthIndex: 2,
+    label: 'Month 2',
+    tenantRetention: 73.1,
+    userRetention: 66.5,
+    benchmarkRetention: 54.0,
+  },
+  {
+    monthIndex: 3,
+    label: 'Month 3',
+    tenantRetention: 65.2,
+    userRetention: 58.4,
+    benchmarkRetention: 46.0,
+  },
+  {
+    monthIndex: 4,
+    label: 'Month 4',
+    tenantRetention: 59.8,
+    userRetention: 51.0,
+    benchmarkRetention: 42.0,
+  },
+  {
+    monthIndex: 5,
+    label: 'Month 5',
+    tenantRetention: 54.3,
+    userRetention: 44.8,
+    benchmarkRetention: 38.0,
+  },
+];
+
+export const TRIAL_DROPOFF_REASONS: TrialDropoffReason[] = [
+  {
+    id: 'drop-budget',
+    reasonKey: 'analytics.trials.reasonBudget',
+    count: 140,
+    percent: 34.0,
+    category: 'budget',
+  },
+  {
+    id: 'drop-hardware',
+    reasonKey: 'analytics.trials.reasonHardware',
+    count: 115,
+    percent: 28.0,
+    category: 'hardware',
+  },
+  {
+    id: 'drop-setup',
+    reasonKey: 'analytics.trials.reasonSetup',
+    count: 74,
+    percent: 18.0,
+    category: 'setup',
+  },
+  {
+    id: 'drop-training',
+    reasonKey: 'analytics.trials.reasonTraining',
+    count: 49,
+    percent: 12.0,
+    category: 'training',
+  },
+  {
+    id: 'drop-alternative',
+    reasonKey: 'analytics.trials.reasonAlternative',
+    count: 32,
+    percent: 8.0,
+    category: 'alternative',
+  },
+];

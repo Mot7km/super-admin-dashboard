@@ -199,3 +199,51 @@ export interface InvoiceCollectionStats {
   refundsRate: number;
 }
 
+// -------------------------------------------------------------
+// Phase 4: Trials & Cohort Retention Intelligence Types
+// -------------------------------------------------------------
+
+export interface TrialConversionStep {
+  id: string;
+  stepNumber: number;
+  labelKey: string;
+  count: number;
+  conversionPercent: number;
+  dropoffPercent?: number;
+  stageAvgTimeDays?: number;
+}
+
+export interface TrialStatusOverview {
+  activeTrials: number;
+  convertedPaid: number;
+  expiredUnconverted: number;
+  extendedTrials: number;
+  avgDaysToConvert: number;
+  totalTrials: number;
+  conversionRate: number;
+}
+
+export interface CohortMonthItem {
+  monthKey: string;
+  labelEn: string;
+  labelAr: string;
+  cohortSize: number;
+  retentionPercentages: (number | null)[]; // e.g. [100, 82, 71, 65, 59, 54]
+}
+
+export interface RetentionCurvePoint {
+  monthIndex: number;
+  label: string;
+  tenantRetention: number;
+  userRetention: number;
+  benchmarkRetention: number;
+}
+
+export interface TrialDropoffReason {
+  id: string;
+  reasonKey: string;
+  count: number;
+  percent: number;
+  category: 'budget' | 'hardware' | 'setup' | 'training' | 'alternative';
+}
+
