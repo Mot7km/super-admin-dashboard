@@ -7,6 +7,7 @@ type TranslationDictionary = Record<string, unknown>
 
 type LanguageContextValue = {
   locale: Locale
+  isRtl: boolean
   t: (key: string) => string
   toggleLocale: () => void
 }
@@ -62,7 +63,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const value = useMemo(
-    () => ({ locale, t, toggleLocale }),
+    () => ({ locale, isRtl: locale === 'ar', t, toggleLocale }),
     [locale],
   )
 

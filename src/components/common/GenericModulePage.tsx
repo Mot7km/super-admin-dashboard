@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useTranslation } from '../../../app/context/LanguageContext';
-import { Sparkles, Shield, ArrowUpRight, Search, Filter } from 'lucide-react';
+import { Sparkles, Shield, Search, Filter } from 'lucide-react';
 
 type GenericModulePageProps = {
   titleKey: string;

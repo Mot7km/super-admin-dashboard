@@ -60,7 +60,7 @@ const AppLayout = () => {
   
   // System Submenu is open if current path starts with /system or user toggled it
   const isSystemActive = location.pathname.startsWith('/system');
-  const [systemOpen, setSystemOpen] = useState(isSystemActive || true);
+  const [systemOpen, setSystemOpen] = useState<boolean>(isSystemActive || true);
 
   const closeMobileSidebar = () => setMobileSidebarOpen(false);
 

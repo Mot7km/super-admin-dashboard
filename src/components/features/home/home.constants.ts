@@ -1,171 +1,279 @@
 import {
-  AlertCircle,
-  QrCode,
+  Activity,
+  AlertTriangle,
+  Building2,
+  CheckCircle2,
+  DollarSign,
+  Headphones,
+  Key,
+  Server,
+  Shield,
   ShoppingBag,
-  Sparkles,
-  Star,
-  TrendingUp,
-  Utensils,
+  TrendingDown,
+  Users,
 } from 'lucide-react';
+import type {
+  HeroKpi,
+  RecentTenant,
+  RevenuePoint,
+  SentinelMetric,
+  SubscriptionPlanShare,
+  SystemEvent,
+  TransactionVolumePoint,
+} from './home.types';
 
-export const sparklineData1 = [
-  { day: 'Feb 22', v: 1200 },
-  { day: 'Feb 23', v: 1800 },
-  { day: 'Feb 24', v: 1600 },
-  { day: 'Feb 25', v: 2400 },
-  { day: 'Feb 26', v: 2100 },
-  { day: 'Feb 27', v: 3100 },
-  { day: 'Feb 28', v: 3850 },
+// Sparklines for top Hero Cards
+export const mrrSparkline = [
+  { day: 'Day 1', v: 112000 },
+  { day: 'Day 5', v: 115400 },
+  { day: 'Day 10', v: 118900 },
+  { day: 'Day 15', v: 121000 },
+  { day: 'Day 20', v: 124500 },
+  { day: 'Day 25', v: 126800 },
+  { day: 'Day 30', v: 128450 },
 ];
 
-export const sparklineData2 = [
-  { day: 'Feb 22', v: 120 },
-  { day: 'Feb 23', v: 125 },
-  { day: 'Feb 24', v: 130 },
-  { day: 'Feb 25', v: 135 },
-  { day: 'Feb 26', v: 138 },
-  { day: 'Feb 27', v: 140 },
-  { day: 'Feb 28', v: 142 },
+export const businessesSparkline = [
+  { day: 'Day 1', v: 1372 },
+  { day: 'Day 5', v: 1380 },
+  { day: 'Day 10', v: 1391 },
+  { day: 'Day 15', v: 1400 },
+  { day: 'Day 20', v: 1408 },
+  { day: 'Day 25', v: 1414 },
+  { day: 'Day 30', v: 1420 },
 ];
 
-export const sparklineData3 = [
-  { day: 'Feb 22', v: 4.5 },
-  { day: 'Feb 23', v: 4.6 },
-  { day: 'Feb 24', v: 4.7 },
-  { day: 'Feb 25', v: 4.8 },
-  { day: 'Feb 26', v: 4.8 },
-  { day: 'Feb 27', v: 4.9 },
-  { day: 'Feb 28', v: 4.9 },
+export const transactionsSparkline = [
+  { day: 'Day 1', v: 28500 },
+  { day: 'Day 5', v: 31200 },
+  { day: 'Day 10', v: 36400 },
+  { day: 'Day 15', v: 34100 },
+  { day: 'Day 20', v: 42000 },
+  { day: 'Day 25', v: 45600 },
+  { day: 'Day 30', v: 48900 },
 ];
 
-export const sparklineData4 = [
-  { day: 'Feb 22', v: 2100 },
-  { day: 'Feb 23', v: 2400 },
-  { day: 'Feb 24', v: 2800 },
-  { day: 'Feb 25', v: 2600 },
-  { day: 'Feb 26', v: 3100 },
-  { day: 'Feb 27', v: 3300 },
-  { day: 'Feb 28', v: 3420 },
+export const usersSparkline = [
+  { day: 'Day 1', v: 25100 },
+  { day: 'Day 5', v: 25800 },
+  { day: 'Day 10', v: 26400 },
+  { day: 'Day 15', v: 27100 },
+  { day: 'Day 20', v: 27600 },
+  { day: 'Day 25', v: 28100 },
+  { day: 'Day 30', v: 28450 },
 ];
 
-export const homeStats = [
+// 1. Top Deck: 4 Strategic Hero KPIs
+export const heroKpis: HeroKpi[] = [
   {
-    titleKey: 'dashboard.stats.totalMenuViews',
-    value: '24,850',
-    change: '↑ 14.2%',
-    icon: QrCode,
-    haloColor: 'from-blue-500/10 to-cyan-500/5',
-    data: sparklineData1,
-    formatVal: (val: number) => `${val.toLocaleString()} views`,
-  },
-  {
-    titleKey: 'dashboard.stats.activeProducts',
-    value: '142',
-    changeKey: 'dashboard.stats.soldOutBadge',
-    icon: Utensils,
-    haloColor: 'from-emerald-500/10 to-teal-500/5',
-    data: sparklineData2,
-    formatVal: (val: number) => `${val} products`,
-  },
-  {
-    titleKey: 'dashboard.stats.averageRating',
-    value: '4.9 ★',
-    changeKey: 'dashboard.stats.reviewsBadge',
-    icon: Star,
-    haloColor: 'from-amber-500/10 to-yellow-500/5',
-    data: sparklineData3,
-    formatVal: (val: number) => `${val} ★`,
-  },
-  {
-    titleKey: 'dashboard.stats.todaySales',
-    value: '$3,420',
-    change: '↑ 8.6%',
-    icon: TrendingUp,
-    haloColor: 'from-sky-500/10 to-blue-500/5',
-    data: sparklineData4,
+    id: 'mrr-revenue',
+    titleKey: 'dashboard.kpis.mrr',
+    value: '$128,450',
+    subValue: 'ARR: $1.54M',
+    change: '+14.8% MoM',
+    isPositive: true,
+    icon: DollarSign,
+    haloColor: 'from-blue-500/15 via-primary/10 to-transparent',
+    data: mrrSparkline,
     formatVal: (val: number) => `$${val.toLocaleString()}`,
   },
-];
-
-export const branchComparisonData = [
-  { name: 'Week 1', mainBranchSales: 4200, mallBranchSales: 2800, mainBranchViews: 5400, mallBranchViews: 3200 },
-  { name: 'Week 2', mainBranchSales: 5100, mallBranchSales: 3400, mainBranchViews: 6800, mallBranchViews: 4100 },
-  { name: 'Week 3', mainBranchSales: 4900, mallBranchSales: 3900, mainBranchViews: 6200, mallBranchViews: 4800 },
-  { name: 'Week 4', mainBranchSales: 6300, mallBranchSales: 4500, mainBranchViews: 8100, mallBranchViews: 5600 },
-];
-
-export const topProducts = [
-  { nameKey: 'dashboard.products.truffleBurger', views: '4,820', percentage: 92 },
-  { nameKey: 'dashboard.products.icedLatte', views: '3,950', percentage: 78 },
-  { nameKey: 'dashboard.products.margheritaPizza', views: '3,120', percentage: 62 },
-  { nameKey: 'dashboard.products.crispyChicken', views: '2,640', percentage: 50 },
-  { nameKey: 'dashboard.products.pistachioPancake', views: '1,980', percentage: 38 },
-];
-
-export const recentReviews = [
   {
-    id: 1,
-    customer: 'Sami Al-Mansoor',
-    rating: 5,
-    dishKey: 'dashboard.products.truffleBurger',
-    commentKey: 'dashboard.reviewsList.r1',
-    timeKey: 'dashboard.timeAgo.m10',
+    id: 'total-businesses',
+    titleKey: 'dashboard.kpis.totalBusinesses',
+    value: '1,420',
+    subValue: '1,388 Active (97.7%)',
+    change: '+48 New this month',
+    isPositive: true,
+    icon: Building2,
+    haloColor: 'from-teal-500/15 via-secondary/10 to-transparent',
+    data: businessesSparkline,
+    formatVal: (val: number) => `${val.toLocaleString()} Tenants`,
   },
   {
-    id: 2,
-    customer: 'Laila H.',
-    rating: 5,
-    dishKey: 'dashboard.products.icedLatte',
-    commentKey: 'dashboard.reviewsList.r2',
-    timeKey: 'dashboard.timeAgo.m45',
-  },
-  {
-    id: 3,
-    customer: 'Tariq K.',
-    rating: 4,
-    dishKey: 'dashboard.products.margheritaPizza',
-    commentKey: 'dashboard.reviewsList.r3',
-    timeKey: 'dashboard.timeAgo.h2',
-  },
-];
-
-export const activityFeed = [
-  {
-    id: 1,
-    icon: QrCode,
-    titleKey: 'dashboard.activity.qrScanned',
-    timeKey: 'dashboard.timeAgo.m2',
-  },
-  {
-    id: 2,
-    icon: Star,
-    titleKey: 'dashboard.activity.reviewSubmitted',
-    timeKey: 'dashboard.timeAgo.m10',
-  },
-  {
-    id: 3,
-    icon: AlertCircle,
-    titleKey: 'dashboard.activity.itemSoldOut',
-    timeKey: 'dashboard.timeAgo.h1',
-  },
-  {
-    id: 4,
+    id: 'platform-orders-volume',
+    titleKey: 'dashboard.kpis.ordersVolume',
+    value: '342,890',
+    subValue: '$4.82M Total GMV',
+    change: '+18.2% vs last month',
+    isPositive: true,
     icon: ShoppingBag,
-    titleKey: 'dashboard.activity.newOrder',
-    timeKey: 'dashboard.timeAgo.h2',
+    haloColor: 'from-cyan-500/15 via-accent/10 to-transparent',
+    data: transactionsSparkline,
+    formatVal: (val: number) => `${val.toLocaleString()} Orders`,
+  },
+  {
+    id: 'active-users',
+    titleKey: 'dashboard.kpis.activeUsers',
+    value: '28,450',
+    subValue: '72% DAU/MAU Stickiness',
+    change: '+11.5% active',
+    isPositive: true,
+    icon: Users,
+    haloColor: 'from-purple-500/15 via-purple-600/10 to-transparent',
+    data: usersSparkline,
+    formatVal: (val: number) => `${val.toLocaleString()} Users`,
   },
 ];
 
-export const trafficOverviewData = (t: (key: string) => string) => [
-  { name: t('dashboard.dates.feb1'), views: 2400 },
-  { name: t('dashboard.dates.feb8'), views: 4100 },
-  { name: t('dashboard.dates.feb15'), views: 3900 },
-  { name: t('dashboard.dates.feb25'), views: 5800 },
-  { name: t('dashboard.dates.feb28'), views: 8650 },
+// 2. Operational Sentinel Alert Strip
+export const sentinelMetrics: SentinelMetric[] = [
+  {
+    id: 'expiring-subscriptions',
+    labelKey: 'dashboard.sentinel.expiringSubscriptions',
+    value: '18 Plans',
+    subtextKey: 'dashboard.sentinel.expiringSubtext',
+    variant: 'warning',
+    icon: AlertTriangle,
+    badge: '< 7 Days',
+  },
+  {
+    id: 'churned-businesses',
+    labelKey: 'dashboard.sentinel.churnedBusinesses',
+    value: '4 Businesses',
+    subtextKey: 'dashboard.sentinel.churnRate',
+    variant: 'error',
+    icon: TrendingDown,
+    badge: '0.28% Churn',
+  },
+  {
+    id: 'support-tickets',
+    labelKey: 'dashboard.sentinel.openSupportTickets',
+    value: '7 Open Tickets',
+    subtextKey: 'dashboard.sentinel.ticketSla',
+    variant: 'default',
+    icon: Headphones,
+    badge: '4.2m SLA',
+  },
+  {
+    id: 'api-throughput-errors',
+    labelKey: 'dashboard.sentinel.apiHealth',
+    value: '1,420 req/s',
+    subtextKey: 'dashboard.sentinel.apiErrors',
+    variant: 'success',
+    icon: Activity,
+    badge: '0.02% Errors',
+  },
 ];
 
-export const quickActionButtonData = [
-  { labelKey: 'dashboard.quickActions.addDish', icon: Sparkles, route: '/menu' },
-  { labelKey: 'dashboard.quickActions.addBanner', icon: Sparkles, route: '/menu' },
-  { labelKey: 'dashboard.quickActions.downloadQr', icon: Sparkles, route: '/menu' },
+// 3. Revenue & Business Trajectory (Monthly data)
+export const revenueTrajectoryData: RevenuePoint[] = [
+  { month: 'Jan', mrr: 88000, revenue: 114000, newBusinesses: 32, activeUsers: 19800 },
+  { month: 'Feb', mrr: 94000, revenue: 122000, newBusinesses: 36, activeUsers: 21200 },
+  { month: 'Mar', mrr: 99500, revenue: 129000, newBusinesses: 41, activeUsers: 22800 },
+  { month: 'Apr', mrr: 104000, revenue: 135000, newBusinesses: 38, activeUsers: 23900 },
+  { month: 'May', mrr: 109800, revenue: 142000, newBusinesses: 45, activeUsers: 24700 },
+  { month: 'Jun', mrr: 114200, revenue: 148000, newBusinesses: 42, activeUsers: 25600 },
+  { month: 'Jul', mrr: 118000, revenue: 153000, newBusinesses: 40, activeUsers: 26200 },
+  { month: 'Aug', mrr: 122500, revenue: 159000, newBusinesses: 47, activeUsers: 27100 },
+  { month: 'Sep', mrr: 128450, revenue: 167000, newBusinesses: 48, activeUsers: 28450 },
+];
+
+// 4. Subscription Plan Distribution
+export const subscriptionPlanData: SubscriptionPlanShare[] = [
+  { name: 'Enterprise', tenants: 596, percentage: 42, mrr: '$53,950', color: '#3B82F6' },
+  { name: 'Professional', tenants: 540, percentage: 38, mrr: '$48,810', color: '#10B981' },
+  { name: 'Starter', tenants: 284, percentage: 20, mrr: '$25,690', color: '#8B5CF6' },
+];
+
+// 5. System Transaction Volume / Velocity over 24 hours
+export const transactionVolumeData: TransactionVolumePoint[] = [
+  { time: '00:00', orders: 420, volume: 12400 },
+  { time: '03:00', orders: 180, volume: 5600 },
+  { time: '06:00', orders: 390, volume: 11200 },
+  { time: '09:00', orders: 1840, volume: 46200 },
+  { time: '12:00', orders: 3420, volume: 89400 },
+  { time: '15:00', orders: 2890, volume: 74200 },
+  { time: '18:00', orders: 3980, volume: 104500 },
+  { time: '21:00', orders: 4650, volume: 128900 },
+  { time: '23:00', orders: 2100, volume: 58200 },
+];
+
+// 6. Recent Tenant Business Onboardings
+export const recentTenants: RecentTenant[] = [
+  {
+    id: 't-101',
+    name: 'Gourmet Cloud Kitchens',
+    category: 'Cloud Kitchens',
+    plan: 'Enterprise',
+    region: 'Riyadh, KSA',
+    mrr: '$1,200/mo',
+    status: 'active',
+    joinedAtKey: 'dashboard.timeAgo.m10',
+  },
+  {
+    id: 't-102',
+    name: 'Sultan Coffee Roasters (12 Branches)',
+    category: 'Specialty Coffee',
+    plan: 'Enterprise',
+    region: 'Cairo, Egypt',
+    mrr: '$950/mo',
+    status: 'active',
+    joinedAtKey: 'dashboard.timeAgo.m45',
+  },
+  {
+    id: 't-103',
+    name: 'Urban Slice Pizza Hub',
+    category: 'Fast Casual',
+    plan: 'Pro',
+    region: 'Dubai, UAE',
+    mrr: '$450/mo',
+    status: 'active',
+    joinedAtKey: 'dashboard.timeAgo.h2',
+  },
+  {
+    id: 't-104',
+    name: 'Al-Ahram Hospitality Group',
+    category: 'Restaurant Chain',
+    plan: 'Enterprise',
+    region: 'Alexandria, Egypt',
+    mrr: '$1,400/mo',
+    status: 'trial',
+    joinedAtKey: 'dashboard.timeAgo.h4',
+  },
+  {
+    id: 't-105',
+    name: 'Taco Libre Street Kitchen',
+    category: 'Boutique Dining',
+    plan: 'Starter',
+    region: 'Jeddah, KSA',
+    mrr: '$150/mo',
+    status: 'active',
+    joinedAtKey: 'dashboard.timeAgo.h6',
+  },
+];
+
+// 7. Live Audit & System Telemetry Events
+export const systemEvents: SystemEvent[] = [
+  {
+    id: 'ev-1',
+    icon: Key,
+    titleKey: 'dashboard.audit.apiKeyProvisioned',
+    subtitle: 'Tenant #1420 (Gourmet Cloud Kitchens) API v2 enabled',
+    timeKey: 'dashboard.timeAgo.m2',
+    level: 'info',
+  },
+  {
+    id: 'ev-2',
+    icon: CheckCircle2,
+    titleKey: 'dashboard.audit.planAutoRenewed',
+    subtitle: 'Sultan Coffee Roasters recurring $950 processed via Stripe',
+    timeKey: 'dashboard.timeAgo.m10',
+    level: 'success',
+  },
+  {
+    id: 'ev-3',
+    icon: Server,
+    titleKey: 'dashboard.audit.clusterAutoScaled',
+    subtitle: 'Cluster eu-west-1 scaled +2 worker pods on peak load',
+    timeKey: 'dashboard.timeAgo.h1',
+    level: 'info',
+  },
+  {
+    id: 'ev-4',
+    icon: Shield,
+    titleKey: 'dashboard.audit.complianceCheckPassed',
+    subtitle: 'Zero vulnerability findings across 1,420 tenant databases',
+    timeKey: 'dashboard.timeAgo.h3',
+    level: 'success',
+  },
 ];
