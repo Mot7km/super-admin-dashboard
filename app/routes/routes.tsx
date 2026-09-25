@@ -12,6 +12,7 @@ import OrdersPage from './pages/OrdersPage';
 import EmployeesPage from './pages/EmployeesPage';
 import InventoryPage from './pages/InventoryPage';
 import SettingsPage from './pages/SettingsPage';
+import SubscriptionsPage from './pages/SubscriptionsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'subscriptions',
-            element: <GenericModulePage titleKey="nav.subscriptions" category="Billing & Plans" />,
+            element: <SubscriptionsPage />,
           },
           {
             path: 'payments',
