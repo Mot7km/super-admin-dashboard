@@ -926,5 +926,115 @@
       "dossierExported": "Compliance dossier successfully exported",
       "filtersReset": "All audit trail filters reset"
     }
+  },
+  "support": {
+    "page": {
+      "title": "Support & Incident Flight Deck",
+      "subtitle": "Global omni-tenant ticket triage, SLA monitoring, and technical incident coordination",
+      "badgeSovereign": "Omni-Tenant Dispatch"
+    },
+    "kpi": {
+      "openQueue": "Active Support Queue",
+      "totalTracked": "Total Tickets",
+      "firstResponseAvg": "First Response Speed",
+      "criticalUrgent": "Critical / SLA Breach",
+      "slaPolicy": "Strict Escalation Policy",
+      "pendingFollowups": "Pending Verification",
+      "customerTurnaround": "Customer Turnaround",
+      "resolvedAndClosed": "Resolved Cases",
+      "tenantSatisfaction": "Tenant Satisfaction Score"
+    },
+    "status": {
+      "all": "All Tickets",
+      "open": "Open",
+      "pending": "Pending",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "priority": {
+      "critical": "Critical SLA",
+      "high": "High Priority",
+      "medium": "Medium",
+      "low": "Low / Routine"
+    },
+    "category": {
+      "pos_hardware": "POS Hardware",
+      "technical": "Technical & Bug",
+      "billing": "Billing & Tax",
+      "account": "Account & Auth",
+      "feature_request": "Feature Request",
+      "security": "Security Alert"
+    },
+    "filter": {
+      "searchPlaceholder": "Search by ticket ID, subject, tenant, email, tag... (Press /)",
+      "priority": "Priority",
+      "allPriorities": "All Priorities",
+      "business": "Business / Tenant",
+      "allBusinesses": "All Businesses",
+      "assignedAdmin": "Assigned Operator",
+      "allAssignees": "All Operators",
+      "unassigned": "Unassigned",
+      "category": "Category",
+      "allCategories": "All Categories",
+      "sortBy": "Sort Queue",
+      "activeFilters": "Active Triage Filters",
+      "clearAll": "Reset Filters"
+    },
+    "sort": {
+      "urgency": "Urgency (Critical First)",
+      "newest": "Newest Created",
+      "oldest": "Oldest Unanswered",
+      "sla": "SLA Deadline Approaching"
+    },
+    "action": {
+      "newTicket": "Create New Ticket"
+    },
+    "pane": {
+      "triageQueue": "Triage Queue",
+      "clickToInspect": "Select to inspect thread",
+      "noTicketSelected": "No Ticket Selected",
+      "selectFromQueue": "Choose an inquiry from the triage queue on the left."
+    },
+    "thread": {
+      "internalStaffNote": "Internal Team Note — Visible Only to Staff",
+      "caseAttachments": "Case Files & Evidence"
+    },
+    "composer": {
+      "publicReply": "Public Reply to Tenant",
+      "internalNote": "Internal Note (Private)",
+      "macros": "Quick Macros",
+      "selectMacro": "Insert canned macro...",
+      "publicPlaceholder": "Type your official response to the tenant customer...",
+      "internalPlaceholder": "Write an internal investigation note, log analysis, or handoff info (hidden from customer)...",
+      "toSend": "to send message",
+      "sendReply": "Send Reply",
+      "postNote": "Post Internal Note"
+    },
+    "modal": {
+      "createTitle": "Create Ticket on Behalf of Business",
+      "createSubtitle": "Open a prioritized support incident linked to any registered tenant",
+      "targetBusiness": "Target Business / Tenant",
+      "ticketSubject": "Incident Subject",
+      "initialMessage": "Diagnostic Description & Steps",
+      "cancel": "Cancel",
+      "submitCreate": "Dispatch Ticket",
+      "reassignTitle": "Reassign Ticket Operator",
+      "confirmTransfer": "Transfer Ticket",
+      "resolveTitle": "Resolve & Close Incident",
+      "markResolved": "Confirm Resolution"
+    },
+    "toast": {
+      "filtersReset": "All support filters reset",
+      "statusUpdated": "Ticket status updated",
+      "priorityUpdated": "Ticket priority updated",
+      "reassignedTo": "Ticket assigned to",
+      "replySent": "Public reply successfully sent to tenant",
+      "internalNotePosted": "Private internal note saved to case thread",
+      "ticketCreated": "Support ticket dispatched"
+    },
+    "table": {
+      "noTicketsFound": "No Support Tickets Found",
+      "noTicketsDesc": "Try adjusting your search criteria, priority filter, or assignee selection."
+    }
   }
 }

@@ -16,6 +16,7 @@ import SubscriptionsPage from './pages/SubscriptionsPage';
 import UsersPage from './pages/UsersPage';
 import PaymentsPage from './pages/PaymentsPage';
 import AuditLogsPage from './pages/AuditLogsPage';
+import SupportPage from './pages/SupportPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -72,7 +73,7 @@ export const router = createBrowserRouter([
           // Support & Ops
           {
             path: 'support',
-            element: <GenericModulePage titleKey="nav.support" category="Customer Success" />,
+            element: <SupportPage />,
           },
           {
             path: 'notifications',

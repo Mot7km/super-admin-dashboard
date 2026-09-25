@@ -926,5 +926,115 @@
       "dossierExported": "تم تصدير ملف الامتثال والرقابة بنجاح",
       "filtersReset": "تمت إعادة ضبط فلاتر سجل التدقيق"
     }
+  },
+  "support": {
+    "page": {
+      "title": "مركز إدارة الدعم الفني والحوادث التقنية",
+      "subtitle": "رؤية شاملة لكافة تذاكر المنشآت، مراقبة اتفاقيات مستوى الخدمة (SLA)، وتنسيق الحلول التقنية",
+      "badgeSovereign": "إدارة سيادية لكافة المنشآت"
+    },
+    "kpi": {
+      "openQueue": "تذاكر قيد المعالجة المفتوحة",
+      "totalTracked": "إجمالي التذاكر",
+      "firstResponseAvg": "سرعة الرد الأولي",
+      "criticalUrgent": "حرج / تجاوز الـ SLA",
+      "slaPolicy": "سياسة تصعيد حاسمة",
+      "pendingFollowups": "بانتظار التحقق والمتابعة",
+      "customerTurnaround": "تفاعل العملاء",
+      "resolvedAndClosed": "التذاكر المنجزة",
+      "tenantSatisfaction": "معدل رضا المنشآت"
+    },
+    "status": {
+      "all": "كافة التذاكر",
+      "open": "مفتوحة",
+      "pending": "معلقة",
+      "resolved": "تم الحل",
+      "closed": "مغلقة"
+    },
+    "priority": {
+      "critical": "حرجة للغاية (SLA عاجل)",
+      "high": "أولوية مرتفعة",
+      "medium": "أولوية متوسطة",
+      "low": "منخفضة / اعتيادية"
+    },
+    "category": {
+      "pos_hardware": "أجهزة نقاط البيع POS",
+      "technical": "خلل تقني / برمجيات",
+      "billing": "الاشتراكات والضرائب",
+      "account": "الحسابات والصلاحيات",
+      "feature_request": "اقتراح ميزة جديدة",
+      "security": "تنبيه أمني"
+    },
+    "filter": {
+      "searchPlaceholder": "بحث برقم التذكرة، المنشأة، العنوان، البريد، الوسم... (اضغط /)",
+      "priority": "مستوى الأولوية",
+      "allPriorities": "كافة الأولويات",
+      "business": "المنشأة / المستأجر",
+      "allBusinesses": "كافة المنشآت",
+      "assignedAdmin": "المسؤول المعين",
+      "allAssignees": "كافة المسؤولين",
+      "unassigned": "غير معين",
+      "category": "التصنيف",
+      "allCategories": "كافة التصنيفات",
+      "sortBy": "ترتيب التذاكر",
+      "activeFilters": "الفلاتر النشطة",
+      "clearAll": "إعادة ضبط"
+    },
+    "sort": {
+      "urgency": "الأكثر إلحاحاً (الحرجة أولاً)",
+      "newest": "الأحدث إنشاءً",
+      "oldest": "الأقدم دون رد",
+      "sla": "اقتراب موعد الـ SLA"
+    },
+    "action": {
+      "newTicket": "إنشاء تذكرة جديدة"
+    },
+    "pane": {
+      "triageQueue": "قائمة الفرز والمتابعة",
+      "clickToInspect": "اختر لمعاينة المحادثة",
+      "noTicketSelected": "لم يتم اختيار تذكرة",
+      "selectFromQueue": "يرجى اختيار استفسار من القائمة جهة اليمين."
+    },
+    "thread": {
+      "internalStaffNote": "ملاحظة داخلية خاصة — مرئية للمشرفين فقط",
+      "caseAttachments": "المرفقات وملفات الإثبات"
+    },
+    "composer": {
+      "publicReply": "رد رسمي للمنشأة",
+      "internalNote": "ملاحظة داخلية سرية",
+      "macros": "الردود الجاهزة",
+      "selectMacro": "إدراج قالب جاهز...",
+      "publicPlaceholder": "اكتب ردك الرسمي للعميل أو المنشأة...",
+      "internalPlaceholder": "اكتب ملاحظة فنية أو تحليل سجلات أو تسليم لزميل (مخفية تماماً عن العميل)...",
+      "toSend": "للإرسال السريع",
+      "sendReply": "إرسال الرد",
+      "postNote": "حفظ الملاحظة الداخلية"
+    },
+    "modal": {
+      "createTitle": "إنشاء تذكرة دعم نيابة عن منشأة",
+      "createSubtitle": "فتح بلاغ دعم فني ذو أولوية وربطه بأي منشأة مسجلة بالمنصة",
+      "targetBusiness": "المنشأة المستهدفة",
+      "ticketSubject": "موضوع البلاغ / المشكلة",
+      "initialMessage": "الوصف والتشخيص الأولي",
+      "cancel": "إلغاء",
+      "submitCreate": "إرسال وإنشاء التذكرة",
+      "reassignTitle": "إعادة إسناد التذكرة لمسؤول آخر",
+      "confirmTransfer": "تأكيد التحويل",
+      "resolveTitle": "حل وإغلاق التذكرة",
+      "markResolved": "تأكيد إتمام الحل"
+    },
+    "toast": {
+      "filtersReset": "تمت إعادة ضبط فلاتر الدعم الفني",
+      "statusUpdated": "تم تحديث حالة التذكرة",
+      "priorityUpdated": "تم تحديث مستوى أولوية التذكرة",
+      "reassignedTo": "تم إسناد التذكرة إلى",
+      "replySent": "تم إرسال الرد العلني للمنشأة بنجاح",
+      "internalNotePosted": "تم حفظ الملاحظة الداخلية بنجاح",
+      "ticketCreated": "تم إنشاء تذكرة الدعم الفني بنجاح"
+    },
+    "table": {
+      "noTicketsFound": "لم يتم العثور على تذاكر تطابق البحث",
+      "noTicketsDesc": "يرجى تجربة تعديل معايير البحث، مستوى الأولوية، أو المسؤول المعين."
+    }
   }
 }
