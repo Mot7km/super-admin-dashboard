@@ -1036,5 +1036,80 @@
       "noTicketsFound": "No Support Tickets Found",
       "noTicketsDesc": "Try adjusting your search criteria, priority filter, or assignee selection."
     }
+  },
+  "notifications": {
+    "page": {
+      "title": "Notifications & Multi-Channel Broadcast Center",
+      "subtitle": "System-wide announcements, scheduled maintenance dispatches, push alerts, and campaign tracking",
+      "badgeOmni": "Omni-Channel Transmitter"
+    },
+    "kpi": {
+      "totalBroadcasts": "Total Platform Broadcasts",
+      "scheduledQueue": "Scheduled Releases",
+      "inAppBanners": "Active In-App Tickers",
+      "socketSync": "WebSocket Real-Time Sync",
+      "pushDeliveryRate": "Push Delivery SLA",
+      "pushThroughput": "Carrier Push Pipeline",
+      "emailEngagement": "Email Open & Read Rate",
+      "clickThrough": "Action Click-Through Rate"
+    },
+    "tabs": {
+      "history": "Broadcast History & Telemetry",
+      "composerStudio": "Multi-Channel Broadcast Studio"
+    },
+    "action": {
+      "composeNew": "Compose New Broadcast",
+      "viewHistory": "View Broadcast Logs"
+    },
+    "channel": {
+      "in_app": "In-App Announcement",
+      "push": "Mobile Push Notification",
+      "email": "Email Campaign"
+    },
+    "type": {
+      "maintenance": "Maintenance Alert",
+      "security_alert": "Security Notice",
+      "system_update": "System Update",
+      "promotional": "Feature & Plan Promo",
+      "general_info": "General Announcement"
+    },
+    "status": {
+      "sent": "Dispatched",
+      "scheduled": "Scheduled",
+      "draft": "Draft",
+      "cancelled": "Cancelled"
+    },
+    "filter": {
+      "searchPlaceholder": "Search by title, message, ID, author, or keyword...",
+      "allChannels": "All Channels",
+      "allTypes": "All Alert Types",
+      "allStatuses": "All Dispatch Statuses"
+    },
+    "table": {
+      "colBroadcast": "Broadcast & Type",
+      "colChannels": "Channels",
+      "colAudience": "Target Audience & Reach",
+      "colStatusTiming": "Status & Timing",
+      "colDeliveryRead": "Delivery & Engagement",
+      "colActions": "Actions"
+    },
+    "preview": {
+      "studioTitle": "Real-Time Device Preview Studio"
+    },
+    "composer": {
+      "targetAudience": "Audience Targeting Segment",
+      "channelsAndType": "Delivery Channels & Alert Category"
+    },
+    "modal": {
+      "confirmDispatchTitle": "Authorize Mass Platform Transmission",
+      "cancel": "Cancel",
+      "authorizeTransmission": "Authorize & Dispatch Broadcast"
+    },
+    "toast": {
+      "dispatchedSuccessfully": "Platform broadcast transmitted successfully",
+      "scheduledSuccessfully": "Broadcast scheduled for future release",
+      "cancelledBroadcast": "Scheduled broadcast cancelled",
+      "clonedIntoComposer": "Broadcast copied into composer studio"
+    }
   }
 }

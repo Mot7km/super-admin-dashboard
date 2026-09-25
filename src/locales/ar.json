@@ -1036,5 +1036,80 @@
       "noTicketsFound": "لم يتم العثور على تذاكر تطابق البحث",
       "noTicketsDesc": "يرجى تجربة تعديل معايير البحث، مستوى الأولوية، أو المسؤول المعين."
     }
+  },
+  "notifications": {
+    "page": {
+      "title": "مركز الإشعارات والبث الشامل للنظام",
+      "subtitle": "إدارة الإعلانات على مستوى المنصة، جدولة تنبيهات الصيانة، إشعارات الهاتف وحملات البريد",
+      "badgeOmni": "بث متعدد القنوات"
+    },
+    "kpi": {
+      "totalBroadcasts": "إجمالي رسائل البث",
+      "scheduledQueue": "الإشعارات المجدولة",
+      "inAppBanners": "أشرطة التنبيه النشطة داخل التطبيق",
+      "socketSync": "مزامنة فورية WebSocket",
+      "pushDeliveryRate": "معدل تسليم إشعارات الجوال",
+      "pushThroughput": "مسار إرسال الهواتف",
+      "emailEngagement": "نسبة فتح وقراءة البريد",
+      "clickThrough": "معدل النقر على الروابط"
+    },
+    "tabs": {
+      "history": "سجل الإرسال والتحليلات",
+      "composerStudio": "استوديو إنشاء وبث الإشعارات"
+    },
+    "action": {
+      "composeNew": "إنشاء إشعار بث جديد",
+      "viewHistory": "عرض سجل الإرسال"
+    },
+    "channel": {
+      "in_app": "إعلان داخل التطبيق",
+      "push": "إشعار جوال فوري (Push)",
+      "email": "حملة بريد إلكتروني"
+    },
+    "type": {
+      "maintenance": "تنبيه صيانة",
+      "security_alert": "إشعار أمني",
+      "system_update": "تحديث النظام",
+      "promotional": "عروض وميزات جديدة",
+      "general_info": "إعلان عام"
+    },
+    "status": {
+      "sent": "تم الإرسال",
+      "scheduled": "مجدول",
+      "draft": "مسودة",
+      "cancelled": "ملغي"
+    },
+    "filter": {
+      "searchPlaceholder": "البحث بالعنوان، الرسالة، المعرف، الكاتب، أو الكلمات المفتاحية...",
+      "allChannels": "جميع القنوات",
+      "allTypes": "جميع أنواع التنبيهات",
+      "allStatuses": "جميع حالات الإرسال"
+    },
+    "table": {
+      "colBroadcast": "الإشعار والنوع",
+      "colChannels": "القنوات",
+      "colAudience": "الجمهور المستهدف والوصول",
+      "colStatusTiming": "الحالة والتوقيت",
+      "colDeliveryRead": "التسليم والتفاعل",
+      "colActions": "الإجراءات"
+    },
+    "preview": {
+      "studioTitle": "استوديو المعاينة الحية على الأجهزة"
+    },
+    "composer": {
+      "targetAudience": "تحديد الجمهور المستهدف",
+      "channelsAndType": "قنوات الإرسال وتصنيف التنبيه"
+    },
+    "modal": {
+      "confirmDispatchTitle": "اعتماد وإرسال البث الجماعي للمنصة",
+      "cancel": "إلغاء",
+      "authorizeTransmission": "اعتماد وإطلاق البث الآن"
+    },
+    "toast": {
+      "dispatchedSuccessfully": "تم إطلاق وإرسال البث بنجاح",
+      "scheduledSuccessfully": "تمت جدولة الإشعار للإطلاق المستقبلي",
+      "cancelledBroadcast": "تم إلغاء الإشعار المجدول",
+      "clonedIntoComposer": "تم نسخ الإشعار إلى استوديو الإنشاء"
+    }
   }
 }

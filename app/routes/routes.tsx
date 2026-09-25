@@ -17,6 +17,7 @@ import UsersPage from './pages/UsersPage';
 import PaymentsPage from './pages/PaymentsPage';
 import AuditLogsPage from './pages/AuditLogsPage';
 import SupportPage from './pages/SupportPage';
+import NotificationsPage from './pages/NotificationsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -77,7 +78,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'notifications',
-            element: <GenericModulePage titleKey="nav.notifications" category="Communication" />,
+            element: <NotificationsPage />,
           },
 
           // Audit
