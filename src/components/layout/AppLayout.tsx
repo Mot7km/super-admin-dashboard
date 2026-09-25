@@ -5,6 +5,7 @@ import { useTranslation } from '../../../app/context/LanguageContext';
 import { useToast } from '../common/Toast';
 import { useAuth } from '../../../app/context/AuthContext';
 import Footer from './Footer';
+import { GlobalMaintenanceBanner } from '../features/global-settings/components/GlobalMaintenanceBanner';
 import {
   Menu as MenuIcon,
   X,
@@ -521,6 +522,7 @@ const AppLayout = () => {
 
       {/* Main Content Area */}
       <div className="flex-1 h-screen overflow-y-auto flex flex-col scroll-smooth overflow-safe">
+        <GlobalMaintenanceBanner />
         <main className="flex-1 p-3 sm:p-6 lg:p-7">
           <Outlet />
         </main>

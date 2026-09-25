@@ -1,7 +1,7 @@
-import SettingsDashboard from '../../../src/components/features/settings/SettingsDashboard';
+import { GlobalSettingsDashboard } from '../../../src/components/features/global-settings/GlobalSettingsDashboard';
 
 const SettingsPage = () => {
-  return <SettingsDashboard />;
+  return <GlobalSettingsDashboard />;
 };
 
 export default SettingsPage;

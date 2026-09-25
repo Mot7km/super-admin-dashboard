@@ -1334,5 +1334,95 @@
       "deleted": "Feature flag removed from platform registry",
       "syncRefreshed": "Feature flag engine rules synchronized"
     }
+  },
+  "globalSettings": {
+    "title": "Global System Settings",
+    "subtitle": "Platform brand identity, regional defaults, enterprise security policies, and 503 maintenance mode.",
+    "tabs": {
+      "general": "General & Identity",
+      "security": "Security & Access",
+      "businessPolicy": "Multi-Tenant Policies",
+      "maintenance": "503 Maintenance Mode"
+    },
+    "general": {
+      "brandTitle": "Platform Identity & Branding",
+      "brandSubtitle": "Global brand name, logo assets, and public platform slogans.",
+      "platformName": "Platform Brand Name",
+      "logoUrl": "SVG/PNG Logo Asset URL",
+      "tagline": "System Slogan / Tagline",
+      "regionalTitle": "Regional & Localization Defaults",
+      "regionalSubtitle": "Default currency, time standard, and primary display language for new tenants.",
+      "defaultCurrency": "Platform Default Currency",
+      "defaultLanguage": "Platform Default Language",
+      "timezone": "Server Time Standard",
+      "supportLegalTitle": "Support Channels & Legal Notice",
+      "supportLegalSubtitle": "Official contact channels displayed across all tenant customer portals.",
+      "supportEmail": "Primary Technical Support Email",
+      "supportPhone": "Dedicated Support Hotline",
+      "copyright": "Global Legal Copyright Statement"
+    },
+    "security": {
+      "authSessionsTitle": "Session Lifecycle & Login Security",
+      "authSessionsSubtitle": "Control idle session timeouts and automated lockouts upon brute-force attempts.",
+      "sessionTimeout": "Idle Session Timeout",
+      "minutes": "minutes",
+      "sessionTimeoutHint": "Admins and users will be prompted to re-authenticate after inactivity.",
+      "maxLoginAttempts": "Max Failed Login Attempts",
+      "maxLoginAttemptsHint": "Account temporarily locked after consecutive password failures.",
+      "password2faTitle": "Password Complexity & Two-Factor Authentication",
+      "password2faSubtitle": "Strict credential requirements for platform administrators and business operators.",
+      "passwordMinLength": "Minimum Password Length",
+      "requireSpecialChar": "Require Special Characters",
+      "specialCharDesc": "Enforce presence of symbols (!@#$%^&*) in passwords.",
+      "enforce2faTitle": "Enforce Mandatory 2FA for Super Admins",
+      "enforce2faDesc": "Require TOTP authenticator app or hardware security key for all administrative accounts.",
+      "ipWhitelistTitle": "Super Admin IP Access Perimeter",
+      "ipWhitelistSubtitle": "Restrict access to the Super Admin console to trusted IP addresses and corporate VPNs.",
+      "whitelistActive": "Perimeter Active",
+      "whitelistDisabled": "Perimeter Disabled",
+      "addIp": "Add IP",
+      "ipAlreadyExists": "This IP or CIDR subnet is already present in the whitelist."
+    },
+    "business": {
+      "tenantLimitsTitle": "Tenant Creation Limits & Trial Lifecycles",
+      "tenantLimitsSubtitle": "Define default capacity thresholds, free trial periods, and dormancy rules.",
+      "maxBizPerOwner": "Max Businesses Per Account",
+      "maxBizPerOwnerHint": "Maximum number of distinct business entities a single account owner can provision.",
+      "defaultTrialDays": "Default Free Trial Period (Days)",
+      "defaultTrialDaysHint": "Duration of unbilled access granted to freshly registered businesses.",
+      "autoSuspendDays": "Auto-Suspend Dormant Accounts (Days)",
+      "autoSuspendDaysHint": "Businesses with no orders or POS transactions for this period will be archived.",
+      "onboardingRulesTitle": "Tenant Onboarding & Compliance Invariants",
+      "onboardingRulesSubtitle": "Govern registration openness and regulatory verification requirements.",
+      "allowPublicRegTitle": "Enable Public Self-Registration",
+      "allowPublicRegDesc": "Allow new businesses to register autonomously from the public marketing website.",
+      "requireKycTitle": "Require Commercial Registration (KYC) Verification",
+      "requireKycDesc": "Require official tax identification and commercial license before issuing live payments."
+    },
+    "maintenance": {
+      "modeTitle": "Platform 503 Maintenance Mode",
+      "modeSubtitle": "Instant platform-wide lockdown during database migrations, major upgrades, or emergency security mitigation.",
+      "activeWarningTitle": "Platform Lockdown Active",
+      "activeWarningDesc": "Public portal, merchant dashboards, and cashier POS terminals are receiving HTTP 503 Service Unavailable responses.",
+      "bypassTitle": "Administrative Access Exception (Bypass)",
+      "bypassSubtitle": "Allows Super Admins to access the cockpit and execute updates while the general public is blocked.",
+      "allowAdminAccessTitle": "Allow Super Admin Access During Maintenance",
+      "allowAdminAccessDesc": "Authenticated platform operators can navigate the system normally to perform verifications.",
+      "messagesTitle": "Customer 503 Notice & Scheduled Return",
+      "messagesSubtitle": "Configure localized explanation banners and return timestamps displayed to users.",
+      "preview503": "Live Preview 503 Screen",
+      "estimatedEndTime": "Estimated Service Restoration Time",
+      "messageAr": "Notice Message (Arabic)",
+      "messageEn": "Notice Message (English)",
+      "livePreviewTitle": "Live Preview: Customer-Facing HTTP 503 Screen"
+    },
+    "actions": {
+      "saveSettings": "Save Platform Settings",
+      "restoreDefaults": "Restore Baseline Defaults"
+    },
+    "toast": {
+      "savedSuccessfully": "Platform configuration and policies saved successfully",
+      "resetToDefaults": "Restored default platform configuration baseline"
+    }
   }
 }
