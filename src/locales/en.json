@@ -11,6 +11,7 @@
     "auditLogs": "Audit Logs",
     "system": "System",
     "featureFlags": "Feature Flags",
+    "announcements": "Announcements",
     "settings": "Settings",
     "integrations": "Integrations",
     "systemHealth": "System Health",
@@ -1423,6 +1424,106 @@
     "toast": {
       "savedSuccessfully": "Platform configuration and policies saved successfully",
       "resetToDefaults": "Restored default platform configuration baseline"
+    }
+  },
+  "announcements": {
+    "title": "Platform Announcements & API Health",
+    "subtitle": "Broadcast platform-wide operational banners to merchant dashboards and monitor core REST/WebSocket telemetry.",
+    "tabs": {
+      "announcements": "System Announcements",
+      "apiHealth": "API Telemetry & Rate Limits"
+    },
+    "kpi": {
+      "totalAnnouncements": "Total Broadcasts",
+      "broadcastRules": "Registered",
+      "archivedOrDraft": "archived or drafted",
+      "activeBanners": "Active Customer Banners",
+      "visibleInCustomerCockpits": "Live in merchant dashboards",
+      "criticalAlerts": "Critical Incidents",
+      "immediateAction": "Urgent attention required",
+      "noneActive": "Zero active incidents",
+      "emergencyDisruptions": "High-severity alerts",
+      "apiAvailability": "API Fleet Availability",
+      "coreTelemetryEndpoints": "Core telemetry endpoints"
+    },
+    "types": {
+      "info": "Informational",
+      "warning": "Warning / Maintenance",
+      "critical": "Critical Incident",
+      "success": "New Feature / Update"
+    },
+    "audience": {
+      "everyone": "All Tenants",
+      "plans": "Specific Plans",
+      "businesses": "Specific Businesses"
+    },
+    "preview": {
+      "simulatorTitle": "Customer-Facing Live Banner Simulator",
+      "simulatingCustomerView": "Simulating live merchant viewport"
+    },
+    "filters": {
+      "searchPlaceholder": "Search announcements by title, keyword, or body...",
+      "allTypes": "All Severity Types",
+      "allAudiences": "All Audiences",
+      "allStatuses": "All States",
+      "activeOnly": "Active Banners Only",
+      "inactiveOnly": "Inactive / Drafts Only",
+      "reset": "Reset Filters"
+    },
+    "table": {
+      "announcement": "Announcement & Headline",
+      "type": "Severity",
+      "audience": "Audience",
+      "status": "State",
+      "schedule": "Validity Window",
+      "actions": "Actions",
+      "active": "LIVE",
+      "inactive": "DRAFT"
+    },
+    "actions": {
+      "createAnnouncement": "New Announcement",
+      "preview": "Simulate Live Banner",
+      "edit": "Edit Announcement",
+      "delete": "Delete Announcement"
+    },
+    "modal": {
+      "createTitle": "Compose System Announcement",
+      "editTitle": "Edit System Announcement",
+      "subtitle": "Define severity banner, localized messages, audience segmentation, and call-to-action.",
+      "severityType": "Severity & Urgency Classification",
+      "titleEn": "Headline / Title (English)",
+      "titleAr": "Headline / Title (Arabic)",
+      "messageEn": "Detailed Message Body (English)",
+      "messageAr": "Detailed Message Body (Arabic)",
+      "targetAudience": "Audience Segmentation",
+      "selectAtLeastOnePlan": "Please choose at least one subscription plan for this scope.",
+      "selectAtLeastOneBusiness": "Please choose at least one business for this scope.",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "optional": "optional",
+      "actionUrl": "Action URL / Route",
+      "pinToTop": "Pin banner at top of client dashboard",
+      "allowDismiss": "Allow clients to dismiss banner (X)",
+      "publishImmediately": "Publish & activate immediately",
+      "titleRequired": "Please provide a valid announcement headline.",
+      "messageRequired": "Please enter a detailed announcement message."
+    },
+    "api": {
+      "fleetStatusTitle": "Core Infrastructure & API Health Telemetry",
+      "fleetStatusSubtitle": "Real-time edge performance, response latency, rate limiting quotas, and CORS access.",
+      "pingAll": "Ping All Endpoints",
+      "pingSuccess": "Heartbeat probes completed for all API nodes",
+      "latency": "Latency / Ping",
+      "uptime30d": "30-Day Availability",
+      "rateLimit": "Rate Limiting Quota"
+    },
+    "toast": {
+      "activated": "Announcement broadcast activated live across targeted tenants",
+      "deactivated": "Announcement banner paused and deactivated",
+      "created": "New platform announcement published successfully",
+      "updated": "Announcement rules and copy updated",
+      "deleted": "Announcement permanently removed",
+      "loadedInPreview": "Loaded banner into live simulator preview"
     }
   }
 }

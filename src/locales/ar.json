@@ -11,6 +11,7 @@
     "auditLogs": "سجلات التدقيق",
     "system": "النظام",
     "featureFlags": "ميزات النظام (Feature Flags)",
+    "announcements": "إعلانات المنصة",
     "settings": "الإعدادات",
     "integrations": "التكاملات والربط",
     "systemHealth": "صحة المنظومة",
@@ -1423,6 +1424,106 @@
     "toast": {
       "savedSuccessfully": "تم حفظ إعدادات وسياسات المنصة بنجاح",
       "resetToDefaults": "تمت استعادة الإعدادات الافتراضية القياسية بنجاح"
+    }
+  },
+  "announcements": {
+    "title": "إعلانات المنصة الشاملة وصحة الـ APIs",
+    "subtitle": "بث الإعلانات التشغيلية والتنبيهات المباشرة إلى شاشات أصحاب الأنشطة، ومراقبة مؤشرات أداء شبكة الـ APIs ونقاط الاتصال.",
+    "tabs": {
+      "announcements": "إعلانات وبانرات المنظومة",
+      "apiHealth": "مراقبة الـ APIs والـ Rate Limits"
+    },
+    "kpi": {
+      "totalAnnouncements": "إجمالي البث الإعلاني",
+      "broadcastRules": "إعلان مسجل",
+      "archivedOrDraft": "مؤرشف أو مسودة",
+      "activeBanners": "بانرات نشطة للمشتركين",
+      "visibleInCustomerCockpits": "معروضة في لوحات تحكم التجار",
+      "criticalAlerts": "تنبيهات طارئة وحرجة",
+      "immediateAction": "تتطلب انتباهاً فورياً",
+      "noneActive": "لا توجد أزمات نشطة",
+      "emergencyDisruptions": "بلاغات عالية الخطورة",
+      "apiAvailability": "توافر أسطول الـ APIs",
+      "coreTelemetryEndpoints": "نقاط اتصال قياسية مراقبة"
+    },
+    "types": {
+      "info": "معلوماتي",
+      "warning": "تحذير / صيانة",
+      "critical": "حدث طارئ وحرج",
+      "success": "ميزة وتحديث جديد"
+    },
+    "audience": {
+      "everyone": "كافة الأنشطة والمشتركين",
+      "plans": "باقات اشتراك محددة",
+      "businesses": "أنشطة تجارية معينة"
+    },
+    "preview": {
+      "simulatorTitle": "محاكي المعاينة الحية لبانر المشتركين",
+      "simulatingCustomerView": "معاينة حية لما يظهر في شاشات التجار حالياً"
+    },
+    "filters": {
+      "searchPlaceholder": "ابحث في الإعلانات بالعنوان أو الكلمات الدلالية...",
+      "allTypes": "جميع درجات الأهمية",
+      "allAudiences": "كافة الجماهير المستهدفة",
+      "allStatuses": "جميع الحالات",
+      "activeOnly": "الإعلانات النشطة فقط",
+      "inactiveOnly": "المعطلة والمسودات فقط",
+      "reset": "إعادة ضبط الفلاتر"
+    },
+    "table": {
+      "announcement": "الإعلان والعنوان الرئيسي",
+      "type": "درجة الأهمية",
+      "audience": "الجمهور المستهدف",
+      "status": "الحالة",
+      "schedule": "فترة الصلاحية",
+      "actions": "الإجراءات",
+      "active": "مباشر",
+      "inactive": "مسودة"
+    },
+    "actions": {
+      "createAnnouncement": "إنشاء إعلان جديد",
+      "preview": "محاكاة البانر",
+      "edit": "تعديل الإعلان",
+      "delete": "حذف الإعلان"
+    },
+    "modal": {
+      "createTitle": "بث إعلان جديد للمنظومة",
+      "editTitle": "تعديل بيانات وإعدادات الإعلان",
+      "subtitle": "حدد درجة الأهمية، النصوص باللغتين، شريحة الجمهور، وزر الإجراء السريع.",
+      "severityType": "تصنيف درجة الأهمية والخطورة",
+      "titleEn": "العنوان الرئيسي (الإنجليزية)",
+      "titleAr": "العنوان الرئيسي (العربية)",
+      "messageEn": "نص الرسالة التفصيلية (الإنجليزية)",
+      "messageAr": "نص الرسالة التفصيلية (العربية)",
+      "targetAudience": "تحديد الشريحة المستهدفة",
+      "selectAtLeastOnePlan": "يرجى اختيار باقة واحدة على الأقل لهذا النطاق.",
+      "selectAtLeastOneBusiness": "يرجى اختيار نشاط تجاري واحد على الأقل لهذا النطاق.",
+      "startDate": "تاريخ البدء",
+      "endDate": "تاريخ الانتهاء",
+      "optional": "اختياري",
+      "actionUrl": "رابط الإجراء / المسار",
+      "pinToTop": "تثبيت البانر في أعلى شاشات المشتركين",
+      "allowDismiss": "السماح للتاجر بإغلاق البانر (زر X)",
+      "publishImmediately": "تفعيل ونشر الإعلان فوراً",
+      "titleRequired": "يرجى كتابة عنوان صحيح للإعلان.",
+      "messageRequired": "يرجى كتابة نص تفصيلي للإعلان."
+    },
+    "api": {
+      "fleetStatusTitle": "مراقبة البنية التحتية وصحة نقاط الـ API",
+      "fleetStatusSubtitle": "مؤشرات حية لسرعة الاستجابة اللحظية، حصص الاستهلاك ومعدل الـ Rate Limiting، ونطاقات الـ CORS.",
+      "pingAll": "فحص نبض كافة الخدمات (Ping All)",
+      "pingSuccess": "تم إرسال وفحص نبض كافة خوادم ونقاط الـ API بنجاح",
+      "latency": "سرعة الاستجابة / Ping",
+      "uptime30d": "نسبة التوافر (30 يوماً)",
+      "rateLimit": "استهلاك الحد الأقصى (Rate Limit)"
+    },
+    "toast": {
+      "activated": "تم تفعيل بث الإعلان للأنشطة المستهدفة بنجاح",
+      "deactivated": "تم إيقاف الإعلان مؤقتاً",
+      "created": "تم نشر الإعلان الجديد على المنظومة بنجاح",
+      "updated": "تم تحديث نصوص وقواعد الإعلان بنجاح",
+      "deleted": "تم حذف الإعلان نهائياً",
+      "loadedInPreview": "تم تحميل الإعلان في محاكي البانر المباشر"
     }
   }
 }

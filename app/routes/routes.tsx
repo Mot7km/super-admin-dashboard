@@ -20,6 +20,7 @@ import SupportPage from './pages/SupportPage';
 import NotificationsPage from './pages/NotificationsPage';
 import AdminManagementPage from './pages/AdminManagementPage';
 import FeatureFlagsPage from './pages/FeatureFlagsPage';
+import AnnouncementsPage from './pages/AnnouncementsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -100,6 +101,10 @@ export const router = createBrowserRouter([
               {
                 path: 'feature-flags',
                 element: <FeatureFlagsPage />,
+              },
+              {
+                path: 'announcements',
+                element: <AnnouncementsPage />,
               },
               {
                 path: 'settings',
