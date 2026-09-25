@@ -1,0 +1,145 @@
+/**
+ * Mot7km Super Admin Dashboard — CSS Custom Properties
+ * Seamlessly integrates with Next.js, Tailwind CSS, and Shadcn UI
+ */
+
+@layer base {
+  :root {
+    /* Backgrounds & Surfaces */
+    --background: 210 40% 98%;          /* #F8FAFC (Slate 50) */
+    --foreground: 222 47% 11%;          /* #0F172A (Slate 900) */
+    --surface: 0 0% 100%;               /* #FFFFFF */
+    --surface-subtle: 210 40% 96%;       /* #F1F5F9 (Slate 100) */
+
+    /* Cards & Popovers */
+    --card: 0 0% 100%;                  /* #FFFFFF */
+    --card-foreground: 222 47% 11%;     /* #0F172A */
+    --card-border: 214 32% 91%;         /* #E2E8F0 */
+    --card-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+
+    --popover: 0 0% 100%;               /* #FFFFFF */
+    --popover-foreground: 222 47% 11%;  /* #0F172A */
+
+    /* Core Brand Tokens */
+    --primary: 221 83% 53%;             /* #1D4ED8 (Royal Blue) */
+    --primary-foreground: 0 0% 100%;    /* #FFFFFF */
+
+    --secondary: 173 80% 40%;           /* #0D9488 (Teal) */
+    --secondary-foreground: 0 0% 100%;  /* #FFFFFF */
+
+    --accent: 189 94% 43%;              /* #06B6D4 (Cyan) */
+    --accent-foreground: 0 0% 100%;     /* #FFFFFF */
+
+    /* Semantic Status */
+    --success: 160 84% 39%;             /* #10B981 */
+    --success-foreground: 0 0% 100%;
+    --success-bg: 152 76% 96%;          /* #ECFDF5 */
+    --success-text: 161 94% 30%;        /* #059669 */
+
+    --warning: 38 92% 50%;              /* #F59E0B */
+    --warning-foreground: 0 0% 100%;
+    --warning-bg: 48 100% 96%;          /* #FFFBEB */
+    --warning-text: 35 92% 33%;         /* #D97706 */
+
+    --destructive: 0 84% 60%;           /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+    --destructive-bg: 0 86% 97%;        /* #FEF2F2 */
+    --destructive-text: 0 72% 51%;      /* #DC2626 */
+
+    --info: 189 94% 43%;                /* #06B6D4 */
+    --info-foreground: 0 0% 100%;
+    --info-bg: 180 100% 96%;            /* #ECFEFF */
+    --info-text: 190 90% 36%;           /* #0891B2 */
+
+    /* Controls, Borders & Inputs */
+    --muted: 210 40% 96%;               /* #F1F5F9 */
+    --muted-foreground: 215 16% 47%;    /* #64748B */
+
+    --border: 214 32% 91%;              /* #E2E8F0 */
+    --input: 214 32% 91%;               /* #E2E8F0 */
+    --ring: 221 83% 53%;                /* #1D4ED8 */
+
+    /* Charts */
+    --chart-1: 202 80% 43%;             /* #1683C7 */
+    --chart-2: 189 94% 43%;             /* #06B6D4 */
+    --chart-3: 258 90% 66%;             /* #8B5CF6 */
+    --chart-4: 160 84% 39%;             /* #10B981 */
+    --chart-5: 38 92% 50%;              /* #F59E0B */
+    --chart-6: 0 84% 60%;               /* #EF4444 */
+    --chart-7: 215 16% 47%;             /* #64748B */
+
+    /* Metric Curves & Radii */
+    --radius: 0.875rem;                 /* 14px (Standard) */
+    --radius-sm: 0.375rem;              /* 6px */
+    --radius-md: 0.875rem;              /* 14px */
+    --radius-lg: 1.25rem;               /* 20px */
+    --radius-xl: 1.5rem;                /* 24px */
+    --radius-pill: 9999px;
+  }
+
+  .dark,
+  [data-theme='dark'] {
+    /* Backgrounds & Surfaces */
+    --background: 222 41% 7%;           /* #0B0F19 (Slate Obsidian) */
+    --foreground: 210 20% 98%;          /* #F9FAFB */
+    --surface: 222 47% 11%;             /* #111827 (Charcoal Slate 900) */
+    --surface-subtle: 217 33% 17%;      /* #1E293B (Slate 800) */
+
+    /* Cards & Popovers */
+    --card: 215 28% 17%;                /* #1F2937 (Elevated Slate) */
+    --card-foreground: 210 20% 98%;     /* #F9FAFB */
+    --card-border: 217 33% 25%;         /* rgba(255, 255, 255, 0.12) */
+    --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.40);
+
+    --popover: 222 47% 11%;             /* #111827 */
+    --popover-foreground: 210 20% 98%;  /* #F9FAFB */
+
+    /* Core Brand Tokens */
+    --primary: 199 89% 48%;             /* #38BDF8 (Luminous Sky Blue) */
+    --primary-foreground: 222 41% 7%;   /* #0B0F19 */
+
+    --secondary: 168 76% 42%;           /* #2DD4BF (Teal Glow) */
+    --secondary-foreground: 222 41% 7%; /* #0B0F19 */
+
+    --accent: 187 92% 69%;              /* #67E8F9 (Cyan Glow) */
+    --accent-foreground: 222 41% 7%;    /* #0B0F19 */
+
+    /* Semantic Status */
+    --success: 152 57% 53%;             /* #34D399 */
+    --success-foreground: 222 41% 7%;
+    --success-bg: 160 84% 39% / 0.18;
+    --success-text: 152 57% 53%;
+
+    --warning: 38 92% 50%;              /* #F59E0B */
+    --warning-foreground: 222 41% 7%;
+    --warning-bg: 38 92% 50% / 0.18;
+    --warning-text: 43 96% 56%;         /* #FBBF24 */
+
+    --destructive: 0 74% 65%;           /* #F87171 */
+    --destructive-foreground: 222 41% 7%;
+    --destructive-bg: 0 84% 60% / 0.18;
+    --destructive-text: 0 74% 65%;
+
+    --info: 199 89% 48%;                /* #38BDF8 */
+    --info-foreground: 222 41% 7%;
+    --info-bg: 189 94% 43% / 0.18;
+    --info-text: 199 89% 48%;
+
+    /* Controls, Borders & Inputs */
+    --muted: 217 33% 17%;               /* #1E293B */
+    --muted-foreground: 215 20% 65%;    /* #9CA3AF */
+
+    --border: 217 33% 25%;              /* rgba(255, 255, 255, 0.12) */
+    --input: 217 33% 25%;               /* rgba(255, 255, 255, 0.14) */
+    --ring: 199 89% 48%;                /* #38BDF8 */
+
+    /* Charts */
+    --chart-1: 199 89% 48%;
+    --chart-2: 187 92% 69%;
+    --chart-3: 258 90% 66%;
+    --chart-4: 152 57% 53%;
+    --chart-5: 43 96% 56%;
+    --chart-6: 0 74% 65%;
+    --chart-7: 215 20% 65%;
+  }
+}

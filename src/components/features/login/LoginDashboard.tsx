@@ -7,7 +7,6 @@ import { useToast } from '../../common/Toast';
 import LoginFooter from './sections/LoginFooter';
 import LoginFormPanel from './sections/LoginFormPanel';
 import LoginHeader from './sections/LoginHeader';
-import LoginShowcasePanel from './components/LoginShowcasePanel';
 
 const LoginDashboard = () => {
   const { t, locale, toggleLocale } = useTranslation();
@@ -21,6 +20,7 @@ const LoginDashboard = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [socialLoading, setSocialLoading] = useState<'google' | 'facebook' | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
 
   if (isAuthenticated) return <Navigate to="/" replace />;
@@ -40,18 +40,39 @@ const LoginDashboard = () => {
       login(email);
       showToast(t('common.success'), 'success');
       navigate('/');
-    }, 800);
+    }, 700);
+  };
+
+  const handleSocialLogin = (provider: 'google' | 'facebook') => {
+    setSocialLoading(provider);
+    setErrorMessage('');
+
+    setTimeout(() => {
+      setSocialLoading(null);
+      const socialEmail = provider === 'google' 
+        ? 'admin.google@mot7km.com' 
+        : 'admin.facebook@mot7km.com';
+      
+      login(socialEmail);
+      showToast(
+        locale === 'ar' 
+          ? `تم تسجيل الدخول بنجاح عبر ${provider === 'google' ? 'Google' : 'Facebook'}`
+          : `Signed in successfully via ${provider === 'google' ? 'Google' : 'Facebook'} SSO`,
+        'success'
+      );
+      navigate('/');
+    }, 900);
   };
 
   const handleFillDemo = (demoEmail: string, roleName: string) => {
     setEmail(demoEmail);
-    setPassword('mot7km2025');
+    setPassword('superadmin2025');
     setErrorMessage('');
-    showToast(`${roleName} Demo Loaded`, 'info');
+    showToast(`${roleName} demo credentials loaded`, 'info');
   };
 
   return (
-    <div className="min-h-screen w-screen bg-[var(--background)] text-[var(--text-primary)] flex flex-col justify-between overflow-x-hidden font-sans transition-colors duration-300">
+    <div className="min-h-screen w-screen bg-background text-foreground flex flex-col justify-between overflow-x-hidden font-sans transition-colors duration-300">
       <LoginHeader
         brand={t('layout.brand')}
         slogan={t('layout.slogan')}
@@ -61,53 +82,42 @@ const LoginDashboard = () => {
         onToggleLocale={toggleLocale}
       />
 
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
-          <div className="lg:col-span-6 xl:col-span-5 flex justify-center">
-            <LoginFormPanel
-              email={email}
-              password={password}
-              rememberMe={rememberMe}
-              isLoading={isLoading}
-              errorMessage={errorMessage}
-              locale={locale}
-              welcomeTitle={t('login.welcomeBack')}
-              subtitle={t('login.subtitle')}
-              emailLabel={t('login.emailLabel')}
-              emailPlaceholder={t('login.emailPlaceholder')}
-              passwordLabel={t('login.passwordLabel')}
-              passwordPlaceholder={t('login.passwordPlaceholder')}
-              rememberLabel={t('login.rememberMe')}
-              forgotLabel={t('login.forgotPassword')}
-              submitLabel={t('login.submitButton')}
-              signingInLabel={t('login.signingIn')}
-              demoAccountLabel={t('login.demoAccount')}
-              ownerDemoLabel={t('login.ownerDemo')}
-              managerDemoLabel={t('login.managerDemo')}
-              onEmailChange={setEmail}
-              onPasswordChange={setPassword}
-              onTogglePassword={() => setShowPassword((value) => !value)}
-              onToggleRemember={setRememberMe}
-              onSubmit={handleSubmit}
-              onForgotPassword={() => showToast(`${t('login.forgotPassword')} demo link`, 'info')}
-              onFillDemo={handleFillDemo}
-              showPassword={showPassword}
-            />
-          </div>
-
-          <LoginShowcasePanel
-            badge={t('login.showcase.badge')}
-            featureTitle={t('login.featureTitle')}
-            featureSub={t('login.featureSub')}
-            qrViewsTitle={t('login.showcase.qrViewsTitle')}
-            qrViewsGrowth={t('login.showcase.qrViewsGrowth')}
-            ratingTitle={t('login.showcase.ratingTitle')}
-            ratingBadge={t('login.showcase.ratingBadge')}
-            kitchenTitle={t('login.showcase.kitchenTitle')}
-            kitchenSub={t('login.showcase.kitchenSub')}
-            kitchenBadge={t('login.showcase.kitchenBadge')}
-          />
-        </div>
+      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 max-w-lg mx-auto w-full my-auto animate-fade-in">
+        <LoginFormPanel
+          email={email}
+          password={password}
+          rememberMe={rememberMe}
+          isLoading={isLoading}
+          socialLoading={socialLoading}
+          errorMessage={errorMessage}
+          locale={locale}
+          superAdminBadge={t('login.superAdminBadge')}
+          welcomeTitle={t('login.welcomeBack')}
+          subtitle={t('login.subtitle')}
+          loginWithGoogle={t('login.loginWithGoogle')}
+          loginWithFacebook={t('login.loginWithFacebook')}
+          orDivider={t('login.orDivider')}
+          emailLabel={t('login.emailLabel')}
+          emailPlaceholder={t('login.emailPlaceholder')}
+          passwordLabel={t('login.passwordLabel')}
+          passwordPlaceholder={t('login.passwordPlaceholder')}
+          rememberLabel={t('login.rememberMe')}
+          forgotLabel={t('login.forgotPassword')}
+          submitLabel={t('login.submitButton')}
+          signingInLabel={t('login.signingIn')}
+          demoAccountLabel={t('login.demoAccount')}
+          ownerDemoLabel={t('login.ownerDemo')}
+          managerDemoLabel={t('login.managerDemo')}
+          onEmailChange={setEmail}
+          onPasswordChange={setPassword}
+          onTogglePassword={() => setShowPassword((value) => !value)}
+          onToggleRemember={setRememberMe}
+          onSubmit={handleSubmit}
+          onSocialLogin={handleSocialLogin}
+          onForgotPassword={() => showToast(`${t('login.forgotPassword')} (Sent reset link to security inbox)`, 'info')}
+          onFillDemo={handleFillDemo}
+          showPassword={showPassword}
+        />
       </main>
 
       <LoginFooter />
