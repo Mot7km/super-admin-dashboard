@@ -247,3 +247,72 @@ export interface TrialDropoffReason {
   category: 'budget' | 'hardware' | 'setup' | 'training' | 'alternative';
 }
 
+// -------------------------------------------------------------
+// Phase 5: Users, Product Usage & GMV Intelligence Types
+// -------------------------------------------------------------
+
+export interface UserActivitySummary {
+  activeUsers: number;
+  totalRegisteredUsers: number;
+  newUsersThisMonth: number;
+  dau: number;
+  wau: number;
+  mau: number;
+  stickinessRatio: number;
+}
+
+export interface UserRoleItem {
+  roleKey: string;
+  nameKey: string;
+  count: number;
+  percent: number;
+  color: string;
+}
+
+export interface UserEngagementSegment {
+  segmentKey: string;
+  labelKey: string;
+  count: number;
+  percent: number;
+  descriptionKey: string;
+  color: string;
+}
+
+export interface ProductFeatureUsageItem {
+  id: string;
+  featureKey: string;
+  nameKey: string;
+  adoptionCount: number;
+  adoptionPercent: number;
+  dailyInteractions: number;
+  trend: string;
+  color: string;
+}
+
+export interface FeatureAdoptionFunnelStep {
+  id: string;
+  stepNumber: number;
+  labelKey: string;
+  count: number;
+  percentage: number;
+  dropoffPercent?: number;
+}
+
+export interface GmvBusinessTypeShare {
+  typeKey: string;
+  nameKey: string;
+  gmvAmount: number;
+  percent: number;
+  ordersCount: number;
+  color: string;
+}
+
+export interface GmvIntelligenceSummary {
+  totalGmv: number;
+  totalOrders: number;
+  aov: number;
+  platformRevenue: number;
+  takeRatePercent: number;
+  businessTypeShares: GmvBusinessTypeShare[];
+}
+

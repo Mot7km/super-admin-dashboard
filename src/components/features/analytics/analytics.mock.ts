@@ -20,6 +20,12 @@ import type {
   CohortMonthItem,
   RetentionCurvePoint,
   TrialDropoffReason,
+  UserActivitySummary,
+  UserRoleItem,
+  UserEngagementSegment,
+  ProductFeatureUsageItem,
+  FeatureAdoptionFunnelStep,
+  GmvIntelligenceSummary,
 } from './analytics.types';
 
 export const INITIAL_OVERVIEW_KPIS: KpiMetricItem[] = [
@@ -873,3 +879,198 @@ export const TRIAL_DROPOFF_REASONS: TrialDropoffReason[] = [
     category: 'alternative',
   },
 ];
+
+// -------------------------------------------------------------
+// Phase 5: Users, Product Usage & GMV Intelligence Datasets
+// -------------------------------------------------------------
+
+export const USER_ACTIVITY_DATA: UserActivitySummary = {
+  activeUsers: 7842,
+  totalRegisteredUsers: 9250,
+  newUsersThisMonth: 540,
+  dau: 4210,
+  wau: 6850,
+  mau: 7842,
+  stickinessRatio: 53.7,
+};
+
+export const USER_ROLES_DATA: UserRoleItem[] = [
+  {
+    roleKey: 'cashiers',
+    nameKey: 'analytics.users.roleCashiers',
+    count: 4414,
+    percent: 56.3,
+    color: 'bg-emerald-500',
+  },
+  {
+    roleKey: 'managers',
+    nameKey: 'analytics.users.roleManagers',
+    count: 2180,
+    percent: 27.8,
+    color: 'bg-primary',
+  },
+  {
+    roleKey: 'owners',
+    nameKey: 'analytics.users.roleOwners',
+    count: 1248,
+    percent: 15.9,
+    color: 'bg-purple-500',
+  },
+];
+
+export const USER_ENGAGEMENT_SEGMENTS: UserEngagementSegment[] = [
+  {
+    segmentKey: 'power',
+    labelKey: 'analytics.users.segPower',
+    count: 3294,
+    percent: 42.0,
+    descriptionKey: 'analytics.users.segPowerDesc',
+    color: 'text-emerald-500',
+  },
+  {
+    segmentKey: 'active',
+    labelKey: 'analytics.users.segActive',
+    count: 2980,
+    percent: 38.0,
+    descriptionKey: 'analytics.users.segActiveDesc',
+    color: 'text-primary',
+  },
+  {
+    segmentKey: 'occasional',
+    labelKey: 'analytics.users.segOccasional',
+    count: 1098,
+    percent: 14.0,
+    descriptionKey: 'analytics.users.segOccasionalDesc',
+    color: 'text-amber-500',
+  },
+  {
+    segmentKey: 'dormant',
+    labelKey: 'analytics.users.segDormant',
+    count: 470,
+    percent: 6.0,
+    descriptionKey: 'analytics.users.segDormantDesc',
+    color: 'text-rose-500',
+  },
+];
+
+export const PRODUCT_FEATURE_USAGE_DATA: ProductFeatureUsageItem[] = [
+  {
+    id: 'feat-menu',
+    featureKey: 'menu',
+    nameKey: 'analytics.features.menu',
+    adoptionCount: 920,
+    adoptionPercent: 98.5,
+    dailyInteractions: 18420,
+    trend: '+14% MoM',
+    color: 'bg-indigo-500',
+  },
+  {
+    id: 'feat-pos',
+    featureKey: 'pos',
+    nameKey: 'analytics.features.pos',
+    adoptionCount: 710,
+    adoptionPercent: 76.0,
+    dailyInteractions: 42391,
+    trend: '+19% MoM',
+    color: 'bg-emerald-500',
+  },
+  {
+    id: 'feat-inventory',
+    featureKey: 'inventory',
+    nameKey: 'analytics.features.inventory',
+    adoptionCount: 540,
+    adoptionPercent: 57.8,
+    dailyInteractions: 6420,
+    trend: '+22% MoM',
+    color: 'bg-amber-500',
+  },
+  {
+    id: 'feat-reports',
+    featureKey: 'reports',
+    nameKey: 'analytics.features.reports',
+    adoptionCount: 420,
+    adoptionPercent: 45.0,
+    dailyInteractions: 1840,
+    trend: '+28% MoM',
+    color: 'bg-teal-500',
+  },
+  {
+    id: 'feat-reviews',
+    featureKey: 'reviews',
+    nameKey: 'analytics.features.reviews',
+    adoptionCount: 190,
+    adoptionPercent: 20.3,
+    dailyInteractions: 480,
+    trend: '+35% MoM',
+    color: 'bg-rose-500',
+  },
+];
+
+export const FEATURE_ADOPTION_FUNNEL_STEPS: FeatureAdoptionFunnelStep[] = [
+  {
+    id: 'fa-eligible',
+    stepNumber: 1,
+    labelKey: 'analytics.adoption.eligibleMerchants',
+    count: 800,
+    percentage: 100.0,
+  },
+  {
+    id: 'fa-enabled',
+    stepNumber: 2,
+    labelKey: 'analytics.adoption.flagEnabled',
+    count: 650,
+    percentage: 81.3,
+    dropoffPercent: 18.7,
+  },
+  {
+    id: 'fa-first-use',
+    stepNumber: 3,
+    labelKey: 'analytics.adoption.firstInteraction',
+    count: 310,
+    percentage: 38.8,
+    dropoffPercent: 52.3,
+  },
+  {
+    id: 'fa-habitual',
+    stepNumber: 4,
+    labelKey: 'analytics.adoption.habitualUsage',
+    count: 245,
+    percentage: 30.6,
+    dropoffPercent: 21.0,
+  },
+];
+
+export const GMV_INTELLIGENCE_DATA: GmvIntelligenceSummary = {
+  totalGmv: 4850000,
+  totalOrders: 42391,
+  aov: 114.4,
+  platformRevenue: 210000,
+  takeRatePercent: 4.3,
+  businessTypeShares: [
+    {
+      typeKey: 'restaurants',
+      nameKey: 'analytics.gmv.typeRestaurants',
+      gmvAmount: 2813000,
+      percent: 58.0,
+      ordersCount: 26400,
+      color: 'bg-amber-500',
+    },
+    {
+      typeKey: 'retail',
+      nameKey: 'analytics.gmv.typeRetail',
+      gmvAmount: 1261000,
+      percent: 26.0,
+      ordersCount: 10800,
+      color: 'bg-emerald-500',
+    },
+    {
+      typeKey: 'services',
+      nameKey: 'analytics.gmv.typeServices',
+      gmvAmount: 776000,
+      percent: 16.0,
+      ordersCount: 5191,
+      color: 'bg-primary',
+    },
+  ],
+};
+

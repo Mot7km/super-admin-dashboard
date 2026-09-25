@@ -2035,6 +2035,73 @@
       "legendBenchmark": "SaaS Benchmark",
       "tenureMonth": "Fleet Tenure",
       "benchmarkExcellence": "SaaS Product-Market Fit Benchmark"
+    },
+    "product": {
+      "sectionTitle": "User Engagement & Product Feature Telemetry",
+      "sectionSubtitle": "DAU/MAU stickiness, feature penetration, and macro transaction volume",
+      "activeUsersTitle": "Active Platform Users",
+      "dauRatioSubtitle": "Daily active users",
+      "stickinessTitle": "Platform Stickiness (DAU/MAU)",
+      "stickinessSubtitle": "Daily habit formation ratio",
+      "gmvTitle": "Platform GMV Volume",
+      "gmvSubtitle": "Gross throughput across terminals",
+      "aovTitle": "Average Order Value (AOV)",
+      "aovSubtitle": "Average ticket size per transaction"
+    },
+    "features": {
+      "matrixTitle": "Core Product Features Usage Matrix",
+      "matrixSubtitle": "Operational adoption rate and daily interaction velocity across merchant modules",
+      "dailyActions": "actions/day",
+      "merchants": "merchants",
+      "stickinessDriver": "Multi-Feature Retention Impact",
+      "menu": "Digital Menu & QR Management",
+      "pos": "POS Cashier & Live Orders",
+      "inventory": "Inventory & Warehouse Stock",
+      "reports": "Financial Analytics & BI Reports",
+      "reviews": "Customer Reviews & QR Feedback"
+    },
+    "adoption": {
+      "title": "New Feature Adoption Funnel (Feature Flags)",
+      "subtitle": "Conversion progression from flag eligibility to daily habitual usage",
+      "habitualRate": "Habitual Adoption",
+      "eligibleMerchants": "1. Eligible Pilot Merchants",
+      "flagEnabled": "2. Flag Activated in Console",
+      "firstInteraction": "3. First Operational Interaction",
+      "habitualUsage": "4. Habitual Recurring Usage (3+ Days)",
+      "flagSyncNotice": "Directly integrated with System Feature Flags module (/system/feature-flags)."
+    },
+    "gmv": {
+      "title": "GMV Throughput vs Platform Software Revenue",
+      "subtitle": "Strict delineation between merchant gross sales and Mot7km subscription earnings",
+      "grossMerchandiseTitle": "Merchant Gross Merchandise Value (GMV)",
+      "grossMerchandiseDesc": "Total consumer sales processed through Mot7km POS terminals and online menus.",
+      "saasRevenueTitle": "Mot7km SaaS Platform Revenue",
+      "saasRevenueDesc": "Net software recurring revenue collected from subscription tiers and add-ons.",
+      "sectorTitle": "GMV Distribution by Commercial Market Vertical",
+      "typeRestaurants": "Restaurants, Cafes & Food Delivery",
+      "typeRetail": "Retail, Groceries & Supermarkets",
+      "typeServices": "Services & Specialized Shops",
+      "ordersProcessed": "orders"
+    },
+    "users": {
+      "rolesTitle": "Personnel Distribution by Platform Role",
+      "rolesSubtitle": "Role-based staffing allocation operating daily merchant accounts",
+      "activePersonnel": "Active Staff",
+      "roleCashiers": "Cashiers & POS Operators",
+      "roleManagers": "Store & Branch Managers",
+      "roleOwners": "Business Owners & Franchisees",
+      "rbacCompliance": "Role Clearance & Governance",
+      "engagementTitle": "User Engagement & Cohort Velocity",
+      "engagementSubtitle": "Usage frequency clusters based on 30-day login and shift activity",
+      "segPower": "Power Operators (>20 shifts/mo)",
+      "segPowerDesc": "Daily cashiers and branch managers opening and closing shifts.",
+      "segActive": "Active Regulars (10-20 logins/mo)",
+      "segActiveDesc": "Store owners checking reports and managing weekly inventory.",
+      "segOccasional": "Occasional Logins (3-9 logins/mo)",
+      "segOccasionalDesc": "Auditors and accounting staff reviewing monthly performance.",
+      "segDormant": "Dormant Accounts (<3 logins/mo)",
+      "segDormantDesc": "Users flagged for automated re-engagement or session cleanup.",
+      "dormantIntervention": "Automated Staff Account Hygiene"
     }
   }
 }
