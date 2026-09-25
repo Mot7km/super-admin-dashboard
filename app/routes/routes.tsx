@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import AppLayout from '../../src/components/layout/AppLayout';
 import ProtectedRoute from '../../src/components/common/ProtectedRoute';
+import GenericModulePage from '../../src/components/common/GenericModulePage';
 
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
@@ -25,10 +26,90 @@ export const router = createBrowserRouter([
       {
         element: <AppLayout />,
         children: [
+          // Overview
           {
             index: true,
             element: <HomePage />,
           },
+          {
+            path: 'overview',
+            element: <Navigate to="/" replace />,
+          },
+
+          // Core Management
+          {
+            path: 'businesses',
+            element: <GenericModulePage titleKey="nav.businesses" category="SaaS Management" />,
+          },
+          {
+            path: 'users',
+            element: <GenericModulePage titleKey="nav.users" category="Access & Identity" />,
+          },
+          {
+            path: 'subscriptions',
+            element: <GenericModulePage titleKey="nav.subscriptions" category="Billing & Plans" />,
+          },
+          {
+            path: 'payments',
+            element: <GenericModulePage titleKey="nav.payments" category="Financial Transactions" />,
+          },
+
+          // Insights
+          {
+            path: 'analytics',
+            element: <GenericModulePage titleKey="nav.analytics" category="Intelligence" />,
+          },
+
+          // Support & Ops
+          {
+            path: 'support',
+            element: <GenericModulePage titleKey="nav.support" category="Customer Success" />,
+          },
+          {
+            path: 'notifications',
+            element: <GenericModulePage titleKey="nav.notifications" category="Communication" />,
+          },
+
+          // Audit
+          {
+            path: 'audit-logs',
+            element: <GenericModulePage titleKey="nav.auditLogs" category="Security & Compliance" />,
+          },
+
+          // System Submenu
+          {
+            path: 'system',
+            children: [
+              {
+                index: true,
+                element: <Navigate to="/system/settings" replace />,
+              },
+              {
+                path: 'feature-flags',
+                element: <GenericModulePage titleKey="nav.featureFlags" category="System Core" />,
+              },
+              {
+                path: 'settings',
+                element: <SettingsPage />,
+              },
+              {
+                path: 'integrations',
+                element: <GenericModulePage titleKey="nav.integrations" category="System Core" />,
+              },
+              {
+                path: 'health',
+                element: <GenericModulePage titleKey="nav.systemHealth" category="Infrastructure" />,
+              },
+            ],
+          },
+
+          // Platform Governance
+          {
+            path: 'admin-management',
+            element: <GenericModulePage titleKey="nav.adminManagement" category="Governance" />,
+          },
+
+          // Legacy routes for backwards compatibility
           {
             path: 'menu',
             element: <MenuPage />,

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useTheme } from '../../../app/context/ThemeContext';
 import { useTranslation } from '../../../app/context/LanguageContext';
 import { useToast } from '../common/Toast';
@@ -9,84 +9,178 @@ import {
   Menu as MenuIcon,
   X,
   LayoutDashboard,
-  Utensils,
-  Store,
-  ShoppingBag,
+  Building2,
   Users,
-  Boxes,
+  CreditCard,
+  Receipt,
+  BarChart3,
+  Headphones,
+  Bell,
+  ScrollText,
+  Sliders,
+  Flag,
   Settings,
+  Workflow,
+  Activity,
+  UserCog,
   Sun,
   Moon,
   Globe,
   PanelLeftClose,
   PanelLeftOpen,
-  Bell,
   LogOut,
+  ChevronDown,
+  ChevronRight,
+  ChevronLeft,
+  Shield,
 } from 'lucide-react';
+
+type NavItemConfig = {
+  to: string;
+  labelKey: string;
+  icon: React.ComponentType<{ className?: string }>;
+  badge?: string;
+  badgeVariant?: 'primary' | 'warning' | 'error' | 'success';
+};
+
+type NavGroupConfig = {
+  id: string;
+  items: NavItemConfig[];
+};
 
 const AppLayout = () => {
   const { t, locale, toggleLocale } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const { showToast } = useToast();
   const { user, logout } = useAuth();
+  const location = useLocation();
+
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-
-  const navItems = [
-    { to: '/', labelKey: 'nav.dashboard', icon: LayoutDashboard },
-    { to: '/menu', labelKey: 'nav.menu', icon: Utensils },
-    { to: '/branches', labelKey: 'nav.branches', icon: Store },
-    { to: '/orders', labelKey: 'nav.orders', icon: ShoppingBag },
-    { to: '/employees', labelKey: 'nav.employees', icon: Users },
-    { to: '/inventory', labelKey: 'nav.inventory', icon: Boxes },
-    { to: '/settings', labelKey: 'nav.settings', icon: Settings },
-  ];
+  
+  // System Submenu is open if current path starts with /system or user toggled it
+  const isSystemActive = location.pathname.startsWith('/system');
+  const [systemOpen, setSystemOpen] = useState(isSystemActive || true);
 
   const closeMobileSidebar = () => setMobileSidebarOpen(false);
 
+  // Grouped Navigation structure matching the MOT7KM Super Admin architecture
+  const navGroups: NavGroupConfig[] = [
+    {
+      id: 'overview-group',
+      items: [
+        { to: '/', labelKey: 'nav.overview', icon: LayoutDashboard },
+      ],
+    },
+    {
+      id: 'core-management',
+      items: [
+        { to: '/businesses', labelKey: 'nav.businesses', icon: Building2 },
+        { to: '/users', labelKey: 'nav.users', icon: Users },
+        { to: '/subscriptions', labelKey: 'nav.subscriptions', icon: CreditCard },
+        { to: '/payments', labelKey: 'nav.payments', icon: Receipt },
+      ],
+    },
+    {
+      id: 'insights',
+      items: [
+        { to: '/analytics', labelKey: 'nav.analytics', icon: BarChart3 },
+      ],
+    },
+    {
+      id: 'support-ops',
+      items: [
+        { to: '/support', labelKey: 'nav.support', icon: Headphones },
+        { to: '/notifications', labelKey: 'nav.notifications', icon: Bell, badge: '4', badgeVariant: 'primary' },
+      ],
+    },
+    {
+      id: 'audit',
+      items: [
+        { to: '/audit-logs', labelKey: 'nav.auditLogs', icon: ScrollText },
+      ],
+    },
+  ];
+
+  const systemSubItems: NavItemConfig[] = [
+    { to: '/system/feature-flags', labelKey: 'nav.featureFlags', icon: Flag },
+    { to: '/system/settings', labelKey: 'nav.settings', icon: Settings },
+    { to: '/system/integrations', labelKey: 'nav.integrations', icon: Workflow },
+    { to: '/system/health', labelKey: 'nav.systemHealth', icon: Activity, badge: '99.9%', badgeVariant: 'success' },
+  ];
+
+  const adminItem: NavItemConfig = {
+    to: '/admin-management',
+    labelKey: 'nav.adminManagement',
+    icon: UserCog,
+  };
+
+  const renderBadge = (badge?: string, variant: 'primary' | 'warning' | 'error' | 'success' = 'primary') => {
+    if (!badge) return null;
+    const colorClasses = {
+      primary: 'bg-primary/15 text-primary border border-primary/20',
+      warning: 'bg-warning-bg text-warning-text border border-warning/20',
+      error: 'bg-destructive-bg text-destructive-text border border-destructive/20',
+      success: 'bg-success-bg text-success-text border border-success/20',
+    }[variant];
+
+    return (
+      <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded-pill shrink-0 ${colorClasses}`}>
+        {badge}
+      </span>
+    );
+  };
+
   return (
-    <div className="h-screen w-screen overflow-hidden bg-[var(--background)] text-[var(--text-primary)] flex flex-col lg:flex-row font-sans">
+    <div className="h-screen w-screen overflow-hidden bg-background text-foreground flex flex-col lg:flex-row font-sans">
       {/* Mobile Header */}
-      <header className="sticky top-0 z-40 flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--surface)]/90 px-4 py-3 backdrop-blur-md lg:hidden shrink-0">
+      <header className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-surface/90 px-4 py-3 backdrop-blur-md lg:hidden shrink-0">
         <button
           onClick={() => setMobileSidebarOpen(true)}
-          className="rounded-lg p-2 text-[var(--text-secondary)] hover:bg-[var(--elevated)] cursor-pointer"
+          className="rounded-lg p-2 text-muted-foreground hover:bg-surface-subtle cursor-pointer"
           aria-label="Toggle mobile menu"
         >
           <MenuIcon className="h-5 w-5" />
         </button>
+
         <div className="flex items-center gap-2">
-          <img
-            src="/assets/logo/Mot7km_Logo.png"
-            alt="Mot7km Logo"
-            className="h-7 w-auto object-contain"
-          />
-          <span className="text-base font-bold tracking-tight text-[var(--text-primary)]">
-            {t('layout.brand')}
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 p-1 ring-1 ring-primary/20">
+            <img
+              src="/assets/logo/Mot7km_Logo.png"
+              alt="Mot7km Logo"
+              className="h-full w-full object-contain"
+            />
+          </div>
+          <span className="text-base font-black tracking-tight text-foreground">
+            MOT7KM
+          </span>
+          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary uppercase">
+            Admin
           </span>
         </div>
+
         <div className="flex items-center gap-1">
           <button
-            onClick={() => showToast('2 New Notifications', 'info')}
-            className="rounded-lg p-2 text-[var(--text-muted)] hover:bg-[var(--elevated)] relative cursor-pointer"
+            onClick={() => showToast('4 New System Alerts', 'info')}
+            className="rounded-lg p-2 text-muted-foreground hover:bg-surface-subtle relative cursor-pointer"
             aria-label="Notifications"
           >
             <Bell className="h-4 w-4" />
-            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-rose-500"></span>
+            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-primary animate-pulse" />
           </button>
           <button
             onClick={toggleTheme}
-            className="rounded-lg p-2 text-[var(--text-muted)] hover:bg-[var(--elevated)] hover:text-[var(--text-primary)] cursor-pointer"
+            className="rounded-lg p-2 text-muted-foreground hover:bg-surface-subtle hover:text-foreground cursor-pointer"
             aria-label={t('layout.theme')}
           >
             {theme === 'dark' ? <Sun className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4" />}
           </button>
           <button
             onClick={toggleLocale}
-            className="rounded-lg p-2 text-[var(--text-muted)] hover:bg-[var(--elevated)] hover:text-[var(--text-primary)] cursor-pointer"
+            className="rounded-lg p-2 text-muted-foreground hover:bg-surface-subtle hover:text-foreground cursor-pointer"
             aria-label={t('layout.language')}
           >
-            <Globe className="h-4 w-4 text-[var(--primary)]" />
+            <Globe className="h-4 w-4 text-primary" />
           </button>
         </div>
       </header>
@@ -101,16 +195,22 @@ const AppLayout = () => {
 
       {/* Sidebar: Fixed height 100vh on Desktop */}
       <aside
-        className={`fixed inset-y-0 z-50 flex flex-col border-e border-[var(--color-border)] bg-[var(--surface)] p-4 transition-all duration-300 ease-in-out lg:static lg:z-auto lg:h-screen lg:shrink-0 lg:overflow-y-auto hide-scrollbar ${
+        className={`fixed inset-y-0 z-50 flex flex-col border-e border-border bg-surface p-3.5 transition-all duration-300 ease-in-out lg:static lg:z-auto lg:h-screen lg:shrink-0 lg:overflow-y-auto hide-scrollbar ${
           locale === 'ar' ? 'right-0' : 'left-0'
         } ${
-          mobileSidebarOpen ? 'translate-x-0 w-[85vw] max-w-[300px]' : (locale === 'ar' ? 'translate-x-full' : '-translate-x-full') + ' lg:translate-x-0'
-        } ${isCollapsed ? 'lg:w-[76px] lg:px-2.5' : 'lg:w-[260px] lg:px-4'}`}
+          mobileSidebarOpen
+            ? 'translate-x-0 w-[85vw] max-w-[280px]'
+            : (locale === 'ar' ? 'translate-x-full' : '-translate-x-full') + ' lg:translate-x-0'
+        } ${isCollapsed ? 'lg:w-[76px] lg:px-2' : 'lg:w-[260px] lg:px-3.5'}`}
       >
         {/* Brand Area */}
-        <div className={`flex items-center pb-5 pt-1 shrink-0 ${isCollapsed ? 'flex-col gap-3 justify-center' : 'justify-between'}`}>
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--primary)]/10 p-1.5 ring-1 ring-[var(--primary)]/20 shadow-sm">
+        <div
+          className={`flex items-center pb-4 pt-1 shrink-0 border-b border-border/60 ${
+            isCollapsed ? 'flex-col gap-2 justify-center' : 'justify-between'
+          }`}
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 p-1.5 ring-1 ring-primary/20 shadow-sm">
               <img
                 src="/assets/logo/Mot7km_Logo.png"
                 alt="Mot7km Logo"
@@ -119,33 +219,39 @@ const AppLayout = () => {
             </div>
             {!isCollapsed && (
               <div className="flex flex-col truncate">
-                <span className="text-base font-bold tracking-tight text-[var(--text-primary)]">
-                  {t('layout.brand')}
-                </span>
-                <span className="text-[10px] font-medium text-[var(--text-muted)] truncate">
-                  {t('layout.slogan')}
+                <div className="flex items-center gap-1.5">
+                  <span className="text-base font-black tracking-wider text-foreground">
+                    MOT7KM
+                  </span>
+                  <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-primary/15 text-primary border border-primary/20">
+                    ROOT
+                  </span>
+                </div>
+                <span className="text-[10px] font-medium text-muted-foreground truncate">
+                  Super Admin SaaS
                 </span>
               </div>
             )}
           </div>
 
-          {/* Collapse Toggle Button (Desktop) */}
+          {/* Desktop Collapse Toggle */}
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden rounded-lg p-1.5 text-[var(--text-muted)] transition hover:bg-[var(--elevated)] hover:text-[var(--text-primary)] lg:flex shrink-0 cursor-pointer"
+            className="hidden rounded-lg p-1.5 text-muted-foreground transition hover:bg-surface-subtle hover:text-foreground lg:flex shrink-0 cursor-pointer"
             title={isCollapsed ? t('layout.expandSidebar') : t('layout.collapseSidebar')}
             aria-label={isCollapsed ? t('layout.expandSidebar') : t('layout.collapseSidebar')}
           >
             {isCollapsed ? (
-              <PanelLeftOpen className={`h-5 w-5 ${locale === 'ar' ? 'rotate-180' : ''}`} />
+              <PanelLeftOpen className={`h-4 w-4 ${locale === 'ar' ? 'rotate-180' : ''}`} />
             ) : (
-              <PanelLeftClose className={`h-5 w-5 ${locale === 'ar' ? 'rotate-180' : ''}`} />
+              <PanelLeftClose className={`h-4 w-4 ${locale === 'ar' ? 'rotate-180' : ''}`} />
             )}
           </button>
-          {/* Close Mobile Sidebar */}
+
+          {/* Mobile Close Button */}
           <button
             onClick={closeMobileSidebar}
-            className="rounded-lg p-1.5 text-[var(--text-muted)] hover:bg-[var(--elevated)] lg:hidden cursor-pointer"
+            className="rounded-lg p-1.5 text-muted-foreground hover:bg-surface-subtle lg:hidden cursor-pointer"
             aria-label="Close menu"
           >
             <X className="h-5 w-5" />
@@ -153,65 +259,234 @@ const AppLayout = () => {
         </div>
 
         {/* Navigation Items */}
-        <nav className="mt-2 flex flex-1 flex-col gap-1.5 overflow-y-auto hide-scrollbar" aria-label="Main Navigation">
-          {navItems.map((item) => {
-            const label = t(item.labelKey);
-            return (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                onClick={closeMobileSidebar}
-                title={isCollapsed ? label : undefined}
-                className={({ isActive }) =>
-                  `group relative flex items-center gap-3.5 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all duration-200 cursor-pointer ${
-                    isCollapsed ? 'justify-center px-0' : ''
-                  } ${
-                    isActive
-                      ? 'bg-[var(--elevated)] text-[var(--text-primary)] shadow-sm ring-1 ring-[var(--color-border)] font-bold'
-                      : 'text-[var(--text-secondary)] hover:bg-[var(--elevated)]/60 hover:text-[var(--text-primary)]'
-                  }`
-                }
-              >
-                <item.icon className="h-5 w-5 shrink-0 transition-transform duration-200 group-hover:scale-105" />
-                {!isCollapsed && <span className="truncate">{label}</span>}
-                {isCollapsed && (
-                  <div className={`pointer-events-none absolute hidden rounded-md bg-[var(--card)] px-2.5 py-1 text-xs font-semibold text-[var(--text-primary)] shadow-lg ring-1 ring-[var(--color-border)] group-hover:block z-50 ${
+        <nav className="mt-3 flex flex-1 flex-col gap-3 overflow-y-auto hide-scrollbar" aria-label="Main Super Admin Navigation">
+          {navGroups.map((group, groupIdx) => (
+            <div key={group.id} className="flex flex-col gap-1">
+              {group.items.map((item) => {
+                const label = t(item.labelKey);
+                return (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    end={item.to === '/'}
+                    onClick={closeMobileSidebar}
+                    title={isCollapsed ? label : undefined}
+                    className={({ isActive }) =>
+                      `group relative flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                        isCollapsed ? 'justify-center px-0' : ''
+                      } ${
+                        isActive
+                          ? 'bg-primary/10 text-primary shadow-sm ring-1 ring-primary/25 font-bold'
+                          : 'text-muted-foreground hover:bg-surface-subtle hover:text-foreground'
+                      }`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <div className="flex items-center gap-3 min-w-0">
+                          <item.icon
+                            className={`h-4 w-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
+                              isActive ? 'text-primary' : 'text-muted-foreground group-hover:text-foreground'
+                            }`}
+                          />
+                          {!isCollapsed && <span className="truncate">{label}</span>}
+                        </div>
+
+                        {!isCollapsed && renderBadge(item.badge, item.badgeVariant)}
+
+                        {/* Collapsed Mode Hover Tooltip */}
+                        {isCollapsed && (
+                          <div
+                            className={`pointer-events-none absolute hidden rounded-lg bg-card px-3 py-1.5 text-xs font-bold text-card-foreground shadow-dialog border border-border group-hover:flex items-center gap-2 z-50 whitespace-nowrap ${
+                              locale === 'ar' ? 'right-full mr-3' : 'left-full ml-3'
+                            }`}
+                          >
+                            <span>{label}</span>
+                            {renderBadge(item.badge, item.badgeVariant)}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                );
+              })}
+
+              {/* Group Separator */}
+              {groupIdx < navGroups.length - 1 && (
+                <div className="my-1 border-t border-border/40" />
+              )}
+            </div>
+          ))}
+
+          {/* Group Separator before System */}
+          <div className="my-1 border-t border-border/40" />
+
+          {/* System Submenu (Collapsible Tree Accordion) */}
+          <div className="flex flex-col gap-1">
+            <button
+              type="button"
+              onClick={() => setSystemOpen(!systemOpen)}
+              className={`group relative flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer w-full text-left ${
+                isCollapsed ? 'justify-center px-0' : ''
+              } ${
+                isSystemActive
+                  ? 'text-primary font-bold'
+                  : 'text-muted-foreground hover:bg-surface-subtle hover:text-foreground'
+              }`}
+              title={isCollapsed ? t('nav.system') : undefined}
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <Sliders
+                  className={`h-4 w-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
+                    isSystemActive ? 'text-primary' : 'text-muted-foreground group-hover:text-foreground'
+                  }`}
+                />
+                {!isCollapsed && <span className="truncate">{t('nav.system')}</span>}
+              </div>
+
+              {!isCollapsed && (
+                <div className="text-muted-foreground">
+                  {systemOpen ? (
+                    <ChevronDown className="h-3.5 w-3.5" />
+                  ) : locale === 'ar' ? (
+                    <ChevronLeft className="h-3.5 w-3.5" />
+                  ) : (
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  )}
+                </div>
+              )}
+
+              {/* Collapsed Mode Flyout Menu */}
+              {isCollapsed && (
+                <div
+                  className={`pointer-events-none absolute hidden rounded-xl bg-card p-2 text-xs font-semibold text-card-foreground shadow-dialog border border-border group-hover:block z-50 min-w-[180px] space-y-1 ${
                     locale === 'ar' ? 'right-full mr-3' : 'left-full ml-3'
-                  }`}>
-                    {label}
+                  }`}
+                >
+                  <div className="font-bold px-2 py-1 text-[11px] text-muted-foreground border-b border-border mb-1">
+                    {t('nav.system')}
+                  </div>
+                  {systemSubItems.map((subItem) => (
+                    <div key={subItem.to} className="px-2 py-1 flex items-center justify-between text-muted-foreground">
+                      <span>{t(subItem.labelKey)}</span>
+                      {renderBadge(subItem.badge, subItem.badgeVariant)}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </button>
+
+            {/* Expanded Tree Branches */}
+            {!isCollapsed && systemOpen && (
+              <div
+                className={`flex flex-col gap-0.5 relative ${
+                  locale === 'ar' ? 'pr-4 border-r-2 border-border/80 mr-3' : 'pl-4 border-l-2 border-border/80 ml-3'
+                }`}
+              >
+                {systemSubItems.map((subItem, index) => {
+                  const label = t(subItem.labelKey);
+                  const isLast = index === systemSubItems.length - 1;
+                  return (
+                    <NavLink
+                      key={subItem.to}
+                      to={subItem.to}
+                      onClick={closeMobileSidebar}
+                      className={({ isActive }) =>
+                        `group relative flex items-center justify-between rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-all duration-150 cursor-pointer ${
+                          isActive
+                            ? 'bg-primary/10 text-primary font-bold'
+                            : 'text-muted-foreground hover:bg-surface-subtle hover:text-foreground'
+                        }`
+                      }
+                    >
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className="text-muted-foreground/60 select-none text-[10px] font-mono">
+                          {isLast ? '└──' : '├──'}
+                        </span>
+                        <subItem.icon className="h-3.5 w-3.5 shrink-0 opacity-70 group-hover:opacity-100" />
+                        <span className="truncate">{label}</span>
+                      </div>
+                      {renderBadge(subItem.badge, subItem.badgeVariant)}
+                    </NavLink>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {/* Group Separator before Admin Management */}
+          <div className="my-1 border-t border-border/40" />
+
+          {/* Admin Management Item */}
+          <NavLink
+            to={adminItem.to}
+            onClick={closeMobileSidebar}
+            title={isCollapsed ? t(adminItem.labelKey) : undefined}
+            className={({ isActive }) =>
+              `group relative flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                isCollapsed ? 'justify-center px-0' : ''
+              } ${
+                isActive
+                  ? 'bg-primary/10 text-primary shadow-sm ring-1 ring-primary/25 font-bold'
+                  : 'text-muted-foreground hover:bg-surface-subtle hover:text-foreground'
+              }`
+            }
+          >
+            {({ isActive }) => (
+              <>
+                <div className="flex items-center gap-3 min-w-0">
+                  <adminItem.icon
+                    className={`h-4 w-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
+                      isActive ? 'text-primary' : 'text-muted-foreground group-hover:text-foreground'
+                    }`}
+                  />
+                  {!isCollapsed && <span className="truncate">{t(adminItem.labelKey)}</span>}
+                </div>
+
+                {isCollapsed && (
+                  <div
+                    className={`pointer-events-none absolute hidden rounded-lg bg-card px-3 py-1.5 text-xs font-bold text-card-foreground shadow-dialog border border-border group-hover:block z-50 whitespace-nowrap ${
+                      locale === 'ar' ? 'right-full mr-3' : 'left-full ml-3'
+                    }`}
+                  >
+                    {t(adminItem.labelKey)}
                   </div>
                 )}
-              </NavLink>
-            );
-          })}
+              </>
+            )}
+          </NavLink>
         </nav>
 
         {/* User Profile & Footer Controls */}
-        <div className="mt-auto border-t border-[var(--color-border)] pt-4 shrink-0 space-y-2">
+        <div className="mt-auto border-t border-border pt-3 shrink-0 space-y-2">
           <div
-            className={`flex items-center gap-3 rounded-xl bg-[var(--elevated)]/50 p-2.5 ring-1 ring-[var(--color-border)] ${
+            className={`flex items-center gap-2.5 rounded-xl bg-surface-subtle p-2 border border-border/80 ${
               isCollapsed ? 'justify-center p-1.5' : ''
             }`}
           >
-            <img
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-              alt="User Avatar"
-              className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-[var(--primary)]/30"
-            />
+            <div className="relative shrink-0">
+              <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-black text-xs ring-2 ring-primary/30">
+                <Shield className="h-4 w-4" />
+              </div>
+              <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-success ring-1 ring-surface" />
+            </div>
+
             {!isCollapsed && (
               <div className="flex flex-1 items-center justify-between overflow-hidden">
                 <div className="flex flex-col truncate">
-                  <span className="truncate text-sm font-semibold text-[var(--text-primary)]">
+                  <span className="truncate text-xs font-bold text-foreground">
                     {user?.name || t('layout.defaultUser')}
                   </span>
-                  <span className="text-xs text-[var(--text-muted)] truncate">{user?.role || t('layout.admin')}</span>
+                  <span className="text-[10px] text-muted-foreground font-mono truncate">
+                    {user?.email || 'superadmin@mot7km.com'}
+                  </span>
                 </div>
                 <button
                   onClick={() => {
                     logout();
-                    showToast('Logged out successfully', 'info');
+                    showToast('Logged out of Super Admin session', 'info');
                   }}
-                  className="rounded-lg p-1.5 text-[var(--text-muted)] hover:bg-rose-500/10 hover:text-rose-500 transition cursor-pointer"
+                  className="rounded-lg p-1.5 text-muted-foreground hover:bg-destructive-bg hover:text-destructive-text transition cursor-pointer"
                   title="Logout"
                   aria-label="Logout"
                 >
@@ -226,7 +501,7 @@ const AppLayout = () => {
               <button
                 onClick={toggleTheme}
                 aria-label={t('layout.theme')}
-                className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-[var(--text-secondary)] transition hover:bg-[var(--elevated)] hover:text-[var(--text-primary)] cursor-pointer"
+                className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] text-muted-foreground transition hover:bg-surface-subtle hover:text-foreground cursor-pointer"
               >
                 {theme === 'dark' ? <Sun className="h-3.5 w-3.5 text-amber-400" /> : <Moon className="h-3.5 w-3.5" />}
                 <span>{t('layout.theme')}</span>
@@ -234,9 +509,9 @@ const AppLayout = () => {
               <button
                 onClick={toggleLocale}
                 aria-label={t('layout.language')}
-                className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-[var(--text-secondary)] transition hover:bg-[var(--elevated)] hover:text-[var(--text-primary)] cursor-pointer"
+                className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] text-muted-foreground transition hover:bg-surface-subtle hover:text-foreground cursor-pointer"
               >
-                <Globe className="h-3.5 w-3.5 text-[var(--primary)]" />
+                <Globe className="h-3.5 w-3.5 text-primary" />
                 <span>{t('layout.otherLanguage')}</span>
               </button>
             </div>
