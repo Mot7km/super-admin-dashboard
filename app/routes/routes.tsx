@@ -23,6 +23,7 @@ import FeatureFlagsPage from './pages/FeatureFlagsPage';
 import AnnouncementsPage from './pages/AnnouncementsPage';
 import StoragePage from './pages/StoragePage';
 import IntegrationsPage from './pages/IntegrationsPage';
+import SystemHealthPage from './pages/SystemHealthPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -122,7 +123,7 @@ export const router = createBrowserRouter([
               },
               {
                 path: 'health',
-                element: <GenericModulePage titleKey="nav.systemHealth" category="Infrastructure" />,
+                element: <SystemHealthPage />,
               },
             ],
           },

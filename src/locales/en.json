@@ -1676,5 +1676,66 @@
     },
     "noResultsTitle": "No Integrations Match Criteria",
     "noResultsDesc": "Adjust your search terms or filter settings to view configured platform gateways."
+  },
+  "systemHealth": {
+    "title": "System Health & Cloud Infrastructure",
+    "subtitle": "Continuous monitoring of server clusters, database replication, worker queues, and operational incidents.",
+    "kpi": {
+      "uptime": "Platform Availability",
+      "zeroOutages": "Zero unscheduled outages",
+      "globalLatency": "Global API Latency",
+      "optimal": "Optimal SLA",
+      "latencySubtitle": "Weighted response time across all edges",
+      "dbPool": "Database Connection Pool",
+      "activeConns": "active connections",
+      "jobQueues": "Async Job Processing",
+      "failedJobsZero": "Zero failed jobs in current cycle"
+    },
+    "actions": {
+      "purgeCache": "Purge Redis Cache",
+      "runDiagnostics": "Run Fleet Diagnostics"
+    },
+    "nodes": {
+      "sectionTitle": "Mission-Critical Fleet Clusters",
+      "sectionSubtitle": "Active state of core application nodes, storage gateways, and cache layers.",
+      "statusHealthy": "Healthy",
+      "instances": "Instances",
+      "response": "Response Time",
+      "ping": "Recheck",
+      "inspect": "Inspect"
+    },
+    "resources": {
+      "sectionTitle": "Resource Footprint & Infrastructure Load",
+      "sectionSubtitle": "Real-time consumption telemetry across compute, memory, disk, and network interfaces."
+    },
+    "incidents": {
+      "title": "Operational Incident & Maintenance Log",
+      "subtitle": "Audit trail of scheduled platform maintenance, auto-scaling events, and certificate rotations.",
+      "allOperational": "All Systems Nominal",
+      "resolved": "Resolved",
+      "info": "Platform Info",
+      "warning": "Warning"
+    },
+    "purgeModal": {
+      "title": "Purge Distributed Redis Cache",
+      "subtitle": "Invalidate in-memory cached datasets and session keys across clusters.",
+      "warningTitle": "Performance Warning",
+      "warningDesc": "Flushing cache keys may temporarily increase PostgreSQL query load until caches are repopulated.",
+      "scopeLabel": "Cache Invalidation Scope",
+      "scopeAll": "All Keys (*) — Full Platform Flush",
+      "scopeSessions": "Tenant Session Keys (sess:*)",
+      "scopeRateLimit": "API Rate Limiting Counters (ratelimit:*)",
+      "scopePos": "POS Realtime State (pos:*)",
+      "confirmCheckbox": "I understand the performance implications and confirm invalidation.",
+      "purgeButton": "Execute Cache Flush"
+    },
+    "drawer": {
+      "title": "Raw Infrastructure Telemetry"
+    },
+    "toast": {
+      "nodeChecked": "Node health and latency verification completed",
+      "diagnosticsPassed": "Comprehensive fleet diagnostics executed: 100% operational",
+      "cachePurged": "Redis cache keys invalidated successfully"
+    }
   }
 }
