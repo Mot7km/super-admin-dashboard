@@ -14,6 +14,7 @@ import InventoryPage from './pages/InventoryPage';
 import SettingsPage from './pages/SettingsPage';
 import SubscriptionsPage from './pages/SubscriptionsPage';
 import UsersPage from './pages/UsersPage';
+import PaymentsPage from './pages/PaymentsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -58,7 +59,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'payments',
-            element: <GenericModulePage titleKey="nav.payments" category="Financial Transactions" />,
+            element: <PaymentsPage />,
           },
 
           // Insights
