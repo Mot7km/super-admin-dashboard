@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { useTheme } from '../../../app/context/ThemeContext';
 import { useTranslation } from '../../../app/context/LanguageContext';
 import { useToast } from '../common/Toast';
@@ -32,11 +32,9 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   LogOut,
-  ChevronDown,
-  ChevronRight,
-  ChevronLeft,
   Shield,
 } from 'lucide-react';
+import { SidebarNavCollapsible } from './SidebarNavCollapsible';
 
 type NavItemConfig = {
   to: string;
@@ -56,14 +54,9 @@ const AppLayout = () => {
   const { theme, toggleTheme } = useTheme();
   const { showToast } = useToast();
   const { user, logout } = useAuth();
-  const location = useLocation();
 
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  
-  // System Submenu is open if current path starts with /system or user toggled it
-  const isSystemActive = location.pathname.startsWith('/system');
-  const [systemOpen, setSystemOpen] = useState<boolean>(isSystemActive || true);
 
   const closeMobileSidebar = () => setMobileSidebarOpen(false);
 
@@ -326,98 +319,16 @@ const AppLayout = () => {
           {/* Group Separator before System */}
           <div className="my-1 border-t border-border/40" />
 
-          {/* System Submenu (Collapsible Tree Accordion) */}
-          <div className="flex flex-col gap-1">
-            <button
-              type="button"
-              onClick={() => setSystemOpen(!systemOpen)}
-              className={`group relative flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer w-full text-left ${
-                isCollapsed ? 'justify-center px-0' : ''
-              } ${
-                isSystemActive
-                  ? 'text-primary font-bold'
-                  : 'text-muted-foreground hover:bg-surface-subtle hover:text-foreground'
-              }`}
-              title={isCollapsed ? t('nav.system') : undefined}
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <Sliders
-                  className={`h-4 w-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
-                    isSystemActive ? 'text-primary' : 'text-muted-foreground group-hover:text-foreground'
-                  }`}
-                />
-                {!isCollapsed && <span className="truncate">{t('nav.system')}</span>}
-              </div>
-
-              {!isCollapsed && (
-                <div className="text-muted-foreground">
-                  {systemOpen ? (
-                    <ChevronDown className="h-3.5 w-3.5" />
-                  ) : locale === 'ar' ? (
-                    <ChevronLeft className="h-3.5 w-3.5" />
-                  ) : (
-                    <ChevronRight className="h-3.5 w-3.5" />
-                  )}
-                </div>
-              )}
-
-              {/* Collapsed Mode Flyout Menu */}
-              {isCollapsed && (
-                <div
-                  className={`pointer-events-none absolute hidden rounded-xl bg-card p-2 text-xs font-semibold text-card-foreground shadow-dialog border border-border group-hover:block z-50 min-w-[180px] space-y-1 ${
-                    locale === 'ar' ? 'right-full mr-3' : 'left-full ml-3'
-                  }`}
-                >
-                  <div className="font-bold px-2 py-1 text-[11px] text-muted-foreground border-b border-border mb-1">
-                    {t('nav.system')}
-                  </div>
-                  {systemSubItems.map((subItem) => (
-                    <div key={subItem.to} className="px-2 py-1 flex items-center justify-between text-muted-foreground">
-                      <span>{t(subItem.labelKey)}</span>
-                      {renderBadge(subItem.badge, subItem.badgeVariant)}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </button>
-
-            {/* Expanded Tree Branches */}
-            {!isCollapsed && systemOpen && (
-              <div
-                className={`flex flex-col gap-0.5 relative ${
-                  locale === 'ar' ? 'pr-4 border-r-2 border-border/80 mr-3' : 'pl-4 border-l-2 border-border/80 ml-3'
-                }`}
-              >
-                {systemSubItems.map((subItem, index) => {
-                  const label = t(subItem.labelKey);
-                  const isLast = index === systemSubItems.length - 1;
-                  return (
-                    <NavLink
-                      key={subItem.to}
-                      to={subItem.to}
-                      onClick={closeMobileSidebar}
-                      className={({ isActive }) =>
-                        `group relative flex items-center justify-between rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-all duration-150 cursor-pointer ${
-                          isActive
-                            ? 'bg-primary/10 text-primary font-bold'
-                            : 'text-muted-foreground hover:bg-surface-subtle hover:text-foreground'
-                        }`
-                      }
-                    >
-                      <div className="flex items-center gap-2 min-w-0">
-                        <span className="text-muted-foreground/60 select-none text-[10px] font-mono">
-                          {isLast ? '└──' : '├──'}
-                        </span>
-                        <subItem.icon className="h-3.5 w-3.5 shrink-0 opacity-70 group-hover:opacity-100" />
-                        <span className="truncate">{label}</span>
-                      </div>
-                      {renderBadge(subItem.badge, subItem.badgeVariant)}
-                    </NavLink>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+          {/* System Submenu (Modern Inset Card & Glowing Rail Collapsible) */}
+          <SidebarNavCollapsible
+            id="system"
+            labelKey="nav.system"
+            icon={Sliders}
+            items={systemSubItems}
+            isCollapsed={isCollapsed}
+            defaultOpen={true}
+            onItemClick={closeMobileSidebar}
+          />
 
           {/* Group Separator before Admin Management */}
           <div className="my-1 border-t border-border/40" />
