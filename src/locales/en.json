@@ -1737,5 +1737,168 @@
       "diagnosticsPassed": "Comprehensive fleet diagnostics executed: 100% operational",
       "cachePurged": "Redis cache keys invalidated successfully"
     }
+  },
+  "analytics": {
+    "title": "SaaS Intelligence & Business Analytics Studio",
+    "subtitle": "Real-time executive performance dashboard, unit economics, conversion funnels, and fleet telemetry.",
+    "time": {
+      "rangeLabel": "Time Window",
+      "today": "Today",
+      "7d": "7 Days",
+      "30d": "30 Days",
+      "3m": "3 Months",
+      "6m": "6 Months",
+      "12m": "12 Months",
+      "custom": "Custom Range",
+      "comparePrevious": "Compare vs Previous Period",
+      "refresh": "Refresh"
+    },
+    "tabs": {
+      "overview": "Executive Overview",
+      "growth": "Business & Growth",
+      "subscriptions": "Subscriptions & MRR",
+      "trials": "Trials & Retention",
+      "product": "Users & Product Usage",
+      "operations": "Operations & System"
+    },
+    "kpi": {
+      "totalBusinesses": "Total Businesses",
+      "activeBusinesses": "Active Tenants",
+      "newBusinesses": "New Signups",
+      "mrr": "MRR (Recurring)",
+      "arr": "ARR (Run Rate)",
+      "activeUsers": "Active Users",
+      "orders": "Processed Orders",
+      "churnRate": "Customer Churn",
+      "trialToPaid": "Trial → Paid Conversion"
+    },
+    "kpiDesc": {
+      "totalBusinesses": "Cumulative registered platform businesses",
+      "activeBusinesses": "Tenants transacting in current period",
+      "newBusinesses": "Onboarded businesses in window",
+      "mrr": "Monthly Recurring Revenue from subscriptions",
+      "arr": "Annualized run-rate (MRR × 12)",
+      "activeUsers": "Cashiers, managers, and owners logged in",
+      "orders": "Total sales orders processed across POS & online",
+      "churnRate": "Monthly subscription cancellations ratio",
+      "trialToPaid": "Free trial accounts converted to paid tiers"
+    },
+    "overview": {
+      "coreKpisTitle": "Core SaaS Unit Economics & Vital Signs",
+      "showingVsPrevious": "Comparing with previous identical period",
+      "showingCurrent": "Showing current period telemetry",
+      "vsPrevious": "vs last period",
+      "metricNominal": "Nominal rate",
+      "prev": "Prev"
+    },
+    "pulse": {
+      "title": "MRR Growth & Tenant Velocity Curve",
+      "subtitle": "Trajectory of recurring subscription income and expanding active business footprint.",
+      "monthly": "Monthly Cadence",
+      "weekly": "Weekly View",
+      "period": "Cadence Window",
+      "activeTenants": "Active Tenants",
+      "newSignups": "New Signups",
+      "new": "new",
+      "mrrGrowthLegend": "MRR Monthly Trajectory (EGP)",
+      "activeTenantsLegend": "Active Business Count"
+    },
+    "health": {
+      "title": "Platform Subsystem Availability",
+      "subtitle": "Real-time heartbeat and SLA across critical infrastructure connectors.",
+      "viewFullDetails": "Full System Health",
+      "healthy": "Healthy",
+      "degraded": "Degraded",
+      "down": "Outage",
+      "allCriticalOperational": "All mission-critical subsystems operating within target SLA bounds."
+    },
+    "healthSubsystems": {
+      "api": "API Gateway Cluster",
+      "database": "PostgreSQL Multi-AZ",
+      "storage": "S3 Cloud Storage",
+      "payments": "Payment Rails (Stripe/Moyasar)",
+      "notifications": "Dispatch Hub (FCM/SMS)"
+    },
+    "insights": {
+      "mrrRecordTitle": "MRR All-Time Record",
+      "mrrRecordDesc": "Monthly recurring revenue surpassed EGP 184,500 with a +12.4% month-over-month acceleration.",
+      "churnDropTitle": "Customer Churn at Record Low",
+      "churnDropDesc": "Churn dropped to 2.8% (-0.4% improvement) driven by automated merchant success onboarding.",
+      "conversionSurgeTitle": "Trial Conversion Optimization",
+      "conversionSurgeDesc": "Trial-to-paid conversion reached 24.6% (+2.8% surge) with streamlined 6-stage activation."
+    },
+    "roadmap": {
+      "comingInPhase": "Scheduled Implementation",
+      "phaseDescription": "This specialized intelligence module is part of the approved master analytics roadmap and will be activated in the next step.",
+      "backToOverview": "Return to Executive Overview"
+    },
+    "toast": {
+      "refreshed": "Analytics telemetry refreshed and synchronized from cloud data warehouse"
+    },
+    "funnel": {
+      "title": "Business Onboarding & Activation Funnel",
+      "subtitle": "Tracking multi-stage journey from signup to first active POS transaction.",
+      "overallActivation": "Platform Activation Rate",
+      "tenants": "businesses",
+      "dropoff": "stage drop-off",
+      "takeaway": "68.0% of signed up businesses successfully reach their first live transaction within 14 days.",
+      "signup": "1. Initial Account Signup",
+      "createdBusiness": "2. Business Entity Setup",
+      "addedBranch": "3. Primary Branch Created",
+      "addedProducts": "4. Menu & Products Cataloged",
+      "addedEmployee": "5. Cashier & Staff Added",
+      "firstTransaction": "6. First Live POS Transaction"
+    },
+    "status": {
+      "title": "Tenant Account Status Distribution",
+      "subtitle": "Proportional fleet composition across billing and operational states.",
+      "totalPool": "Total Merchant Pool",
+      "businesses": "Tenants",
+      "ofTotal": "of total",
+      "active": "Active Subscriptions",
+      "trial": "Free Trial Mode",
+      "expired": "Grace Period / Expired",
+      "suspended": "Suspended Accounts",
+      "cancelled": "Cancelled Churn"
+    },
+    "growthChart": {
+      "title": "Business Growth & Activation Cadence",
+      "subtitle": "Monthly trajectory of newly acquired vs operationalized businesses.",
+      "new": "New Signups",
+      "activated": "Activated",
+      "suspended": "Suspended",
+      "reactivated": "Reactivated",
+      "month": "Month",
+      "netAddition": "Net Growth",
+      "growthMoM": "Net business expansion continues positive trajectory (+19.4% MoM)"
+    },
+    "activity": {
+      "title": "Platform Operational Pulse",
+      "subtitle": "Real-time activity volume processed across merchant locations today.",
+      "orders": "Processed Orders",
+      "products": "Catalog Items Added",
+      "employees": "Staff Members Onboarded",
+      "branches": "Commercial Branches",
+      "highVelocity": "High Activity"
+    },
+    "branches": {
+      "title": "Multi-Branch Network Intelligence",
+      "subtitle": "Physical branch distribution and operational load per merchant location.",
+      "avgPerBusiness": "Avg Branches / Business",
+      "totalBranches": "Total Locations",
+      "registeredSites": "Configured points of presence",
+      "activeBranches": "Operational Branches",
+      "operationalRate": "live",
+      "salesPerBranch": "Sales / Branch",
+      "dailyAverage": "Daily gross throughput",
+      "ordersPerBranch": "Tickets / Branch",
+      "dailyTickets": "Daily transactions",
+      "fleetUtilization": "Active Branch Operational Ratio"
+    },
+    "geo": {
+      "title": "Geographic Penetration by Governorate",
+      "subtitle": "Merchant distribution across Egyptian commercial governorates.",
+      "merchants": "merchants"
+    }
   }
 }

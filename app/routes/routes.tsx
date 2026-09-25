@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import AppLayout from '../../src/components/layout/AppLayout';
 import ProtectedRoute from '../../src/components/common/ProtectedRoute';
-import GenericModulePage from '../../src/components/common/GenericModulePage';
 
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
@@ -24,6 +23,7 @@ import AnnouncementsPage from './pages/AnnouncementsPage';
 import StoragePage from './pages/StoragePage';
 import IntegrationsPage from './pages/IntegrationsPage';
 import SystemHealthPage from './pages/SystemHealthPage';
+import AnalyticsPage from './pages/AnalyticsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -74,7 +74,7 @@ export const router = createBrowserRouter([
           // Insights
           {
             path: 'analytics',
-            element: <GenericModulePage titleKey="nav.analytics" category="Intelligence" />,
+            element: <AnalyticsPage />,
           },
 
           // Support & Ops
