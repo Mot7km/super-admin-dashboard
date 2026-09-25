@@ -1111,5 +1111,130 @@
       "cancelledBroadcast": "Scheduled broadcast cancelled",
       "clonedIntoComposer": "Broadcast copied into composer studio"
     }
+  },
+  "adminManagement": {
+    "page": {
+      "title": "Platform Administration & Staff Governance",
+      "subtitle": "Multi-tier internal role delegation, sovereign RBAC clearance matrix, and forensic access logs"
+    },
+    "kpi": {
+      "totalAdmins": "Internal SaaS Operators",
+      "activeOperators": "Active Operators",
+      "governanceRoles": "Governance Roles",
+      "rootGatekeepers": "L0 Sovereign Gatekeepers",
+      "unrestrictedAccess": "Unrestricted Root Clearance",
+      "mfaEnforcement": "2FA Enforcement Rate",
+      "hardwareEnforced": "Hardware Key / Authenticator Enforced",
+      "liveSessions": "Active Live Sessions",
+      "zeroBreaches": "Zero Security Anomalies"
+    },
+    "tabs": {
+      "users": "Admin Staff Directory",
+      "rolesMatrix": "Roles & Permissions Matrix",
+      "hierarchy": "Hierarchy & Org Chart",
+      "accessLogs": "Internal Access Logs"
+    },
+    "action": {
+      "inviteAdmin": "Invite New Operator",
+      "createNewRole": "Create Custom Role",
+      "editAdmin": "Edit Admin Profile",
+      "changeRole": "Change Role Clearance",
+      "revokeSessions": "Revoke All Sessions",
+      "suspend": "Suspend Account",
+      "activate": "Reactivate Account",
+      "editRole": "Edit Role Definition",
+      "saveChanges": "Save Permission Changes",
+      "reset": "Reset",
+      "cancel": "Cancel",
+      "sendInvitation": "Send Operator Invitation",
+      "confirmRevocation": "Force Invalidate Sessions",
+      "confirmSuspend": "Confirm Suspension",
+      "createRoleBtn": "Create Administrative Role",
+      "viewPermissionsMatrix": "View Permissions Matrix"
+    },
+    "status": {
+      "active": "Active",
+      "suspended": "Suspended",
+      "pendingInvite": "Pending Invite"
+    },
+    "filter": {
+      "searchPlaceholder": "Search by operator name, email, ID, or location...",
+      "allRoles": "All Roles",
+      "allStatuses": "All Statuses",
+      "allTwoFactor": "All MFA Policies",
+      "mfaEnabled": "2FA Compliant",
+      "mfaDisabled": "2FA Missing"
+    },
+    "table": {
+      "colOperator": "Internal Operator",
+      "colRoleClearance": "Role & Clearance",
+      "colSecurityMfa": "Security & MFA",
+      "colSessionsGeo": "Live Sessions & Geo",
+      "colLastActive": "Last Activity",
+      "colStatus": "Status",
+      "colActions": "Actions",
+      "activeSessions": "Active Sessions",
+      "noAdminsFound": "No Admin Operators Found",
+      "noAdminsDesc": "Try adjusting your search query, role filter, or status criteria."
+    },
+    "mfa": {
+      "active": "MFA Compliant",
+      "pending": "MFA Pending"
+    },
+    "hierarchy": {
+      "title": "Internal Command & Clearance Tree",
+      "subtitle": "Organizational delegation chain from sovereign root to operational specialists",
+      "members": "Root Gatekeepers",
+      "rootAccess": "Sovereign Root Access",
+      "staff": "Operators",
+      "assignedStaff": "Assigned Staff Members"
+    },
+    "matrix": {
+      "title": "Role-Based Access Control (RBAC) Matrix",
+      "subtitle": "Granular capability matrix across 9 platform scopes and 5 authorization vectors",
+      "superAdminNotice": "Super Admin sovereign clearance cannot be restricted. Root credentials maintain immutable platform access.",
+      "colScope": "Platform Resource Scope",
+      "colBatch": "Quick Bulk Action",
+      "grantScope": "Grant All Scope",
+      "revokeScope": "Revoke All Scope"
+    },
+    "logs": {
+      "searchPlaceholder": "Filter forensic logs by actor, action, target, or IP...",
+      "allRisks": "All Risk Scores",
+      "allStatuses": "All Log Statuses",
+      "colActor": "Internal Actor",
+      "colAction": "Forensic Action Executed",
+      "colTarget": "Resource Target",
+      "colNetwork": "Network & Geolocation",
+      "colTime": "Timestamp",
+      "colRisk": "Risk Score",
+      "noLogsFound": "No Forensic Access Logs Found",
+      "noLogsDesc": "No security events match your current filter parameters."
+    },
+    "modal": {
+      "inviteTitle": "Invite New Platform Operator",
+      "fullName": "Full Name",
+      "corpEmail": "Corporate Email Address",
+      "assignRole": "Assigned Governance Role",
+      "securityNoteTitle": "Strict 2FA Policy Enforced",
+      "securityNoteDesc": "Invited operators must enroll in Authenticator App (TOTP) or FIDO2 Hardware Key upon first login.",
+      "changeRoleTitle": "Reassign Role Clearance",
+      "changeRoleFor": "Select new administrative role and clearance level for",
+      "revokeSessionsTitle": "Force Emergency Session Invalidation",
+      "revokeSessionsDesc": "Are you sure you want to forcibly terminate all active sessions for",
+      "revokeSessionsWarning": "The operator will be immediately logged out of all connected browsers, mobile devices, and active API tokens.",
+      "suspendTitle": "Suspend Administrative Account",
+      "suspendDesc": "Are you sure you want to suspend",
+      "createRoleTitle": "Define New Custom Governance Role"
+    },
+    "toast": {
+      "invitedSuccessfully": "Operator invitation issued successfully",
+      "updatedSuccessfully": "Admin profile updated successfully",
+      "sessionsRevoked": "All active sessions invalidated immediately",
+      "adminSuspended": "Admin account suspended",
+      "statusToggled": "Admin status updated",
+      "roleCreated": "New governance role created",
+      "permissionsSaved": "Role permissions matrix saved successfully"
+    }
   }
 }

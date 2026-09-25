@@ -18,6 +18,7 @@ import PaymentsPage from './pages/PaymentsPage';
 import AuditLogsPage from './pages/AuditLogsPage';
 import SupportPage from './pages/SupportPage';
 import NotificationsPage from './pages/NotificationsPage';
+import AdminManagementPage from './pages/AdminManagementPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -117,7 +118,7 @@ export const router = createBrowserRouter([
           // Platform Governance
           {
             path: 'admin-management',
-            element: <GenericModulePage titleKey="nav.adminManagement" category="Governance" />,
+            element: <AdminManagementPage />,
           },
 
           // Legacy routes for backwards compatibility
