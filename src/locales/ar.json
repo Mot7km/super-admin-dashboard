@@ -65,7 +65,12 @@
     "of": "من أصل",
     "previous": "السابق",
     "next": "التالي",
-    "page": "صفحة"
+    "page": "صفحة",
+    "refresh": "تحديث",
+    "loading": "جارِ التحديث...",
+    "live": "مباشر",
+    "online": "متصل",
+    "offline": "غير متصل"
   },
   "login": {
     "superAdminBadge": "بوابة الإدارة المركزية — Super Admin",

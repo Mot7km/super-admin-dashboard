@@ -65,7 +65,12 @@
     "of": "of",
     "previous": "Previous",
     "next": "Next",
-    "page": "Page"
+    "page": "Page",
+    "refresh": "Refresh",
+    "loading": "Refreshing...",
+    "live": "Live",
+    "online": "Online",
+    "offline": "Offline"
   },
   "login": {
     "superAdminBadge": "Super Admin Master Portal",
