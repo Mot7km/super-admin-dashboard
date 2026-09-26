@@ -1,4 +1,5 @@
 import { memo, useMemo, type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Shield,
   Plus,
@@ -23,6 +24,7 @@ const HomeHeader: FC<HomeHeaderProps> = ({
   isRefreshing = false,
 }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const timeFilterOptions = useMemo(
     () => [
@@ -67,13 +69,13 @@ const HomeHeader: FC<HomeHeaderProps> = ({
       }}
       onRefresh={onRefresh}
       isRefreshing={isRefreshing}
-      onExport={onExport || (() => alert('Telemetry report generated (CSV/JSON)'))}
+      onExport={onExport}
       exportLabel={t('dashboard.exportTelemetry')}
       primaryAction={{
         label: t('dashboard.onboardTenant'),
         icon: Plus,
         badge: '+N',
-        onClick: () => alert('Open Onboard Enterprise Tenant Modal'),
+        onClick: () => navigate('/businesses?action=new'),
       }}
     />
   );

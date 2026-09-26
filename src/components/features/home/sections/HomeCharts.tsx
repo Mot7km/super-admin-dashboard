@@ -295,7 +295,7 @@ const HomeCharts: FC<HomeChartsProps> = ({
       {/* ========================================================================= */}
       {/* 1. Master Trajectory Studio (8 cols)                                      */}
       {/* ========================================================================= */}
-      <div className="flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-5 shadow-ambient lg:col-span-8">
+      <div className="flex flex-col justify-between rounded-xl border border-border/80 bg-card p-5 shadow-ambient lg:col-span-8">
         <div>
           {/* Top Row: Title, Subtitle, & Metric Tabs */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-border/80 gap-3">
@@ -304,7 +304,7 @@ const HomeCharts: FC<HomeChartsProps> = ({
                 <h2 className="text-base font-extrabold text-foreground">
                   {t('dashboard.charts.trajectoryTitle')}
                 </h2>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-pill bg-primary/10 text-primary text-[10px] font-bold">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-bold">
                   <Sparkles className="h-3 w-3" />
                   <span>Pro Forecasting</span>
                 </span>
@@ -345,44 +345,46 @@ const HomeCharts: FC<HomeChartsProps> = ({
             </div>
           </div>
 
-          {/* Quick Context Metric Summary Deck */}
-          <div className="grid grid-cols-3 gap-3 my-3.5 p-3 rounded-xl bg-surface-subtle/70 border border-border/60">
-            <div>
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">
-                {t('dashboard.charts.currentValue')}
+          {/* Inline Telemetry Bar (Saves ~65px) */}
+          <div className="flex flex-wrap items-center justify-between gap-2.5 my-2.5 px-1 py-1.5 rounded-lg bg-surface-subtle/50 border border-border/50 text-xs">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">
+                  {t('dashboard.charts.currentValue')}:
+                </span>
+                <strong className="text-sm font-black text-foreground font-mono tabular-nums">
+                  {metricStats.current}
+                </strong>
               </span>
-              <span className="text-sm sm:text-base font-black text-foreground font-mono tabular-nums">
-                {metricStats.current}
-              </span>
-            </div>
-            <div>
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">
-                {t('dashboard.charts.peakMetric')}
-              </span>
-              <span className="text-sm sm:text-base font-black text-foreground font-mono tabular-nums">
-                {metricStats.peak}
-              </span>
-            </div>
-            <div>
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">
-                {t('dashboard.charts.avgGrowth')}
-              </span>
-              <span className="text-sm sm:text-base font-black text-success-text font-mono tabular-nums">
-                {metricStats.growth}
+
+              <span className="text-border/80 text-[10px]">•</span>
+
+              <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">
+                  {t('dashboard.charts.peakMetric')}:
+                </span>
+                <strong className="text-xs font-black text-foreground/90 font-mono tabular-nums">
+                  {metricStats.peak}
+                </strong>
               </span>
             </div>
+
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/25 text-emerald-500 dark:text-emerald-400 text-[11px] font-mono font-extrabold shadow-2xs">
+              <TrendingUp className="h-3 w-3" />
+              <span>{metricStats.growth} {t('dashboard.charts.avgGrowth')}</span>
+            </span>
           </div>
 
-          {/* High-Performance Recharts Area Chart */}
-          <div className="h-64 sm:h-72 w-full mt-2">
+          {/* High-Performance Recharts Area Chart (Calibrated to h-44 sm:h-48 for optimal density) */}
+          <div className="h-44 sm:h-48 w-full mt-1">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart
                 data={revenueTrajectoryData}
-                margin={{ top: 10, right: 12, left: -10, bottom: 0 }}
+                margin={{ top: 8, right: 12, left: -14, bottom: 0 }}
               >
                 <defs>
                   <linearGradient id="metricGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={activeConfig.color} stopOpacity={0.4} />
+                    <stop offset="5%" stopColor={activeConfig.color} stopOpacity={0.35} />
                     <stop offset="95%" stopColor={activeConfig.color} stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
@@ -395,13 +397,13 @@ const HomeCharts: FC<HomeChartsProps> = ({
                 <XAxis
                   dataKey="month"
                   stroke="var(--muted-foreground)"
-                  fontSize={11}
+                  fontSize={10}
                   tickLine={false}
                   axisLine={false}
                 />
                 <YAxis
                   stroke="var(--muted-foreground)"
-                  fontSize={11}
+                  fontSize={10}
                   tickLine={false}
                   axisLine={false}
                   tickFormatter={(v) => (v >= 1000 ? `${(v / 1000).toFixed(0)}k` : v)}
@@ -423,10 +425,10 @@ const HomeCharts: FC<HomeChartsProps> = ({
                   fillOpacity={1}
                   fill="url(#metricGradient)"
                   activeDot={{
-                    r: 6,
+                    r: 5,
                     fill: activeConfig.color,
                     stroke: '#FFFFFF',
-                    strokeWidth: 2.5,
+                    strokeWidth: 2,
                   }}
                 />
               </AreaChart>
@@ -438,10 +440,10 @@ const HomeCharts: FC<HomeChartsProps> = ({
       {/* ========================================================================= */}
       {/* 2. Executive Subscription Donut / Pie Chart (4 cols)                      */}
       {/* ========================================================================= */}
-      <div className="flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-5 shadow-ambient lg:col-span-4">
+      <div className="flex flex-col justify-between rounded-xl border border-border/80 bg-card p-4 sm:p-5 shadow-ambient lg:col-span-4">
         <div>
           {/* Header & Lens Mode Switcher */}
-          <div className="flex items-center justify-between pb-3 border-b border-border/80">
+          <div className="flex items-center justify-between pb-2.5 border-b border-border/80">
             <div>
               <div className="flex items-center gap-1.5">
                 <Layers className="h-4 w-4 text-primary" />
@@ -489,21 +491,21 @@ const HomeCharts: FC<HomeChartsProps> = ({
             </div>
           </div>
 
-          {/* Luxury Executive Donut Chart with Dynamic Central HUD */}
-          <div className="relative h-48 w-full flex items-center justify-center my-2">
+          {/* Luxury Executive Donut Chart with Dynamic Central HUD - Calibrated to h-36 */}
+          <div className="relative h-36 w-full flex items-center justify-center my-1.5">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={pieChartData}
                   cx="50%"
                   cy="50%"
-                  innerRadius={60}
-                  outerRadius={86}
+                  innerRadius={46}
+                  outerRadius={66}
                   paddingAngle={4}
                   dataKey="value"
                   stroke="var(--card)"
-                  strokeWidth={3}
-                  cornerRadius={6}
+                  strokeWidth={2.5}
+                  cornerRadius={4}
                   onMouseEnter={(_, index) => setActivePieIndex(index)}
                   onMouseLeave={() => setActivePieIndex(null)}
                 >
@@ -530,25 +532,25 @@ const HomeCharts: FC<HomeChartsProps> = ({
 
             {/* Central Cockpit HUD Dial */}
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-              <div className="w-28 h-28 rounded-full bg-surface/90 border border-border/80 shadow-md flex flex-col items-center justify-center p-2 backdrop-blur-sm transition-all duration-300">
+              <div className="w-20 h-20 rounded-full bg-surface/90 border border-border/80 shadow-xs flex flex-col items-center justify-center p-1 backdrop-blur-sm transition-all duration-300">
                 <span
-                  className="text-[10px] uppercase font-bold tracking-wider truncate max-w-[85px]"
+                  className="text-[9px] uppercase font-bold tracking-wider truncate max-w-[65px]"
                   style={{ color: hudData.color }}
                 >
                   {hudData.label}
                 </span>
-                <span className="text-xl font-black text-foreground font-mono tabular-nums leading-tight mt-0.5 truncate max-w-[95px]">
+                <span className="text-base font-black text-foreground font-mono tabular-nums leading-tight truncate max-w-[72px]">
                   {hudData.value}
                 </span>
-                <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded-pill mt-1 ${hudData.badgeColor}`}>
+                <span className={`text-[8px] font-bold px-1 py-0.2 rounded-md mt-0.5 ${hudData.badgeColor}`}>
                   {hudData.badge}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Detailed Tier Intelligence List with Direct 2-Way Sync */}
-          <div className="space-y-2 mt-1">
+          {/* Detailed Tier Intelligence List with Direct 2-Way Sync (Compact high-density rows) */}
+          <div className="space-y-1.5 mt-1">
             {pieChartData.map((plan, idx) => {
               const meta = PLAN_TIER_META[plan.name] || PLAN_TIER_META.Enterprise;
               const Icon = meta.icon;
@@ -559,9 +561,9 @@ const HomeCharts: FC<HomeChartsProps> = ({
                   key={plan.name}
                   onMouseEnter={() => setActivePieIndex(idx)}
                   onMouseLeave={() => setActivePieIndex(null)}
-                  className={`group relative p-2.5 rounded-xl border transition-all duration-200 cursor-pointer ${
+                  className={`group relative p-1.5 px-2 rounded-lg border transition-all duration-200 cursor-pointer ${
                     isHovered
-                      ? 'bg-surface-subtle shadow-md -translate-y-0.5'
+                      ? 'bg-surface-subtle shadow-xs -translate-y-0.5'
                       : 'bg-surface-subtle/50 border-border/60 hover:border-border'
                   }`}
                   style={{
@@ -570,19 +572,19 @@ const HomeCharts: FC<HomeChartsProps> = ({
                 >
                   {/* Row 1: Icon, Tier Name, Share Tag, and MRR */}
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 min-w-0">
                       <div
-                        className={`h-7 w-7 rounded-lg flex items-center justify-center ${meta.badgeBg} ${meta.badgeText} ring-1 ring-inset ring-current/20`}
+                        className={`h-6 w-6 rounded-md flex items-center justify-center shrink-0 ${meta.badgeBg} ${meta.badgeText} ring-1 ring-inset ring-current/20`}
                       >
-                        <Icon className="h-3.5 w-3.5" />
+                        <Icon className="h-3 w-3" />
                       </div>
-                      <div>
-                        <div className="flex items-center gap-1.5">
+                      <div className="truncate">
+                        <div className="flex items-center gap-1">
                           <span className="text-xs font-bold text-foreground">
                             {plan.name}
                           </span>
                           <span
-                            className="text-[9px] font-extrabold px-1.5 py-0.2 rounded-pill font-mono"
+                            className="text-[9px] font-extrabold px-1 py-0.2 rounded font-mono"
                             style={{
                               backgroundColor: `${plan.color}20`,
                               color: plan.color,
@@ -597,20 +599,20 @@ const HomeCharts: FC<HomeChartsProps> = ({
                       </div>
                     </div>
 
-                    <div className="text-right">
+                    <div className="text-right shrink-0">
                       <span className="text-xs font-black text-foreground font-mono tabular-nums block">
                         {plan.mrr}
                       </span>
-                      <span className="text-[10px] text-muted-foreground font-mono">
-                        ~${Math.round(plan.numericMrr / plan.tenants)}/mo avg
+                      <span className="text-[9px] text-muted-foreground font-mono">
+                        ~${Math.round(plan.numericMrr / plan.tenants)}/mo
                       </span>
                     </div>
                   </div>
 
                   {/* Row 2: Micro Proportion Progress Bar */}
-                  <div className="mt-2 h-1 w-full rounded-pill bg-border/50 overflow-hidden">
+                  <div className="mt-1 h-0.5 w-full rounded-sm bg-border/50 overflow-hidden">
                     <div
-                      className="h-full rounded-pill transition-all duration-500"
+                      className="h-full rounded-sm transition-all duration-500"
                       style={{
                         width: `${plan.percentage}%`,
                         backgroundColor: plan.color,
@@ -624,18 +626,18 @@ const HomeCharts: FC<HomeChartsProps> = ({
         </div>
 
         {/* Footer Link & Context */}
-        <div className="mt-4 pt-3 border-t border-border/80 flex items-center justify-between text-xs">
-          <div className="text-muted-foreground">
+        <div className="mt-2.5 pt-2 border-t border-border/80 flex items-center justify-between text-xs">
+          <div className="text-muted-foreground text-[11px]">
             <span>{t('dashboard.charts.avgTenantLtv')}: </span>
             <span className="font-extrabold text-foreground font-mono">$3,450 ARR</span>
           </div>
 
           <NavLink
             to="/subscriptions"
-            className="inline-flex items-center gap-1 font-bold text-primary hover:underline hover:text-primary-dark transition-colors"
+            className="inline-flex items-center gap-1 font-bold text-primary hover:underline hover:text-primary-dark transition-colors text-[11px]"
           >
             <span>Manage Plans</span>
-            <ArrowUpRight className="h-3.5 w-3.5" />
+            <ArrowUpRight className="h-3 w-3" />
           </NavLink>
         </div>
       </div>

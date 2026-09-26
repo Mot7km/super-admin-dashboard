@@ -3,6 +3,7 @@ import { useTranslation } from '../../../../app/context/LanguageContext';
 import { useToast } from '../../common/Toast';
 import HomeHeader from './sections/HomeHeader';
 import HomeStats from './sections/HomeStats';
+import HomeQuickActions from './sections/HomeQuickActions';
 import HomeCharts from './sections/HomeCharts';
 import HomeLowerPanels from './sections/HomeLowerPanels';
 import {
@@ -56,7 +57,10 @@ const HomeDashboard = () => {
         sentinelMetrics={sentinelMetrics}
       />
 
-      {/* 3. The Visualization Engine: Master Trajectory + Subscription Matrix */}
+      {/* 3. Executive Quick Command & Operations Launcher */}
+      <HomeQuickActions />
+
+      {/* 4. The Visualization Engine: Master Trajectory + Subscription Matrix */}
       <HomeCharts
         revenueTrajectoryData={revenueTrajectoryData}
         subscriptionPlanData={subscriptionPlanData}

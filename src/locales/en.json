@@ -132,6 +132,7 @@
       "systemStatus": "System Health & Uptime"
     },
     "sentinel": {
+      "sectionTitle": "Operational Sentinel & Live Probes",
       "expiringSubscriptions": "Expiring Subscriptions",
       "expiringSubtext": "Requires renewal follow-up in < 7d",
       "churnedBusinesses": "Churned Businesses",
@@ -140,6 +141,18 @@
       "ticketSla": "Avg. SLA response: 4.2m",
       "apiHealth": "Real-time API Throughput",
       "apiErrors": "0.02% error rate"
+    },
+    "quickActions": {
+      "sectionTitle": "Command & Operations Launchpad",
+      "sectionSubtitle": "Instant 1-click access to critical management modules",
+      "onboardBusiness": "Add Business",
+      "manageUsers": "User Directory",
+      "verifyPayments": "Payouts & GMV",
+      "supportDesk": "Support Desk",
+      "systemHealth": "Server Health",
+      "featureFlags": "Feature Flags",
+      "broadcasts": "Announcements",
+      "analyticsHub": "Deep Analytics"
     },
     "charts": {
       "trajectoryTitle": "Revenue & Platform Growth Trajectory",
@@ -176,6 +189,9 @@
       "m45": "45m ago",
       "h1": "1h ago",
       "h2": "2h ago",
+      "h3": "3h ago",
+      "h4": "4h ago",
+      "h6": "6h ago",
       "m2": "2m ago"
     },
     "reviewsList": {

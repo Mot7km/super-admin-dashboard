@@ -21,12 +21,20 @@ const HomeStats: FC<HomeStatsProps> = ({ heroKpis, sentinelMetrics }) => {
   const { t, isRtl } = useTranslation();
   const navigate = useNavigate();
 
+  // Navigation route mapping for Hero KPIs
+  const kpiRouteMap: Record<string, string> = useMemo(() => ({
+    'mrr-revenue': '/analytics/subscriptions',
+    'total-businesses': '/businesses',
+    'platform-orders-volume': '/payments',
+    'active-users': '/users',
+  }), []);
+
   // Navigation route mapping for Sentinel Alert Strip
   const sentinelRouteMap: Record<string, string> = useMemo(() => ({
     'expiring-subscriptions': '/subscriptions',
     'churned-businesses': '/businesses',
     'support-tickets': '/support',
-    'api-throughput-errors': '/system/system-health',
+    'api-throughput-errors': '/system/health',
   }), []);
 
   return (
@@ -48,40 +56,88 @@ const HomeStats: FC<HomeStatsProps> = ({ heroKpis, sentinelMetrics }) => {
             data={kpi.data}
             dataKey="v"
             formatTooltip={(val: number) => kpi.formatVal(val)}
+            onClick={() => navigate(kpiRouteMap[kpi.id] || '/')}
           />
         ))}
       </div>
 
       {/* ========================================================================= */}
-      {/* TIER 2: Operational Sentinel Alert Strip (Actionable Cards)              */}
+      {/* TIER 2: Aero-Sentinel Tactical Telemetry Strip (Distinctive Alert Probes)  */}
       {/* ========================================================================= */}
-      <div className="rounded-2xl border border-border/80 bg-card p-3 sm:p-4 shadow-sm">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+      <div className="space-y-2.5">
+        {/* Subtle Sentinel Telemetry Sub-header */}
+        <div className="flex items-center justify-between px-1">
+          <div className="flex items-center gap-2">
+            <div className="flex h-5 w-5 items-center justify-center rounded-md bg-amber-500/10 text-amber-500">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
+              </span>
+            </div>
+            <h2 className="text-xs font-black uppercase tracking-wider text-muted-foreground font-sans">
+              {t('dashboard.sentinel.sectionTitle')}
+            </h2>
+          </div>
+          <span className="text-[10px] font-mono text-muted-foreground/70 hidden sm:inline">
+            4 Sentinel Probes Active • Multi-Cluster Telemetry
+          </span>
+        </div>
+
+        {/* 4 Precision Sensor Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
           {sentinelMetrics.map((item) => {
-            const variantStyles = {
+            const theme = {
               warning: {
-                text: 'text-warning-text',
-                bg: 'bg-warning-bg',
-                border: 'border-warning/30',
-                badgeBg: 'bg-warning/15 text-warning-text border-warning/30',
+                laserColor: '#f59e0b',
+                ambientSpot: 'bg-amber-500/20',
+                iconGradient: 'from-amber-500/20 via-amber-500/10 to-transparent',
+                iconBorder: 'border-amber-500/30',
+                iconColor: 'text-amber-500 dark:text-amber-400',
+                iconGlow: 'shadow-[0_0_15px_rgba(245,158,11,0.25)]',
+                badgeBg: 'bg-amber-500/10 dark:bg-amber-500/15',
+                badgeBorder: 'border-amber-500/30',
+                badgeText: 'text-amber-600 dark:text-amber-400',
+                hoverBorder: 'hover:border-amber-500/50',
+                actionBtn: 'group-hover:bg-amber-500/15 group-hover:text-amber-500 group-hover:border-amber-500/30',
               },
               error: {
-                text: 'text-destructive-text',
-                bg: 'bg-destructive-bg',
-                border: 'border-destructive/30',
-                badgeBg: 'bg-destructive/15 text-destructive-text border-destructive/30',
-              },
-              success: {
-                text: 'text-success-text',
-                bg: 'bg-success-bg',
-                border: 'border-success/30',
-                badgeBg: 'bg-success/15 text-success-text border-success/30',
+                laserColor: '#f43f5e',
+                ambientSpot: 'bg-rose-500/20',
+                iconGradient: 'from-rose-500/20 via-rose-500/10 to-transparent',
+                iconBorder: 'border-rose-500/30',
+                iconColor: 'text-rose-500 dark:text-rose-400',
+                iconGlow: 'shadow-[0_0_15px_rgba(244,63,94,0.25)]',
+                badgeBg: 'bg-rose-500/10 dark:bg-rose-500/15',
+                badgeBorder: 'border-rose-500/30',
+                badgeText: 'text-rose-600 dark:text-rose-400',
+                hoverBorder: 'hover:border-rose-500/50',
+                actionBtn: 'group-hover:bg-rose-500/15 group-hover:text-rose-500 group-hover:border-rose-500/30',
               },
               default: {
-                text: 'text-primary',
-                bg: 'bg-primary/10',
-                border: 'border-primary/30',
-                badgeBg: 'bg-primary/15 text-primary border-primary/30',
+                laserColor: '#06b6d4',
+                ambientSpot: 'bg-cyan-500/20',
+                iconGradient: 'from-cyan-500/20 via-cyan-500/10 to-transparent',
+                iconBorder: 'border-cyan-500/30',
+                iconColor: 'text-cyan-500 dark:text-cyan-400',
+                iconGlow: 'shadow-[0_0_15px_rgba(6,182,212,0.25)]',
+                badgeBg: 'bg-cyan-500/10 dark:bg-cyan-500/15',
+                badgeBorder: 'border-cyan-500/30',
+                badgeText: 'text-cyan-600 dark:text-cyan-400',
+                hoverBorder: 'hover:border-cyan-500/50',
+                actionBtn: 'group-hover:bg-cyan-500/15 group-hover:text-cyan-500 group-hover:border-cyan-500/30',
+              },
+              success: {
+                laserColor: '#10b981',
+                ambientSpot: 'bg-emerald-500/20',
+                iconGradient: 'from-emerald-500/20 via-emerald-500/10 to-transparent',
+                iconBorder: 'border-emerald-500/30',
+                iconColor: 'text-emerald-500 dark:text-emerald-400',
+                iconGlow: 'shadow-[0_0_15px_rgba(16,185,129,0.25)]',
+                badgeBg: 'bg-emerald-500/10 dark:bg-emerald-500/15',
+                badgeBorder: 'border-emerald-500/30',
+                badgeText: 'text-emerald-600 dark:text-emerald-400',
+                hoverBorder: 'hover:border-emerald-500/50',
+                actionBtn: 'group-hover:bg-emerald-500/15 group-hover:text-emerald-500 group-hover:border-emerald-500/30',
               },
             }[item.variant];
 
@@ -92,44 +148,83 @@ const HomeStats: FC<HomeStatsProps> = ({ heroKpis, sentinelMetrics }) => {
                 key={item.id}
                 type="button"
                 onClick={() => navigate(route)}
-                className="group flex items-center justify-between p-3 rounded-xl border border-border/60 hover:border-primary/40 hover:bg-surface-subtle/80 transition-all duration-200 cursor-pointer text-start w-full focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none"
-                title={`Click to view ${t(item.labelKey)}`}
+                className={`group relative flex flex-col justify-between overflow-hidden rounded-xl p-4 sm:p-5 transition-all duration-300 text-left rtl:text-right select-none ${
+                  'bg-gradient-to-br from-card/95 via-card/85 to-card/75 dark:from-card/90 dark:via-card/70 dark:to-card/50 backdrop-blur-xl'
+                } ${
+                  'shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]'
+                } border border-border/80 dark:border-white/[0.08] ${theme.hoverBorder} hover:-translate-y-1 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 cursor-pointer`}
               >
-                <div className="flex items-center gap-3 min-w-0">
+                {/* 1. Atmospheric Ambient Flare in Corner */}
+                <div
+                  className={`pointer-events-none absolute -top-10 -right-10 rtl:-right-auto rtl:-left-10 h-32 w-32 rounded-full blur-3xl opacity-20 dark:opacity-30 group-hover:opacity-60 transition-opacity duration-500 ${theme.ambientSpot}`}
+                />
+
+                {/* 2. Top Razor Laser Beam */}
+                <div className="absolute top-0 inset-x-0 h-[2px] overflow-hidden pointer-events-none">
                   <div
-                    className={`h-9 w-9 rounded-xl ${variantStyles.bg} ${variantStyles.text} flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200`}
+                    className="h-full w-full opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: `linear-gradient(90deg, transparent 0%, ${theme.laserColor} 50%, transparent 100%)`,
+                    }}
+                  />
+                </div>
+                <div
+                  className="absolute top-0 inset-x-8 h-[2px] blur-[2px] opacity-35 group-hover:opacity-80 transition-opacity duration-300 pointer-events-none"
+                  style={{ backgroundColor: theme.laserColor }}
+                />
+
+                {/* 3. Top Row: Tactile Icon Squircle + Live Radar Beacon */}
+                <div className="relative flex items-center justify-between gap-2 z-10 w-full mb-3">
+                  <div
+                    className={`h-10 w-10 rounded-xl bg-gradient-to-br ${theme.iconGradient} border ${theme.iconBorder} ${theme.iconColor} ${theme.iconGlow} flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all duration-300`}
                   >
-                    <item.icon className="h-4 w-4" />
+                    <item.icon className="h-5 w-5" />
                   </div>
-                  <div className="truncate">
-                    <span className="text-[11px] font-bold text-muted-foreground block truncate">
-                      {t(item.labelKey)}
+
+                  {item.badge && (
+                    <span
+                      className={`inline-flex items-center gap-1.5 rounded-lg ${theme.badgeBg} border ${theme.badgeBorder} px-2.5 py-0.5 text-[11px] font-extrabold ${theme.badgeText} font-mono tracking-tight shadow-2xs backdrop-blur-sm`}
+                    >
+                      <span className="relative flex h-1.5 w-1.5 shrink-0">
+                        <span
+                          className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                          style={{ backgroundColor: theme.laserColor }}
+                        />
+                        <span
+                          className="relative inline-flex rounded-full h-1.5 w-1.5"
+                          style={{ backgroundColor: theme.laserColor }}
+                        />
+                      </span>
+                      <span>{item.badge}</span>
                     </span>
-                    <span className="text-sm font-extrabold text-foreground font-mono tabular-nums block">
-                      {item.value}
-                    </span>
-                    <span className="text-[10px] text-muted-foreground/80 block truncate">
-                      {t(item.subtextKey)}
-                    </span>
-                  </div>
+                  )}
                 </div>
 
-                <div className="flex flex-col items-end gap-1 shrink-0 ml-2 rtl:ml-0 rtl:mr-2">
-                  {item.badge ? (
-                    <span
-                      className={`text-[10px] font-extrabold px-2 py-0.5 rounded-pill border ${variantStyles.badgeBg} font-mono`}
-                    >
-                      {item.badge}
-                    </span>
-                  ) : null}
-
-                  <span className="text-muted-foreground/60 group-hover:text-primary transition-colors">
-                    {isRtl ? (
-                      <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-0.5 transition-transform" />
-                    ) : (
-                      <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    )}
+                {/* 4. Middle Section: Label & Large Tabular Numerals */}
+                <div className="relative z-10 w-full">
+                  <span className="text-[11px] font-extrabold text-muted-foreground/90 uppercase tracking-widest block font-sans truncate">
+                    {t(item.labelKey)}
                   </span>
+                  <span className="text-xl sm:text-2xl font-black font-mono tabular-nums tracking-tight text-foreground block mt-1 leading-none">
+                    {item.value}
+                  </span>
+                </div>
+
+                {/* 5. Bottom Row: Context Subtitle & Interactive Jump Pill */}
+                <div className="relative mt-3.5 pt-2.5 border-t border-border/50 dark:border-white/[0.06] flex items-center justify-between gap-2 text-xs z-10 w-full">
+                  <span className="text-[11px] text-muted-foreground truncate leading-relaxed">
+                    {t(item.subtextKey)}
+                  </span>
+
+                  <div
+                    className={`h-7 w-7 rounded-lg border border-border/70 dark:border-white/[0.08] bg-surface-subtle/80 flex items-center justify-center shrink-0 text-muted-foreground transition-all duration-200 shadow-2xs ${theme.actionBtn}`}
+                  >
+                    {isRtl ? (
+                      <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-0.5 transition-transform duration-200" />
+                    ) : (
+                      <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
+                    )}
+                  </div>
                 </div>
               </button>
             );

@@ -17,6 +17,7 @@ import {
   Clock,
   Eye,
   ExternalLink,
+  CheckCircle2,
 } from 'lucide-react';
 import { useTranslation } from '../../../../../app/context/LanguageContext';
 import type { RecentTenant, SystemEvent, TransactionVolumePoint } from '../home.types';
@@ -40,8 +41,8 @@ const TransactionBarTooltip: FC<BarTooltipProps> = memo(({ active, payload, labe
   const data = payload[0].payload;
 
   return (
-    <div className="rounded-xl border border-border/80 bg-card/95 backdrop-blur-md p-3 shadow-dropdown text-xs min-w-[160px] animate-fade-in">
-      <div className="flex items-center justify-between border-b border-border/60 pb-1 mb-2 text-muted-foreground">
+    <div className="rounded-xl border border-border/80 bg-card/95 backdrop-blur-md p-2.5 shadow-dropdown text-xs min-w-[150px] animate-fade-in">
+      <div className="flex items-center justify-between border-b border-border/60 pb-1 mb-1.5 text-muted-foreground">
         <span className="font-semibold text-[11px]">Time: {label}</span>
         <span className="h-2 w-2 rounded-full bg-primary" />
       </div>
@@ -87,20 +88,20 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
   };
 
   return (
-    <section aria-label="Operational Telemetry & Logs" className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+    <section aria-label="Operational Telemetry & Logs" className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12 items-stretch">
       {/* ========================================================================= */}
       {/* 1. Global Orders & Transaction Velocity Stream (6 cols)                   */}
       {/* ========================================================================= */}
-      <div className="rounded-2xl border border-border/80 bg-card p-5 shadow-ambient lg:col-span-6 flex flex-col justify-between">
+      <div className="rounded-xl border border-border/80 bg-card p-4 sm:p-5 shadow-ambient lg:col-span-6 flex flex-col justify-between">
         <div>
           {/* Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-border/80">
+          <div className="flex items-center justify-between pb-2.5 border-b border-border/80">
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-base font-extrabold text-foreground">
                   {t('dashboard.ordersVolumeTitle')}
                 </h2>
-                <span className="flex items-center gap-1 px-2 py-0.5 rounded-pill bg-success-bg border border-success/30 text-[10px] font-extrabold text-success-text shadow-xs">
+                <span className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-success-bg border border-success/30 text-[10px] font-extrabold text-success-text shadow-2xs">
                   <span className="h-1.5 w-1.5 rounded-full bg-success animate-ping" />
                   <span>Live Feed</span>
                 </span>
@@ -110,45 +111,47 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
               </p>
             </div>
 
-            <div className="h-8 w-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+            <div className="h-8 w-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
               <Zap className="h-4 w-4" />
             </div>
           </div>
 
-          {/* Quick Real-Time Metrics Bar */}
-          <div className="grid grid-cols-3 gap-2.5 my-3.5">
-            <div className="p-2.5 rounded-xl bg-surface-subtle/80 border border-border/60">
-              <span className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider block">
-                {t('dashboard.ordersProcessedToday')}
+          {/* Quick Real-Time Metrics Bar (Inline saves ~65px) */}
+          <div className="flex flex-wrap items-center justify-between gap-2.5 my-2.5 px-2 py-1.5 rounded-lg bg-surface-subtle/50 border border-border/50 text-xs">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">
+                  {t('dashboard.ordersProcessedToday')}:
+                </span>
+                <strong className="text-sm font-black text-foreground font-mono tabular-nums">
+                  24,890
+                </strong>
               </span>
-              <span className="text-sm sm:text-base font-black text-foreground font-mono tabular-nums">
-                24,890
-              </span>
-            </div>
-            <div className="p-2.5 rounded-xl bg-surface-subtle/80 border border-border/60">
-              <span className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider block">
-                {t('dashboard.processedVolumeToday')}
-              </span>
-              <span className="text-sm sm:text-base font-black text-foreground font-mono tabular-nums">
-                $482,400
-              </span>
-            </div>
-            <div className="p-2.5 rounded-xl bg-surface-subtle/80 border border-border/60">
-              <span className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider block">
-                {t('dashboard.slaSuccess')}
-              </span>
-              <span className="text-sm sm:text-base font-black text-success-text font-mono tabular-nums">
-                99.98%
+
+              <span className="text-border/80 text-[10px]">•</span>
+
+              <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/80">
+                  {t('dashboard.processedVolumeToday')}:
+                </span>
+                <strong className="text-xs font-black text-foreground/90 font-mono tabular-nums">
+                  $482,400
+                </strong>
               </span>
             </div>
+
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/25 text-emerald-500 dark:text-emerald-400 text-[11px] font-mono font-extrabold shadow-2xs">
+              <CheckCircle2 className="h-3 w-3" />
+              <span>99.98% {t('dashboard.slaSuccess')}</span>
+            </span>
           </div>
 
-          {/* Transaction Bar Chart */}
-          <div className="h-56 w-full mt-2">
+          {/* Transaction Bar Chart (Calibrated to h-44 sm:h-48) */}
+          <div className="h-44 sm:h-48 w-full mt-1">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={transactionVolumeData}
-                margin={{ top: 8, right: 8, left: -20, bottom: 0 }}
+                margin={{ top: 8, right: 8, left: -22, bottom: 0 }}
               >
                 <CartesianGrid
                   strokeDasharray="3 3"
@@ -159,18 +162,18 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
                 <XAxis
                   dataKey="time"
                   stroke="var(--muted-foreground)"
-                  fontSize={11}
+                  fontSize={10}
                   tickLine={false}
                   axisLine={false}
                 />
                 <YAxis
                   stroke="var(--muted-foreground)"
-                  fontSize={11}
+                  fontSize={10}
                   tickLine={false}
                   axisLine={false}
                 />
                 <Tooltip content={<TransactionBarTooltip />} />
-                <Bar dataKey="orders" radius={[5, 5, 0, 0]} maxBarSize={34}>
+                <Bar dataKey="orders" radius={[4, 4, 0, 0]} maxBarSize={28}>
                   {transactionVolumeData.map((entry) => {
                     const isPeak = entry.orders === peakOrdersValue;
                     return (
@@ -188,16 +191,16 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="mt-4 pt-3 border-t border-border/80 flex items-center justify-between text-xs">
-          <span className="text-muted-foreground font-medium">
-            Peak Throughput: <strong className="font-mono text-foreground">4,650 orders/hr</strong> at 21:00
+        <div className="mt-2.5 pt-2 border-t border-border/80 flex items-center justify-between text-xs">
+          <span className="text-muted-foreground text-[11px]">
+            Peak Throughput: <strong className="font-mono text-foreground font-bold">4,650 orders/hr</strong> at 21:00
           </span>
           <NavLink
             to="/payments"
-            className="inline-flex items-center gap-1 font-bold text-primary hover:underline hover:text-primary-dark transition-colors"
+            className="inline-flex items-center gap-1 font-bold text-primary hover:underline hover:text-primary-dark transition-colors text-[11px]"
           >
             <span>{t('dashboard.viewAllTransactions')}</span>
-            <ArrowUpRight className="h-3.5 w-3.5" />
+            <ArrowUpRight className="h-3 w-3" />
           </NavLink>
         </div>
       </div>
@@ -205,28 +208,28 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
       {/* ========================================================================= */}
       {/* 2. Recent Tenants & Audit Stream Panel (6 cols)                          */}
       {/* ========================================================================= */}
-      <div className="rounded-2xl border border-border/80 bg-card p-5 shadow-ambient lg:col-span-6 flex flex-col justify-between">
+      <div className="rounded-xl border border-border/80 bg-card p-4 sm:p-5 shadow-ambient lg:col-span-6 flex flex-col justify-between">
         <div>
           {/* Header with Switcher Tabs */}
-          <div className="flex items-center justify-between pb-3 border-b border-border/80">
+          <div className="flex items-center justify-between pb-2.5 border-b border-border/80">
             <div
               role="tablist"
               aria-label="Switch feed view"
-              className="inline-flex items-center p-1 rounded-xl bg-surface-subtle border border-border/80"
+              className="inline-flex items-center p-0.5 rounded-xl bg-surface-subtle border border-border/80 shadow-xs"
             >
               <button
                 type="button"
                 role="tab"
                 aria-selected={activeTab === 'tenants'}
                 onClick={() => handleTabSwitch('tenants')}
-                className={`text-xs font-bold px-3 py-1.5 rounded-lg transition-all duration-200 cursor-pointer ${
+                className={`text-xs font-bold px-2.5 py-1 rounded-lg transition-all duration-200 cursor-pointer ${
                   activeTab === 'tenants'
                     ? 'bg-card text-primary shadow-xs ring-1 ring-border font-extrabold'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 <span>{t('dashboard.recentTenantsTab')}</span>
-                <span className="ml-1.5 px-1.5 py-0.2 text-[10px] rounded-pill bg-primary/10 text-primary font-mono">
+                <span className="ms-1.5 px-1.5 py-0.2 text-[10px] rounded-md bg-primary/10 text-primary font-mono font-bold">
                   {recentTenants.length}
                 </span>
               </button>
@@ -236,14 +239,14 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
                 role="tab"
                 aria-selected={activeTab === 'audit'}
                 onClick={() => handleTabSwitch('audit')}
-                className={`text-xs font-bold px-3 py-1.5 rounded-lg transition-all duration-200 cursor-pointer ${
+                className={`text-xs font-bold px-2.5 py-1 rounded-lg transition-all duration-200 cursor-pointer ${
                   activeTab === 'audit'
                     ? 'bg-card text-primary shadow-xs ring-1 ring-border font-extrabold'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 <span>{t('dashboard.systemAuditTab')}</span>
-                <span className="ml-1.5 px-1.5 py-0.2 text-[10px] rounded-pill bg-success-bg text-success-text font-mono">
+                <span className="ms-1.5 px-1.5 py-0.2 text-[10px] rounded-md bg-success-bg text-success-text font-mono font-bold">
                   Live
                 </span>
               </button>
@@ -257,7 +260,7 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
 
           {/* ================= Tab 1: Recent Tenants ================= */}
           {activeTab === 'tenants' ? (
-            <div className="mt-3 divide-y divide-border/60">
+            <div className="mt-1 divide-y divide-border/50">
               {recentTenants.map((tenant) => {
                 // Get initials for avatar
                 const initials = tenant.name
@@ -277,37 +280,37 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
                 return (
                   <div
                     key={tenant.id}
-                    className="group py-2.5 flex items-center justify-between hover:bg-surface-subtle/70 px-2 rounded-xl transition-all duration-200"
+                    className="group py-1.5 sm:py-2 flex items-center justify-between hover:bg-surface-subtle/70 px-2 rounded-lg transition-all duration-200"
                   >
-                    <div className="flex items-center gap-3 min-w-0">
+                    <div className="flex items-center gap-2.5 min-w-0">
                       {/* Monogram Avatar */}
-                      <div className="h-9 w-9 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0 font-black text-xs group-hover:scale-105 transition-transform duration-200">
-                        {initials || <Building2 className="h-4 w-4" />}
+                      <div className="h-8 w-8 rounded-lg bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0 font-black text-[11px] group-hover:scale-105 transition-transform duration-200">
+                        {initials || <Building2 className="h-3.5 w-3.5" />}
                       </div>
 
                       <div className="truncate">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5">
                           <span className="text-xs font-bold text-foreground truncate group-hover:text-primary transition-colors">
                             {tenant.name}
                           </span>
                           <span
-                            className={`text-[9px] font-extrabold px-1.5 py-0.2 rounded-pill border ${planBadgeStyle} font-mono`}
+                            className={`text-[9px] font-extrabold px-1.5 py-0.2 rounded-md border ${planBadgeStyle} font-mono`}
                           >
                             {tenant.plan}
                           </span>
                         </div>
-                        <span className="text-[11px] text-muted-foreground truncate block">
+                        <span className="text-[10px] text-muted-foreground truncate block">
                           {tenant.category} • {tenant.region}
                         </span>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0 ml-2">
+                    <div className="flex items-center gap-2.5 shrink-0 ms-2">
                       <div className="text-right">
                         <span className="text-xs font-black text-foreground font-mono tabular-nums block">
                           {tenant.mrr}
                         </span>
-                        <span className="text-[10px] text-muted-foreground">
+                        <span className="text-[10px] text-muted-foreground font-mono">
                           {t(tenant.joinedAtKey)}
                         </span>
                       </div>
@@ -316,7 +319,7 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
                       <NavLink
                         to={`/businesses/${tenant.id}`}
                         aria-label={`Inspect ${tenant.name}`}
-                        className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg hover:bg-primary/10 text-muted-foreground hover:text-primary"
+                        className="opacity-70 sm:opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-md hover:bg-primary/10 text-muted-foreground hover:text-primary"
                         title={t('dashboard.inspectTenant')}
                       >
                         <Eye className="h-3.5 w-3.5" />
@@ -330,7 +333,7 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
 
           {/* ================= Tab 2: Live Audit Stream ================= */}
           {activeTab === 'audit' ? (
-            <div className="mt-3 divide-y divide-border/60">
+            <div className="mt-1 divide-y divide-border/50">
               {systemEvents.map((event) => {
                 const levelConfig = {
                   success: {
@@ -354,12 +357,12 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
                 return (
                   <div
                     key={event.id}
-                    className="group py-2.5 flex items-start gap-3 hover:bg-surface-subtle/70 px-2 rounded-xl transition-all duration-200"
+                    className="group py-1.5 sm:py-2 flex items-start gap-2.5 hover:bg-surface-subtle/70 px-2 rounded-lg transition-all duration-200"
                   >
                     <div
-                      className={`h-8 w-8 rounded-xl flex items-center justify-center shrink-0 mt-0.5 border ${levelConfig.bg}`}
+                      className={`h-7 w-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 border ${levelConfig.bg}`}
                     >
-                      <event.icon className="h-4 w-4" />
+                      <event.icon className="h-3.5 w-3.5" />
                     </div>
 
                     <div className="flex-1 min-w-0">
@@ -377,7 +380,7 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
                         </span>
                       </div>
 
-                      <p className="text-[11px] text-muted-foreground mt-0.5 truncate leading-tight">
+                      <p className="text-[10px] text-muted-foreground mt-0.5 truncate leading-tight">
                         {event.subtitle}
                       </p>
                     </div>
@@ -389,20 +392,20 @@ const HomeLowerPanels: FC<HomeLowerPanelsProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="mt-4 pt-3 border-t border-border/80 flex items-center justify-between text-xs">
-          <span className="text-muted-foreground">
+        <div className="mt-2.5 pt-2 border-t border-border/80 flex items-center justify-between text-xs">
+          <span className="text-muted-foreground text-[11px]">
             {activeTab === 'tenants' ? `${recentTenants.length} active tenants listed` : 'Automated immutable security ledger'}
           </span>
           <NavLink
             to={activeTab === 'tenants' ? '/businesses' : '/audit-logs'}
-            className="inline-flex items-center gap-1 font-bold text-primary hover:underline hover:text-primary-dark transition-colors"
+            className="inline-flex items-center gap-1 font-bold text-primary hover:underline hover:text-primary-dark transition-colors text-[11px]"
           >
             <span>
               {activeTab === 'tenants'
                 ? t('dashboard.viewAllBusinesses')
                 : t('dashboard.viewFullAuditLogs')}
             </span>
-            <ExternalLink className="h-3.5 w-3.5" />
+            <ExternalLink className="h-3 w-3" />
           </NavLink>
         </div>
       </div>
