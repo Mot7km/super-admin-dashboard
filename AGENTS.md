@@ -142,7 +142,59 @@ import { PageHeader } from '@/components/common/header';
 
 ---
 
-### 📏 D. Sizing, Radii & Spacing Token Architecture (`src/theme/sizes.ts`)
+### 📋 D. Standard Enterprise DataTable System (`src/components/common/table/`)
+
+Whenever rendering a data table, operator list, tenant registry, subscription index, or forensic activity grid, you **MUST** use `DataTable`:
+
+```tsx
+import { DataTable, type DataTableColumn } from '@/components/common/table';
+// or relative: import { DataTable } from '../../../common/table';
+```
+
+- **Core Capabilities**:
+  - Generic typing `<TData>` with client-side or server-side controlled search, sorting, and pagination.
+  - Interactive column sorting with asc/desc indicators and monospace numbers.
+  - Multi-criteria filter dropdowns with live item counts, active indicator rings, and "Reset all filters" shortcut.
+  - Master checkbox and row selection with animated floating Batch Actions bar (`Revoke`, `Suspend`, `Export`).
+  - View density switcher (`compact` vs `normal` vs `spacious`) for high-data density workflows.
+  - Integrated CSV / JSON export trigger.
+  - Zero-state and shimmering skeleton loading states (`DataTableSkeleton`).
+  - Standardized Row Actions Dropdown Menu (`DataTableRowActions`): Group row actions into a unified, smart-flipping dropdown popover instead of cluttered horizontal buttons.
+  - Adheres strictly to `SIZES` token architecture (12px outer card radius, 8px buttons/tags/inputs, 6px badges; no bubble pills).
+
+**Example Usage:**
+```tsx
+<DataTable<AdminUser>
+  data={filteredAdmins}
+  columns={columns}
+  keyExtractor={(admin) => admin.id}
+  search={{
+    value: search,
+    onChange: setSearch,
+    placeholder: t('adminManagement.filter.searchPlaceholder'),
+  }}
+  filters={filterConfigs}
+  primaryAction={{
+    label: t('adminManagement.action.inviteAdmin'),
+    icon: Plus,
+    onClick: handleInvite,
+  }}
+  enableSelection
+  batchActions={batchActions}
+  onExport={handleExport}
+  enableDensitySwitcher
+  initialDensity="normal"
+  pagination={{
+    page: 1,
+    pageSize: 10,
+    onChange: handlePageChange,
+  }}
+/>
+```
+
+---
+
+### 📏 E. Sizing, Radii & Spacing Token Architecture (`src/theme/sizes.ts`)
 
 To ensure visual crispness and eliminate bubbly/circular UI elements, all components **MUST** adhere to the standardized sizing tokens in `src/theme/sizes.ts`:
 
