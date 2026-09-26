@@ -75,15 +75,18 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
   ) => {
     if (!badgeText) return null;
     const colorClasses = {
-      primary: 'bg-primary/15 text-primary border border-primary/20',
-      warning: 'bg-warning-bg text-warning-text border border-warning/20',
-      error: 'bg-destructive-bg text-destructive-text border border-destructive/20',
-      success: 'bg-success-bg text-success-text border border-success/20',
+      primary: 'bg-primary/15 text-primary border border-primary/25',
+      warning: 'bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/25',
+      error: 'bg-destructive/15 text-destructive border border-destructive/25',
+      success: 'bg-emerald-500/15 text-emerald-500 dark:text-emerald-400 border border-emerald-500/25',
     }[variant];
 
     return (
-      <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded-pill shrink-0 ${colorClasses}`}>
-        {badgeText}
+      <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono font-bold rounded-md shrink-0 shadow-2xs ${colorClasses}`}>
+        {variant === 'success' && (
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+        )}
+        <span>{badgeText}</span>
       </span>
     );
   };
@@ -101,14 +104,23 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
           aria-expanded={isOpen}
           aria-controls={contentId}
           title={isCollapsed ? groupLabel : undefined}
-          className={`flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+          className={`relative flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer w-full text-left rtl:text-right outline-none focus-visible:ring-2 focus-visible:ring-primary ${
             isCollapsed ? 'justify-center px-0' : ''
           } ${
             isAnyChildActive
-              ? 'bg-primary/10 text-primary font-bold shadow-xs'
-              : 'text-muted-foreground hover:bg-surface-subtle hover:text-foreground'
+              ? 'bg-gradient-to-r from-primary/15 via-primary/10 to-transparent dark:from-primary/20 dark:via-primary/5 text-primary font-bold shadow-xs border border-primary/20'
+              : 'text-muted-foreground hover:bg-surface-subtle/80 hover:text-foreground hover:translate-x-0.5 rtl:hover:-translate-x-0.5'
           }`}
         >
+          {/* Active Accent Light Pill (Leading Edge) */}
+          {isAnyChildActive && (
+            <span
+              className={`absolute inset-y-1.5 w-1 rounded-e-full bg-primary shadow-[0_0_8px_rgba(59,130,246,0.8)] ${
+                isRtl ? 'right-0 rounded-s-full rounded-e-none' : 'left-0'
+              }`}
+            />
+          )}
+
           {/* Icon & Label */}
           <div className="flex items-center gap-3 min-w-0">
             <Icon
@@ -125,7 +137,7 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
               {badge ? (
                 renderBadge(badge, badgeVariant)
               ) : (
-                <span className="px-1.5 py-0.2 text-[10px] font-mono font-bold rounded-md bg-muted/60 text-muted-foreground">
+                <span className="px-1.5 py-0.5 text-[10px] font-mono font-bold rounded-md bg-surface-subtle border border-border/80 text-muted-foreground shadow-2xs">
                   {items.length}
                 </span>
               )}
@@ -141,7 +153,7 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
         {/* Collapsed Mode Flyout Popover (Interactive & Accessible) */}
         {isCollapsed && (
           <div
-            className={`pointer-events-none group-hover:pointer-events-auto absolute hidden group-hover:flex flex-col rounded-2xl bg-card/95 backdrop-blur-md p-2.5 text-xs font-semibold text-card-foreground shadow-2xl border border-border/80 z-50 min-w-[210px] space-y-1 transition-all duration-150 animate-in fade-in zoom-in-95 top-0 ${
+            className={`pointer-events-none group-hover:pointer-events-auto absolute hidden group-hover:flex flex-col rounded-xl bg-card/95 backdrop-blur-md p-2 text-xs font-semibold text-card-foreground shadow-dropdown border border-border/80 z-50 min-w-[210px] space-y-1 transition-all duration-150 animate-in fade-in zoom-in-95 top-0 ${
               isRtl
                 ? 'right-full mr-2.5 before:absolute before:inset-y-0 before:-right-3 before:w-3'
                 : 'left-full ml-2.5 before:absolute before:inset-y-0 before:-left-3 before:w-3'
@@ -153,7 +165,7 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
                 <Icon className="h-4 w-4 text-primary" />
                 <span className="font-bold text-foreground text-xs">{groupLabel}</span>
               </div>
-              <span className="px-1.5 py-0.2 text-[10px] font-mono font-bold rounded-md bg-muted text-muted-foreground">
+              <span className="px-1.5 py-0.5 text-[10px] font-mono font-bold rounded-md bg-surface-subtle border border-border/80 text-muted-foreground">
                 {items.length}
               </span>
             </div>
@@ -168,9 +180,9 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
                     key={subItem.to}
                     to={subItem.to}
                     onClick={onItemClick}
-                    className={`flex items-center justify-between rounded-xl px-2.5 py-1.5 text-[11px] font-medium transition-all duration-150 cursor-pointer ${
+                    className={`flex items-center justify-between rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-all duration-150 cursor-pointer ${
                       isCurrent
-                        ? 'bg-primary/10 text-primary font-bold shadow-xs'
+                        ? 'bg-primary/10 text-primary font-bold shadow-2xs border border-primary/25'
                         : 'text-muted-foreground hover:bg-surface-subtle hover:text-foreground'
                     }`}
                   >
@@ -191,7 +203,7 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
       {!isCollapsed && isOpen && (
         <div
           id={contentId}
-          className="relative rounded-2xl bg-surface-subtle/50 dark:bg-card/40 border border-border/50 p-1.5 mt-0.5 space-y-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)] transition-all duration-200"
+          className="relative rounded-xl bg-surface-subtle/40 dark:bg-card/40 border border-border/60 p-1.5 mt-0.5 space-y-0.5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)] transition-all duration-200"
         >
           {/* Subtle Vertical Glowing Track */}
           <div
@@ -209,11 +221,11 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
                 to={subItem.to}
                 onClick={onItemClick}
                 className={
-                  `group relative flex items-center justify-between rounded-xl py-1.5 px-3 text-[11px] font-medium transition-all duration-150 cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-primary ${
+                  `group relative flex items-center justify-between rounded-lg py-1.5 px-3 text-[11px] font-medium transition-all duration-150 cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-primary ${
                     isRtl ? 'pr-4' : 'pl-4'
                   } ${
                     active
-                      ? 'bg-primary/10 text-primary font-bold shadow-xs ring-1 ring-primary/20'
+                      ? 'bg-primary/10 text-primary font-bold shadow-2xs ring-1 ring-primary/20'
                       : 'text-muted-foreground hover:bg-surface hover:text-foreground'
                   }`
                 }
@@ -225,7 +237,7 @@ export const SidebarNavCollapsible: FC<SidebarNavCollapsibleProps> = memo(({
                       <span
                         className={`h-1.5 w-1.5 rounded-full shrink-0 transition-all duration-200 ${
                           active
-                            ? 'bg-primary scale-125 shadow-[0_0_6px_rgba(var(--primary),0.8)]'
+                            ? 'bg-primary scale-125 shadow-[0_0_6px_rgba(59,130,246,0.9)]'
                             : 'bg-muted-foreground/30 group-hover:bg-muted-foreground/70'
                         }`}
                       />

@@ -24,7 +24,16 @@
     "employees": "الموظفين والشيفتات",
     "inventory": "المخزون والمنتجات",
     "reviews": "تقييمات المنتجات",
-    "qrControl": "كود الـ QR"
+    "qrControl": "كود الـ QR",
+    "groupCore": "المنظومة والشركات",
+    "groupGovernance": "الحوكمة والمستخدمين",
+    "groupFinance": "الفواتير والاشتراكات",
+    "groupIntelligence": "التحليلات والمراقبة",
+    "groupSystem": "البنية التحتية والنظام",
+    "groupOperations": "العمليات والدعم",
+    "filterModules": "بحث سريع في القائمة... (/)",
+    "clearSearch": "مسح البحث",
+    "noMatchingModules": "لا توجد صفحات مطابقة للبحث"
   },
   "layout": {
     "brand": "MOT7KM",

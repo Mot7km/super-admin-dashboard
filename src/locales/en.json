@@ -24,7 +24,16 @@
     "employees": "Employees & Staff",
     "inventory": "Inventory",
     "reviews": "Product Reviews",
-    "qrControl": "QR Control"
+    "qrControl": "QR Control",
+    "groupCore": "Core & Tenancy",
+    "groupGovernance": "Access & Governance",
+    "groupFinance": "Billing & Revenue",
+    "groupIntelligence": "Telemetry & Analytics",
+    "groupSystem": "Infrastructure & System",
+    "groupOperations": "Operations & Support",
+    "filterModules": "Quick jump... (/)",
+    "clearSearch": "Clear search",
+    "noMatchingModules": "No matching modules found"
   },
   "layout": {
     "brand": "MOT7KM",
