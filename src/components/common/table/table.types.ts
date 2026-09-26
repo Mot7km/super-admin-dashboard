@@ -90,8 +90,10 @@ export interface DataTableProps<TData> {
   title?: string;
   /** Optional subtitle shown above the table */
   subtitle?: string;
-  /** Search bar configuration */
-  search?: DataTableSearchConfig;
+  /** Search bar configuration or false to hide search input */
+  search?: DataTableSearchConfig | false;
+  /** Hide the entire toolbar */
+  hideToolbar?: boolean;
   /** Custom filter dropdowns */
   filters?: DataTableFilterConfig[];
   /** Primary CTA button (e.g. "+ Invite New Operator") */

@@ -24,6 +24,7 @@ export const DataTable = <TData,>({
   title,
   subtitle,
   search,
+  hideToolbar = false,
   filters = [],
   primaryAction,
   secondaryActions,
@@ -60,16 +61,17 @@ export const DataTable = <TData,>({
   const [internalPageSize, setInternalPageSize] = useState<number>(10);
 
   // Search query resolution
-  const isSearchControlled = search?.value !== undefined && search?.onChange !== undefined;
-  const currentSearch = (isSearchControlled ? search.value : internalSearch) || '';
+  const isSearchConfigObject = typeof search === 'object' && search !== null;
+  const isSearchControlled = isSearchConfigObject && search.value !== undefined && search.onChange !== undefined;
+  const currentSearch = (isSearchControlled && isSearchConfigObject ? search.value : internalSearch) || '';
   const handleSearchChange = useCallback((val: string) => {
-    if (isSearchControlled) {
+    if (isSearchControlled && isSearchConfigObject) {
       search.onChange?.(val);
     } else {
       setInternalSearch(val);
       setInternalPage(1);
     }
-  }, [isSearchControlled, search]);
+  }, [isSearchControlled, isSearchConfigObject, search]);
 
   // Sorting resolution
   const isSortControlled = controlledSortKey !== undefined;
@@ -232,26 +234,28 @@ export const DataTable = <TData,>({
   return (
     <div className="rounded-xl border border-border/80 bg-card p-4 sm:p-5 shadow-ambient space-y-3">
       {/* 1. Rich Toolbar */}
-      <DataTableToolbar
-        search={search}
-        searchValue={currentSearch}
-        onSearchChange={handleSearchChange}
-        filters={filters}
-        onClearAllFilters={handleClearAllFilters}
-        hasActiveFilters={hasActiveFilters}
-        primaryAction={primaryAction}
-        secondaryActions={secondaryActions}
-        selectedRows={selectedRows}
-        onClearSelection={() => setSelectedKeysInternal([])}
-        batchActions={batchActions}
-        density={internalDensity}
-        onDensityChange={setInternalDensity}
-        enableDensitySwitcher={enableDensitySwitcher}
-        onExport={onExport}
-        totalCountBadge={totalCountBadge}
-        title={title}
-        subtitle={subtitle}
-      />
+      {!hideToolbar && (
+        <DataTableToolbar
+          search={search}
+          searchValue={currentSearch}
+          onSearchChange={handleSearchChange}
+          filters={filters}
+          onClearAllFilters={handleClearAllFilters}
+          hasActiveFilters={hasActiveFilters}
+          primaryAction={primaryAction}
+          secondaryActions={secondaryActions}
+          selectedRows={selectedRows}
+          onClearSelection={() => setSelectedKeysInternal([])}
+          batchActions={batchActions}
+          density={internalDensity}
+          onDensityChange={setInternalDensity}
+          enableDensitySwitcher={enableDensitySwitcher}
+          onExport={onExport}
+          totalCountBadge={totalCountBadge}
+          title={title}
+          subtitle={subtitle}
+        />
+      )}
 
       {/* 2. Responsive Scrollable Table Container */}
       <div className="overflow-x-auto rounded-xl border border-border/70 bg-card/50">
